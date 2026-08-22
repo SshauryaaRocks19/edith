@@ -1,0 +1,139 @@
+{
+  "teamblind": {
+    "stage1": [
+      {
+        "description": "Stripe Senior SWE — high signal expected",
+        "input": {
+          "query": "Stripe senior software engineer interview experience",
+          "company": "Stripe",
+          "role": "Senior SWE"
+        }
+      },
+      {
+        "description": "Google L5 — very high volume source, pagination test",
+        "input": {
+          "query": "Google L5 interview experience 2024",
+          "company": "Google",
+          "role": "L5 SWE"
+        }
+      },
+      {
+        "description": "Edge case: obscure company — low result count expected",
+        "input": {
+          "query": "Figma growth engineer interview experience",
+          "company": "Figma",
+          "role": "Growth Engineer"
+        }
+      }
+    ],
+    "stage2": [
+      {
+        "description": "Known live thread — verifies body + comment extraction",
+        "input": {
+          "url": "https://www.teamblind.com/post/Stripe-E5-interview-loop-breakdown",
+          "company": "Stripe",
+          "role": "E5 SWE"
+        }
+      },
+      {
+        "description": "Thread with no comments — tests graceful empty comment handling",
+        "input": {
+          "url": "https://www.teamblind.com/post/Recent-Meta-E5-interview",
+          "company": "Meta",
+          "role": "E5 SWE"
+        }
+      }
+    ]
+  },
+  "leetcode-discuss": {
+    "stage1": [
+      {
+        "description": "Amazon SDE2 — high volume, pagination stress test",
+        "input": {
+          "query": "Amazon SDE2 interview experience",
+          "company": "Amazon",
+          "role": "SDE2"
+        }
+      },
+      {
+        "description": "Stripe Backend — specific role filter",
+        "input": {
+          "query": "Stripe backend engineer interview experience",
+          "company": "Stripe",
+          "role": "Backend Engineer"
+        }
+      }
+    ],
+    "stage2": [
+      {
+        "description": "Standard post — tests React-rendered content extraction",
+        "input": {
+          "url": "https://leetcode.com/discuss/interview-experience/5143285/amazon-sde2-interview-experience",
+          "company": "Amazon",
+          "role": "SDE2"
+        }
+      },
+      {
+        "description": "Post with long comment thread — tests comment truncation at 20",
+        "input": {
+          "url": "https://leetcode.com/discuss/interview-experience/1824027/google-l4-interview-experience",
+          "company": "Google",
+          "role": "L4 SWE"
+        }
+      }
+    ]
+  },
+  "reddit": {
+    "stage1": [
+      {
+        "description": "r/cscareerquestions — Stripe focus, recent posts",
+        "input": {
+          "subreddit": "cscareerquestions",
+          "query": "Stripe interview experience",
+          "company": "Stripe",
+          "role": "SWE"
+        }
+      },
+      {
+        "description": "r/developersIndia — tests India-specific hiring signals",
+        "input": {
+          "subreddit": "developersIndia",
+          "query": "Google interview experience 2024",
+          "company": "Google",
+          "role": "SWE"
+        }
+      },
+      {
+        "description": "r/leetcode — Edge case: query with zero results expected",
+        "input": {
+          "subreddit": "leetcode",
+          "query": "extremely obscure company xyz interview xyzxyz",
+          "company": "XYZ",
+          "role": "SWE"
+        }
+      }
+    ],
+    "stage2": [
+      {
+        "description": "Standard thread with selftext and comments",
+        "input": {
+          "url": "https://www.reddit.com/r/cscareerquestions/comments/1dqxxx/stripe_e4_interview_loop/.json",
+          "permalink": "https://www.reddit.com/r/cscareerquestions/comments/1dqxxx/stripe_e4_interview_loop/",
+          "company": "Stripe",
+          "role": "E4 SWE",
+          "subreddit": "cscareerquestions"
+        }
+      },
+      {
+        "description": "Thread with only title, no body — tests null body handling",
+        "input": {
+          "url": "https://www.reddit.com/r/cscareerquestions/comments/1aaaaaa/test_no_selftext/.json",
+          "permalink": "https://www.reddit.com/r/cscareerquestions/comments/1aaaaaa/test_no_selftext/",
+          "company": "TestCo",
+          "role": "SWE",
+          "subreddit": "cscareerquestions"
+        }
+      }
+    ]
+  }
+}

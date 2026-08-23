@@ -1,311 +1,163 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
-import { IntentManifest, SynthesisChallenge } from "@/lib/types";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ThemedBackground } from "@/components/ThemedBackground";
+import BounceCards from "@/components/BounceCards";
+import { Bot, Database, Zap, Play, Send } from "lucide-react";
 
 export default function Home() {
-  const [company, setCompany] = useState("");
-  const [role, setRole] = useState("Backend SWE");
-  const [topics, setTopics] = useState("");
-  
-  const [intent, setIntent] = useState<IntentManifest | null>(null);
-  const [challenge, setChallenge] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [backgroundSyncing, setBackgroundSyncing] = useState(false);
-  const [error, setError] = useState("");
-  
-  // Ref to track the latest input values to avoid stale closures
-  const inputRef = useRef({ company, role, topics });
-  
-  useEffect(() => {
-    inputRef.current = { company, role, topics };
-  }, [company, role, topics]);
-
-  // Speculative Execution: Debounced automatic intent resolution
-  useEffect(() => {
-    // Only auto-resolve if we have a company typed out
-    if (company.trim().length < 2) return;
-
-    const timer = setTimeout(() => {
-      // Secretly trigger the intent resolution in the background
-      handleResolveIntent(true);
-    }, 750); // 750ms debounce after typing stops
-
-    return () => clearTimeout(timer);
-  }, [company, role, topics]);
-
-  const MOCK_RECORDS = [
-    {
-      source: "teamblind",
-      url: "https://www.teamblind.com/post/mock1",
-      company: company || "Google",
-      role: role || "SWE",
-      date_posted: new Date().toISOString(),
-      title: "Interview Experience",
-      body: "Asked about distributed systems, caching, and rate limiting.",
-      comments: [],
-      signals: {
-        topics: topics ? topics.split(",").map(t => t.trim()) : ["distributed systems", "caching", "rate limiting"],
-        difficulty: "hard",
-        recency: "recent"
-      },
-      _needs_healing: false,
-      _raw_html: null
-    }
+  const features = [
+    (
+      <div key="feature-1" className="flex flex-col items-center text-center gap-4 h-full">
+        <div className="p-4 bg-primary/10 text-primary rounded-lg border-2 border-border shadow-sm">
+          <Database size={40} />
+        </div>
+        <h3 className="font-bold text-xl font-heading mt-2">Real-Time Context</h3>
+        <p className="text-muted-foreground font-medium">
+          Powered by Bright Data to fetch real-world technical interview questions directly from active forums.
+        </p>
+      </div>
+    ),
+    (
+      <div key="feature-2" className="flex flex-col items-center text-center gap-4 h-full">
+        <div className="p-4 bg-secondary/40 text-foreground rounded-lg border-2 border-border shadow-sm">
+          <Bot size={40} />
+        </div>
+        <h3 className="font-bold text-xl font-heading mt-2">AI Synthesis</h3>
+        <p className="text-muted-foreground font-medium">
+          Gemini automatically transforms unstructured discussion threads into pristine, runnable LeetCode-style problems.
+        </p>
+      </div>
+    ),
+    (
+      <div key="feature-3" className="flex flex-col items-center text-center gap-4 h-full">
+        <div className="p-4 bg-accent/20 text-accent-foreground rounded-lg border-2 border-border shadow-sm">
+          <Zap size={40} />
+        </div>
+        <h3 className="font-bold text-xl font-heading mt-2">Zero Memorization</h3>
+        <p className="text-muted-foreground font-medium">
+          Stop grinding obsolete problem lists. Solve exactly what companies are asking today.
+        </p>
+      </div>
+    )
   ];
 
-  const handleResolveIntent = async (isBackground = false) => {
-    if (!isBackground) setLoading(true);
-    else setBackgroundSyncing(true);
-    
-    setError("");
-    // We intentionally do not clear the old intent/challenge if it's a background sync
-    // so the UI doesn't jump around while typing.
-    if (!isBackground) {
-      setIntent(null);
-      setChallenge(null);
-    }
-    
-    const currentInputs = inputRef.current;
-    const requestText = `I am preparing for a ${currentInputs.role} interview at ${currentInputs.company || "a tech company"}. Focus on: ${currentInputs.topics || "general technical topics"}.`;
-
-    try {
-      const res = await fetch("/api/intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request: requestText })
-      });
-      
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to resolve intent");
-      
-      setIntent(data);
-    } catch (err: any) {
-      if (!isBackground) setError(err.message);
-    } finally {
-      if (!isBackground) setLoading(false);
-      else setBackgroundSyncing(false);
-    }
-  };
-
-  const handleSynthesize = async () => {
-    setLoading(true);
-    setError("");
-    setChallenge(null);
-
-    try {
-      const res = await fetch("/api/synthesize", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ records: MOCK_RECORDS })
-      });
-      
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to synthesize challenge");
-      }
-
-      const reader = res.body?.getReader();
-      if (!reader) throw new Error("No response stream available");
-      
-      const decoder = new TextDecoder("utf-8");
-      let markdown = "";
-      setChallenge(""); // initialize empty string to show stream starting
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        
-        const chunk = decoder.decode(value, { stream: true });
-        markdown += chunk;
-        setChallenge(markdown);
-      }
-      
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-8 font-sans">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <main className="min-h-screen w-full relative flex flex-col items-center overflow-x-hidden pb-32">
+      {/* Theme-aware GradientWaves background */}
+      <ThemedBackground />
+
+      {/* Hero Content */}
+      <div className="relative z-10 container mx-auto px-4 pt-32 pb-12 flex flex-col items-center text-center gap-12">
+        <div className="max-w-4xl flex flex-col items-center gap-6">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tight font-heading">
+            <span className="block mb-2 text-foreground">Edith,</span>
+            <span className="block text-primary drop-shadow-sm">Get hired:</span>
+            <span className="block text-foreground">without memorizing</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl font-medium mt-4">
+            The next-generation dynamic interview preparation platform.
+          </p>
+          
+          <div className="flex items-center gap-4 mt-8">
+            <Link href="/find-problems">
+              <Button size="lg" className="h-14 px-8 text-lg border-2 border-border shadow-sm font-bold">
+                Start Preparing
+              </Button>
+            </Link>
+            <Link href="https://github.com/SshauryaaRocks19/edith" target="_blank">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-2 border-border shadow-sm font-bold">
+                View Source
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Features / Bounce Cards Section */}
+        <div className="mt-28 w-full max-w-5xl mx-auto flex flex-col items-center mb-16">
+          <BounceCards 
+            items={features}
+            containerWidth={1000}
+            containerHeight={450}
+            animationDelay={0.2}
+            transformStyles={[
+              'rotate(-5deg) translate(-300px)',
+              'rotate(0deg)',
+              'rotate(5deg) translate(300px)'
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* IDE Mockup Section */}
+      <div className="w-full max-w-6xl mx-auto px-4 relative z-10 flex flex-col items-center mt-8">
+        <h2 className="text-4xl md:text-5xl font-black font-heading mb-12 text-center text-foreground">
+          Experience the IDE
+        </h2>
         
-        <header className="border-b border-neutral-800 pb-6">
-          <h1 className="text-3xl font-bold text-white tracking-tight">Edith Pipeline Tester</h1>
-          <p className="text-neutral-400 mt-2">Throwaway UI to test the Intent and Synthesis APIs.</p>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* LEFT: FORM */}
-          <div className="col-span-1 space-y-6 bg-neutral-900 border border-neutral-800 p-6 rounded-xl h-fit">
-            <h2 className="text-lg font-semibold text-white mb-4">Interview Profile</h2>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-neutral-400 mb-1">Company</label>
-                <input 
-                  type="text" 
-                  list="companies"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  placeholder="e.g. Stripe, Google..."
-                  className="w-full bg-neutral-950 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                />
-                <datalist id="companies">
-                  <option value="Stripe" />
-                  <option value="Google" />
-                  <option value="Meta" />
-                  <option value="Amazon" />
-                  <option value="Netflix" />
-                </datalist>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-400 mb-1">Role / Field</label>
-                <select 
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                >
-                  <option value="Backend SWE">Backend SWE</option>
-                  <option value="Frontend SWE">Frontend SWE</option>
-                  <option value="Fullstack SWE">Fullstack SWE</option>
-                  <option value="Data Structures & Algorithms">DSA (General)</option>
-                  <option value="System Design">System Design (General)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-400 mb-1">Specific Topics (comma separated)</label>
-                <textarea 
-                  value={topics}
-                  onChange={(e) => setTopics(e.target.value)}
-                  placeholder="e.g. Distributed locking, rate limiting, graphs"
-                  rows={3}
-                  className="w-full bg-neutral-950 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                />
-              </div>
-
-              <div className="pt-6 mt-4 border-t border-neutral-800 flex flex-col gap-6">
-                <div className="space-y-2">
-                  <button 
-                    onClick={() => handleResolveIntent(false)}
-                    disabled={loading || !company}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-medium py-3 px-4 rounded-xl transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98]"
-                  >
-                    {loading && !challenge ? "Processing Step 1..." : "Step 1: Extract Intent & Sources"}
-                  </button>
-                  
-                  {backgroundSyncing && (
-                    <p className="text-xs text-neutral-500 text-center animate-pulse">Syncing in background...</p>
-                  )}
-                  {intent && !loading && !backgroundSyncing && (
-                    <p className="text-xs text-green-400 text-center font-medium">✓ Intent resolved! Ready to synthesize.</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <button 
-                    onClick={handleSynthesize}
-                    disabled={loading || !intent}
-                    className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-medium py-3 px-4 rounded-xl transition-all shadow-lg shadow-purple-900/20 active:scale-[0.98]"
-                  >
-                    {loading && challenge === null && intent ? "Generating Step 2..." : "Step 2: Synthesize Final Challenge"}
-                  </button>
-                  {!intent && (
-                    <p className="text-xs text-neutral-500 text-center">Complete Step 1 first to unlock synthesis.</p>
-                  )}
-                </div>
-              </div>
-
-              {error && (
-                <div className="p-3 bg-red-900/30 border border-red-800 text-red-200 text-sm rounded-lg">
-                  {error}
-                </div>
-              )}
+        <div className="w-full bg-background border-4 border-border rounded-xl shadow-[8px_8px_0_0_var(--color-border)] flex flex-col overflow-hidden">
+          {/* IDE Header */}
+          <div className="h-14 border-b-4 border-border flex items-center px-4 gap-4 bg-muted">
+            <div className="flex gap-2">
+              <div className="w-4 h-4 rounded-full border-2 border-border bg-red-400"></div>
+              <div className="w-4 h-4 rounded-full border-2 border-border bg-amber-400"></div>
+              <div className="w-4 h-4 rounded-full border-2 border-border bg-emerald-400"></div>
+            </div>
+            <div className="font-mono text-sm font-bold bg-background px-4 py-1.5 rounded-md border-2 border-border shadow-sm flex-1 max-w-[200px] text-center">
+              edith-workspace
             </div>
           </div>
-
-          {/* RIGHT: RESULTS */}
-          <div className="col-span-1 md:col-span-2 flex flex-col gap-8">
-            
-            {/* Step 1 Output */}
-            <div className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-              <div className="border-b border-neutral-800 bg-neutral-950/80 px-6 py-4 flex items-center gap-4">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${intent ? 'bg-blue-600 text-white' : 'bg-neutral-800 text-neutral-500'}`}>1</div>
-                <h2 className={`font-semibold text-lg ${intent ? 'text-white' : 'text-neutral-500'}`}>Step 1 Output: Intent & Sources</h2>
+          
+          {/* IDE Body */}
+          <div className="flex flex-col md:flex-row h-[550px]">
+            {/* Left Pane (Problem) */}
+            <div className="w-full md:w-1/2 border-b-4 md:border-b-0 md:border-r-4 border-border p-8 overflow-y-auto bg-card text-left">
+              <h3 className="text-3xl font-black font-heading mb-4 text-primary">1. Reverse Linked List</h3>
+              <div className="flex gap-2 mb-6">
+                <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-bold text-xs rounded-full border-2 border-green-700/20">Easy</span>
+                <span className="px-3 py-1 bg-muted font-bold text-xs rounded-full border-2 border-border text-foreground">Linked List</span>
               </div>
-              <div className="p-6 bg-neutral-900/50">
-                {intent ? (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-neutral-950 p-4 rounded-lg border border-neutral-800">
-                        <span className="block text-xs text-neutral-500 mb-1">Extracted Company</span>
-                        <span className="font-medium text-white">{intent.company}</span>
-                      </div>
-                      <div className="bg-neutral-950 p-4 rounded-lg border border-neutral-800">
-                        <span className="block text-xs text-neutral-500 mb-1">Extracted Role</span>
-                        <span className="font-medium text-white">{intent.role} ({intent.role_level})</span>
-                      </div>
-                      <div className="col-span-2 bg-neutral-950 p-4 rounded-lg border border-neutral-800">
-                        <span className="block text-xs text-neutral-500 mb-1">Topics Identified</span>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {intent.topics.map(t => (
-                            <span key={t} className="bg-neutral-800 text-neutral-300 px-2 py-1 rounded-md text-xs">{t}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-medium text-white mb-3">Ranked Scraper Targets</h3>
-                      <div className="space-y-3">
-                        {intent.ranked_sources.map(src => (
-                          <div key={src.source_id} className="bg-neutral-950 border border-neutral-800 p-4 rounded-lg">
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-900/30 text-blue-400 text-xs font-bold">{src.rank}</span>
-                              <span className="font-mono text-sm text-neutral-200">{src.source_id}</span>
-                            </div>
-                            <p className="text-sm text-neutral-400 leading-relaxed">{src.reasoning}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center h-32 text-neutral-600">
-                    Click "Step 1" on the left to resolve intent and rank scraper sources.
-                  </div>
-                )}
+              <p className="text-foreground text-lg mb-6 font-medium leading-relaxed">
+                Given the <code className="bg-muted px-1.5 py-0.5 rounded border border-border">head</code> of a singly linked list, reverse the list, and return the reversed list.
+              </p>
+              <div className="bg-muted p-5 rounded-xl border-2 border-border shadow-sm mb-6">
+                <p className="font-mono text-sm text-foreground"><strong>Input:</strong> head = [1,2,3,4,5]</p>
+                <p className="font-mono text-sm text-foreground mt-2"><strong>Output:</strong> [5,4,3,2,1]</p>
               </div>
             </div>
-
-            {/* Step 2 Output */}
-            <div className={`bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl transition-opacity duration-300 ${!intent ? 'opacity-50' : 'opacity-100'}`}>
-              <div className="border-b border-neutral-800 bg-neutral-950/80 px-6 py-4 flex items-center gap-4">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${challenge ? 'bg-purple-600 text-white' : 'bg-neutral-800 text-neutral-500'}`}>2</div>
-                <h2 className={`font-semibold text-lg ${challenge ? 'text-white' : 'text-neutral-500'}`}>Step 2 Output: Final Challenge</h2>
-              </div>
-              <div className="p-6 bg-neutral-900/50">
-                {challenge !== null ? (
-                  <div className="bg-neutral-950 p-6 rounded-lg border border-neutral-800">
-                    <div className="prose prose-invert max-w-none whitespace-pre-wrap font-sans text-neutral-300 leading-relaxed">
-                      {challenge}
-                      {loading && <span className="inline-block w-2 h-4 bg-purple-500 ml-1 animate-pulse" />}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center h-32 text-neutral-600">
-                    {intent ? "Click 'Step 2' on the left to synthesize the final challenge from mock scraped data." : "Complete Step 1 first."}
-                  </div>
-                )}
+            
+            {/* Right Pane (Code) */}
+            <div className="w-full md:w-1/2 bg-zinc-950 p-6 font-mono text-sm text-blue-400 overflow-y-auto relative text-left">
+              <pre className="text-sm md:text-base leading-relaxed"><code>
+<span className="text-purple-400">class</span> <span className="text-yellow-300">Solution</span> {'{\n'}
+  <span className="text-blue-400">reverseList</span>(head: ListNode | null): ListNode | null {'{\n'}
+    <span className="text-purple-400">let</span> prev = <span className="text-orange-400">null</span>;
+    <span className="text-purple-400">let</span> curr = head;
+    
+    <span className="text-purple-400">while</span> (curr !== <span className="text-orange-400">null</span>) {'{\n'}
+      <span className="text-purple-400">const</span> nextTemp = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = nextTemp;
+    {'}\n'}
+    
+    <span className="text-purple-400">return</span> prev;
+  {'}\n'}
+{'}'}
+              </code></pre>
+              
+              {/* Run / Submit buttons */}
+              <div className="absolute bottom-6 right-6 flex gap-3">
+                <button className="flex items-center gap-2 px-5 py-2.5 bg-muted text-foreground font-bold border-2 border-border shadow-[4px_4px_0_0_var(--color-border)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0_0_var(--color-border)] transition-all">
+                  <Play size={16} /> Run Code
+                </button>
+                <button className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white font-bold border-2 border-emerald-800 shadow-[4px_4px_0_0_#065f46] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0_0_#065f46] transition-all">
+                  <Send size={16} /> Submit
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

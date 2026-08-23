@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, UserButton, useAuth } from "@clerk/nextjs";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -49,6 +49,8 @@ const CustomLogo = () => {
 };
 
 export function GlobalNavbar() {
+  const { isLoaded, isSignedIn } = useAuth();
+  
   const navItems = [
     {
       name: "Get Problems",
@@ -74,19 +76,20 @@ export function GlobalNavbar() {
         <NavItems items={navItems} />
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <SignedOut>
-            <SignInButton mode="modal">
-              <NavbarButton variant="secondary">Login</NavbarButton>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <NavbarButton variant="dark" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">Sign Up</NavbarButton>
-            </SignUpButton>
-          </SignedOut>
-          <SignedIn>
+          {!isLoaded ? null : isSignedIn ? (
             <div className="ml-2 mt-1">
-              <UserButton afterSignOutUrl="/" />
+              <UserButton />
             </div>
-          </SignedIn>
+          ) : (
+            <>
+              <SignInButton mode="modal">
+                <NavbarButton variant="secondary">Login</NavbarButton>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <NavbarButton variant="dark" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">Sign Up</NavbarButton>
+              </SignUpButton>
+            </>
+          )}
         </div>
       </NavBody>
 
@@ -119,31 +122,32 @@ export function GlobalNavbar() {
             </Link>
           ))}
           <div className="flex w-full flex-col gap-4 mt-4">
-            <SignedOut>
-              <SignInButton mode="modal">
-                <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant="secondary"
-                  className="w-full text-foreground border border-border"
-                >
-                  Login
-                </NavbarButton>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant="dark"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-none"
-                >
-                  Sign Up
-                </NavbarButton>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
+            {!isLoaded ? null : isSignedIn ? (
               <div className="flex justify-center py-2">
-                <UserButton afterSignOutUrl="/" />
+                <UserButton />
               </div>
-            </SignedIn>
+            ) : (
+              <>
+                <SignInButton mode="modal">
+                  <NavbarButton
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    variant="secondary"
+                    className="w-full text-foreground border border-border"
+                  >
+                    Login
+                  </NavbarButton>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <NavbarButton
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    variant="dark"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-none"
+                  >
+                    Sign Up
+                  </NavbarButton>
+                </SignUpButton>
+              </>
+            )}
           </div>
         </MobileNavMenu>
       </MobileNav>

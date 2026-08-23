@@ -22,11 +22,12 @@ import {
 
 interface LeetCodeViewProps {
   intent: any;
-  streamReader: ReadableStreamDefaultReader<Uint8Array>;
+  streamReader: ReadableStreamDefaultReader<Uint8Array> | null;
+  initialMarkdown?: string;
 }
 
-export function LeetCodeView({ intent, streamReader }: LeetCodeViewProps) {
-  const [markdown, setMarkdown] = useState("");
+export function LeetCodeView({ intent, streamReader, initialMarkdown = "" }: LeetCodeViewProps) {
+  const [markdown, setMarkdown] = useState(initialMarkdown);
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("python");
   const [starterCodes, setStarterCodes] = useState<Record<string, string>>({});
@@ -42,6 +43,7 @@ export function LeetCodeView({ intent, streamReader }: LeetCodeViewProps) {
 
   useEffect(() => {
     const readStream = async () => {
+      if (!streamReader) return;
       const decoder = new TextDecoder();
       try {
         while (true) {

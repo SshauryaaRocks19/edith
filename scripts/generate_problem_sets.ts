@@ -10,10 +10,10 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-const model = genAI.getGenerativeModel({ model: "gemini-3.1-pro-preview" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 const companies = ["Google", "Meta", "Netflix", "Amazon"];
-const problemsPerCompany = 5; // Reduced to 5 for fast demo generation (can be increased to 40 later)
+const problemsPerCompany = 15; // Set to 15 to generate a solid prebuilt catalog
 
 const SYSTEM_PROMPT = `You are a senior technical interviewer at top-tier tech companies.
 Generate a JSON array of ${problemsPerCompany} unique, high-quality, realistic coding interview problems for the given company.

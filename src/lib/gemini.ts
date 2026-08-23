@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
-export const INTENT_MODEL = "gemini-1.5-flash";
-export const SYNTHESIS_MODEL = "gemini-1.5-flash";
+export const INTENT_MODEL = "gemini-2.5-flash";
+export const SYNTHESIS_MODEL = "gemini-2.5-flash";
 
 let _client: GoogleGenAI | null = null;
 

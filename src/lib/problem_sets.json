@@ -1,46 +1,317 @@
 {
   "Google": [
     {
-      "title": "Directory Sync",
+      "title": "Longest Increasing Path in a Matrix",
       "difficulty": "Hard",
-      "topics": ["Tree", "DFS"],
-      "content": "# Directory Sync\n\nGiven two directory structures represented as trees, write a function to synchronize them by outputting the minimal number of create, delete, and move operations required to make the destination tree identical to the source tree."
+      "topics": [
+        "Dynamic Programming",
+        "Depth-First Search",
+        "Memoization",
+        "Matrix"
+      ],
+      "content": "# Longest Increasing Path in a Matrix\n\nGiven an `m x n` integers matrix, return the length of the longest increasing path in the matrix.\n\nFrom each cell, you can either move in four directions: left, right, up, or down. You **may not** move diagonally or move outside the boundary (i.e., wrap around the edges).\n\n## Examples\n\n### Example 1:\n\n\nInput: matrix = [[9,9,4],[6,6,8],[2,1,1]]\nOutput: 4\nExplanation: The longest increasing path is [1, 2, 6, 9].\n\n\n### Example 2:\n\n\nInput: matrix = [[3,4,5],[3,2,6],[2,2,1]]\nOutput: 4\nExplanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.\n\n\n### Example 3:\n\n\nInput: matrix = [[1]]\nOutput: 1\n\n\n## Constraints\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 200`\n*   `0 <= matrix[i][j] <= 10^5`"
     },
     {
-      "title": "Meeting Rooms III",
+      "title": "Minimum Cost to Cut a Stick",
+      "difficulty": "Hard",
+      "topics": [
+        "Dynamic Programming",
+        "Recursion",
+        "Memoization",
+        "Interval DP"
+      ],
+      "content": "# Minimum Cost to Cut a Stick\n\nGiven a wooden stick of length `n` units. The stick is numbered from `0` to `n`. You are given an integer array `cuts` where `cuts[i]` is the position where you need to cut the stick. The cuts are un-ordered.\n\nCutting a stick creates two smaller sticks. The cost of cutting a stick is the length of that stick. For example, if you cut a stick of length `10` at position `3`, the cost is `10`. The two new sticks will have lengths `3` and `7`. After that, you can further cut these smaller sticks.\n\nYou must perform all the cuts in `cuts`. The order of cuts can be chosen by you. You want to minimize the total cost of the cuts.\n\nReturn the minimum total cost of the cuts.\n\n## Examples\n\n### Example 1:\n\n\nInput: n = 7, cuts = [1,3,4,5]\nOutput: 16\nExplanation: The cuts can be done in the following order:\n(1) Cut at 3. Cost is 7. Array becomes [1,3,4,5] -> [1,3], [3,4,5,7].\n(2) Cut [1,3] at 1. Cost is 3. Array becomes [1], [1,3], [3,4,5,7].\n(3) Cut [3,4,5,7] at 5. Cost is 4. Array becomes [1], [1,3], [3,4], [5,7].\n(4) Cut [3,4] at 4. Cost is 1. Array becomes [1], [1,3], [3,4], [5], [5,7].\nTotal cost = 7 + 3 + 4 + 1 = 15.\nAnother order: Cut at 4. Cost is 7. [1,3,4,5] -> [1,3,4], [4,5,7].\nThen cut [1,3,4] at 1. Cost is 4. [1], [1,3,4], [4,5,7].\nThen cut [1,3,4] at 3. Cost is 3. [1], [1,3], [3,4], [4,5,7].\nThen cut [4,5,7] at 5. Cost is 3. [1], [1,3], [3,4], [4,5], [5,7].\nTotal cost = 7 + 4 + 3 + 3 = 17.\nMinimum is 16.\n\n\n### Example 2:\n\n\nInput: n = 9, cuts = [5,6,1,4,2]\nOutput: 22\nExplanation: If you try the cuts in order [1,2,4,5,6], the total cost is 6 + 4 + 3 + 2 + 1 = 16. This is incorrect. The cost of cutting is the length of the *current* stick.\nOptimal order can be [4, 6, 5, 2, 1] resulting in 9 + 5 + 4 + 3 + 1 = 22.\n\n\n## Constraints\n\n*   `2 <= n <= 10^6`\n*   `1 <= cuts.length <= min(n - 1, 100)`\n*   `1 <= cuts[i] <= n - 1`\n*   All the integers in `cuts` array are unique."
+    },
+    {
+      "title": "Serialize and Deserialize Binary Tree",
+      "difficulty": "Hard",
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Breadth-First Search",
+        "String"
+      ],
+      "content": "# Serialize and Deserialize Binary Tree\n\nSerialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\nFor example, you may serialize the following tree:\n\n\n    1\n   / \\\n  2   3\n     / \\\n    4   5\n\n\nas `\"1,2,null,null,3,4,null,null,5,null,null\"`.\n\n## Examples\n\n### Example 1:\n\n\nInput: root = [1,2,3,null,null,4,5]\nOutput: [1,2,3,null,null,4,5]\n\n\n### Example 2:\n\n\nInput: root = []\nOutput: []\n\n\n### Example 3:\n\n\nInput: root = [1]\nOutput: [1]\n\n\n### Example 4:\n\n\nInput: root = [1,2]\nOutput: [1,2]\n\n\n## Constraints\n\n*   The number of nodes in the tree is in the range `[0, 10^4]`.\n*   `-1000 <= Node.val <= 1000`"
+    },
+    {
+      "title": "Shortest Path in a Grid with Obstacles Elimination",
+      "difficulty": "Hard",
+      "topics": [
+        "Breadth-First Search",
+        "Graph",
+        "Matrix",
+        "State Space Search"
+      ],
+      "content": "# Shortest Path in a Grid with Obstacles Elimination\n\nYou are given an `m x n` integer matrix `grid` where `grid[i][j]` is either `0` (empty) or `1` (obstacle). You can move up, down, left, or right.\n\nYou are also given an integer `k`, which is the maximum number of obstacles you can eliminate.\n\nReturn the minimum number of steps to walk from `(0, 0)` to `(m - 1, n - 1)`. If it is impossible, return -1.\n\n## Examples\n\n### Example 1:\n\n\nInput: grid = [[0,0,0],[1,1,0],[0,0,0],[0,1,1],[0,0,0]], k = 1\nOutput: 6\nExplanation: \nThe shortest path without eliminating any obstacle is 10. \nThe shortest path with one obstacle elimination at (3,2) is 6. \nThe path is (0,0) -> (0,1) -> (0,2) -> (1,2) -> (2,2) -> (3,2) (we eliminate this obstacle) -> (4,2).\n\n\n### Example 2:\n\n\nInput: grid = [[0,1,1],[1,1,1],[1,1,0]], k = 1\nOutput: -1\nExplanation: We need to eliminate at least two obstacles to reach the target.\n\n\n## Constraints\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 40`\n*   `1 <= k <= m * n`\n*   `grid[i][j]` is either `0` or `1`.\n*   `grid[0][0] == 0`\n*   `grid[m - 1][n - 1] == 0`"
+    },
+    {
+      "title": "Subarrays with K Different Integers",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Sliding Window",
+        "Hash Map",
+        "Two Pointers"
+      ],
+      "content": "# Subarrays with K Different Integers\n\nGiven an integer array `nums` and an integer `k`, return the number of good subarrays of `nums`.\n\nA good subarray is a subarray where the number of different integers in that subarray is exactly `k`.\n\nFor example, `[1,2,3,1,2]` has `3` different integers: `1`, `2`, and `3`.\n\nA subarray is a contiguous part of an array.\n\n## Examples\n\n### Example 1:\n\n\nInput: nums = [1,2,1,2,3], k = 2\nOutput: 7\nExplanation: Subarrays that contain exactly 2 different integers: \n[1,2], [2,1], [1,2], [2,3], [1,2,1], [2,1,2], [1,2,1,2]\n\n\n### Example 2:\n\n\nInput: nums = [1,2,1,3,4], k = 3\nOutput: 3\nExplanation: Subarrays that contain exactly 3 different integers: \n[1,2,1,3], [2,1,3], [1,3,4]\n\n\n## Constraints\n\n*   `1 <= nums.length <= 2 * 10^4`\n*   `1 <= nums[i], k <= nums.length`"
+    },
+    {
+      "title": "Trapping Rain Water",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Stack"
+      ],
+      "content": "# Trapping Rain Water\n\nGiven `n` non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\n## Examples\n\n### Example 1:\n\n\nInput: height = [0,1,0,2,1,0,1,3,2,1,2,1]\nOutput: 6\nExplanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.\n\n\n### Example 2:\n\n\nInput: height = [4,2,0,3,2,5]\nOutput: 9\n\n\n## Constraints\n\n*   `n == height.length`\n*   `1 <= n <= 2 * 10^4`\n*   `0 <= height[i] <= 10^5`"
+    },
+    {
+      "title": "N-Queens II",
+      "difficulty": "Hard",
+      "topics": [
+        "Backtracking",
+        "Recursion"
+      ],
+      "content": "# N-Queens II\n\nThe n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.\n\nGiven an integer `n`, return the number of distinct solutions to the n-queens puzzle.\n\nEach solution contains a distinct board configuration of the n-queens' placement, where `'Q'` and `'.'` both indicate a queen and an empty space, respectively.\n\n## Examples\n\n### Example 1:\n\n\nInput: n = 4\nOutput: 2\nExplanation: There are two distinct solutions to the 4-queens puzzle as shown.\n[\".Q..\",  // Solution 1\n \"...Q\",\n \"Q...\",\n \"..Q.\"]\n\n[\"..Q.\",  // Solution 2\n \"Q...\",\n \"...Q\",\n \".Q..\"]\n\n\n### Example 2:\n\n\nInput: n = 1\nOutput: 1\n\n\n## Constraints\n\n*   `1 <= n <= 9`"
+    },
+    {
+      "title": "Course Schedule III",
+      "difficulty": "Hard",
+      "topics": [
+        "Greedy",
+        "Priority Queue",
+        "Array",
+        "Sorting"
+      ],
+      "content": "# Course Schedule III\n\nThere are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where `courses[i] = [duration_i, lastDay_i]` indicates that the `i`-th course should be taken for `duration_i` days and must be finished before or on `lastDay_i`. You can only take one course at a time.\n\nWe are interested in the maximum number of courses that can be taken.\n\nFor example, if `courses = [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]`:\n*   If you take the first course, it ends at day 100. The remaining time is 199. \n*   If you then take the third course, it needs 1000 days. It ends at day 100 + 1000 = 1100. This is less than 1250. So you can take 2 courses.\n*   If you then take the second course, it needs 200 days. It ends at day 1100 + 200 = 1300. This is equal to 1300. So you can take 3 courses.\n\nReturn the maximum number of courses that can be taken.\n\n## Examples\n\n### Example 1:\n\n\nInput: courses = [[100,200],[200,1300],[1000,1250],[2000,3200]]\nOutput: 3\nExplanation: \nThere are 4 courses in total.\nCourse 1 (duration 100, lastDay 200)\nCourse 2 (duration 200, lastDay 1300)\nCourse 3 (duration 1000, lastDay 1250)\nCourse 4 (duration 2000, lastDay 3200)\n\nOptimal strategy: \n1. Take Course 1 (ends at day 100). current_time = 100\n2. Take Course 3 (ends at day 100 + 1000 = 1100). current_time = 1100\n3. Take Course 2 (ends at day 1100 + 200 = 1300). current_time = 1300\nWe cannot take Course 4, because 1300 + 2000 = 3300 > 3200.\nTotal courses taken: 3.\n\n\n### Example 2:\n\n\nInput: courses = [[1,2]]\nOutput: 1\n\n\n### Example 3:\n\n\nInput: courses = [[3,2],[4,3]]\nOutput: 0\n\n\n## Constraints\n\n*   `1 <= courses.length <= 10^4`\n*   `1 <= duration_i, lastDay_i <= 10^4`"
+    },
+    {
+      "title": "Find K Pairs with Smallest Sums",
       "difficulty": "Medium",
-      "topics": ["Heap", "Sorting"],
-      "content": "# Meeting Rooms III\n\nYou are given an integer `n` and an array `meetings` where `meetings[i] = [start_i, end_i]`. Allocate meetings to rooms such that the number of rooms used is minimized, and return the room that held the most meetings."
+      "topics": [
+        "Heap",
+        "Priority Queue",
+        "Array"
+      ],
+      "content": "# Find K Pairs with Smallest Sums\n\nYou are given two integer arrays `nums1` and `nums2` sorted in ascending order and an integer `k`.\n\nDefine a pair `(u, v)` as one element from `nums1` and one element from `nums2`.\n\nFind the `k` pairs `(u1, v1), (u2, v2), ..., (uk, vk)` with the smallest sums.\n\n## Examples\n\n### Example 1:\n\n\nInput: nums1 = [1,7,11], nums2 = [2,4,6], k = 3\nOutput: [[1,2],[1,4],[1,6]]\nExplanation: The pairs are (1,2), (1,4), (1,6), (7,2), (7,4), (11,2), (7,6), (11,4), (11,6).\nWe ask for the first 3 pairs with the smallest sums.\n\n\n### Example 2:\n\n\nInput: nums1 = [1,1,2], nums2 = [1,2,3], k = 2\nOutput: [[1,1],[1,1]]\nExplanation: The pairs are (1,1), (1,1), (1,2), (2,1), (1,2), (2,2), (1,3), (2,3).\nWe ask for the first 2 pairs with the smallest sums.\n\n\n### Example 3:\n\n\nInput: nums1 = [1,2], nums2 = [3], k = 3\nOutput: [[1,3],[2,3]]\nExplanation: All possible pairs are (1,3),(2,3). We ask for the first 3 pairs which is all of them.\n\n\n## Constraints\n\n*   `1 <= nums1.length, nums2.length <= 10^5`\n*   `1 <= k <= 1000`\n*   `0 <= nums1[i], nums2[i] <= 10^9`\n*   `nums1` and `nums2` are both sorted in ascending order."
+    },
+    {
+      "title": "Sum of Subarray Minimums",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Stack",
+        "Monotonic Stack"
+      ],
+      "content": "# Sum of Subarray Minimums\n\nGiven an array of integers `arr`, find the sum of `min(b)` for every (contiguous) subarray `b` of `arr`. Since the answer may be large, return the answer modulo `10^9 + 7`.\n\n## Examples\n\n### Example 1:\n\n\nInput: arr = [3,1,2,4]\nOutput: 17\nExplanation: \nSubarrays are [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4]. \nMinimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1. \nSum is 3+1+2+4+1+1+2+1+1+1 = 17.\n\n\n### Example 2:\n\n\nInput: arr = [11,81,94,43,3]\nOutput: 444\n\n\n## Constraints\n\n*   `1 <= arr.length <= 3 * 10^4`\n*   `1 <= arr[i] <= 3 * 10^4`"
+    },
+    {
+      "title": "Count of Smaller Numbers After Self",
+      "difficulty": "Hard",
+      "topics": [
+        "Divide and Conquer",
+        "Merge Sort",
+        "Binary Indexed Tree (Fenwick Tree)",
+        "Segment Tree",
+        "Array"
+      ],
+      "content": "# Count of Smaller Numbers After Self\n\nYou are given an integer array `nums`. You need to create a new `counts` array. The `counts[i]` should be the number of elements to the right of `nums[i]` that are smaller than `nums[i]`.\n\nReturn the `counts` array.\n\n## Examples\n\n### Example 1:\n\n\nInput: nums = [5,2,6,1]\nOutput: [2,1,1,0]\nExplanation:\nTo the right of 5 there are two smaller elements (2 and 1).\nTo the right of 2 there is one smaller element (1).\nTo the right of 6 there is one smaller element (1).\nTo the right of 1 there is zero smaller elements.\n\n\n### Example 2:\n\n\nInput: nums = [-1]\nOutput: [0]\n\n\n### Example 3:\n\n\nInput: nums = [-1,-1]\nOutput: [0,0]\n\n\n## Constraints\n\n*   `1 <= nums.length <= 10^5`\n*   `-10^4 <= nums[i] <= 10^4`"
+    },
+    {
+      "title": "Maximal Square",
+      "difficulty": "Medium",
+      "topics": [
+        "Dynamic Programming",
+        "Matrix"
+      ],
+      "content": "# Maximal Square\n\nGiven an `m x n` binary matrix filled with `0`'s and `1`'s, find the largest square containing only `1`'s and return its area.\n\n## Examples\n\n### Example 1:\n\n\nInput: matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]\nOutput: 4\n\n\n### Example 2:\n\n\nInput: matrix = [[\"0\",\"1\"],[\"1\",\"0\"]]\nOutput: 1\n\n\n### Example 3:\n\n\nInput: matrix = [[\"0\"]]\nOutput: 0\n\n\n## Constraints\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 300`\n*   `matrix[i][j]` is `'0'` or `'1'`."
+    },
+    {
+      "title": "Word Break II",
+      "difficulty": "Hard",
+      "topics": [
+        "Dynamic Programming",
+        "Backtracking",
+        "String",
+        "Trie"
+      ],
+      "content": "# Word Break II\n\nGiven a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to construct a sentence where each word is a valid dictionary word. Return all such possible sentences. You may assume the dictionary does not contain duplicate words.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation.\n\n## Examples\n\n### Example 1:\n\n\nInput: s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]\nOutput: [\"cats and dog\",\"cat sand dog\"]\n\n\n### Example 2:\n\n\nInput: s = \"pineapplepenapple\", wordDict = [\"apple\",\"pen\",\"applepen\",\"pine\",\"pineapple\"]\nOutput: [\"pine apple pen apple\",\"pineapple pen apple\",\"pine applepen apple\"]\nExplanation: Note that you are allowed to reuse a dictionary word.\n\n\n### Example 3:\n\n\nInput: s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]\nOutput: []\n\n\n## Constraints\n\n*   `1 <= s.length <= 20`\n*   `1 <= wordDict.length <= 1000`\n*   `1 <= wordDict[i].length <= 10`\n*   `s` and `wordDict[i]` consist of only lowercase English letters.\n*   All the strings of `wordDict` are unique."
+    },
+    {
+      "title": "Pacific Atlantic Water Flow",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Matrix"
+      ],
+      "content": "# Pacific Atlantic Water Flow\n\nThere is an `m x n` rectangular island that borders both the Pacific Ocean and Atlantic Ocean. The Pacific Ocean touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges.\n\nThe island is represented by an `m x n` `heights` matrix where `heights[r][c]` denotes the height of the cell `(r, c)`.\n\nWater can flow from any cell to an adjacent cell (up, down, left, or right) if the adjacent cell has a height less than or equal to the current cell's height. Water can flow from any cell adjacent to an ocean into that ocean.\n\nReturn a list of grid coordinates `result` where `result[i] = [ri, ci]` denotes that rain water can flow from cell `(ri, ci)` to both the Pacific and Atlantic oceans.\n\n## Examples\n\n### Example 1:\n\n\nInput: heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]\nOutput: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]\n\n\n### Example 2:\n\n\nInput: heights = [[1]]\nOutput: [[0,0]]\n\n\n## Constraints\n\n*   `m == heights.length`\n*   `n == heights[r].length`\n*   `1 <= m, n <= 200`\n*   `0 <= heights[r][c] <= 10^5`"
+    },
+    {
+      "title": "Meeting Rooms II",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Greedy",
+        "Heap",
+        "Priority Queue",
+        "Sorting",
+        "Sweep Line"
+      ],
+      "content": "# Meeting Rooms II\n\nGiven an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required.\n\n## Examples\n\n### Example 1:\n\n\nInput: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2\nExplanation:\nWe need two rooms:\nRoom 1: (0, 30)\nRoom 2: (5, 10), (15, 20)\n\n\n### Example 2:\n\n\nInput: intervals = [[7,10],[2,4]]\nOutput: 1\n\n\n### Example 3:\n\n\nInput: intervals = [[1,5],[8,12],[8,10],[10,12]]\nOutput: 3\nExplanation:\nRoom 1: (1,5)\nRoom 2: (8,12)\nRoom 3: (8,10), (10,12) (these can be in the same room as they don't overlap, but for the purpose of demonstrating, if we need to schedule them, we need another room).\nCorrect interpretation for Example 3: \n- (1,5) uses a room.\n- (8,12) uses a second room.\n- (8,10) overlaps with (1,5) and (8,12). It needs a third room.\n- (10,12) overlaps with (1,5) and (8,12). It can use the room from (8,10) if (8,10) is finished, but since (8,12) is ongoing, it would still need a separate room if (8,10) is not considered a separate event from (8,12).\nLet's re-evaluate Example 3 with the typical definition of meeting rooms: \n(1,5) -> room 1\n(8,12) -> room 2 (cannot use room 1, as 8 > 5)\n(8,10) -> room 3 (cannot use room 1, as 8 > 5; cannot use room 2, as 8 == 8)\n(10,12) -> can use room 1 (10 > 5), but room 2 is occupied until 12, room 3 is occupied until 10. If we prioritize using an available room, (10,12) can use room 3. So, 3 rooms are sufficient.\n\n\n## Constraints\n\n*   `1 <= intervals.length <= 10^4`\n*   `0 <= start_i < end_i <= 10^6`"
     }
   ],
   "Meta": [
     {
-      "title": "Sticker Combination",
+      "title": "Shortest Path in a Social Network",
       "difficulty": "Medium",
-      "topics": ["DP", "Backtracking"],
-      "content": "# Sticker Combination\n\nYou are given a set of sticker words. Return the minimum number of stickers required to spell out a target word."
+      "topics": [
+        "Graph",
+        "BFS"
+      ],
+      "content": "# Shortest Path in a Social Network\n\nYou are given a list of friendships in a social network. Each friendship is represented as a pair of user IDs `(userA, userB)`. You need to find the shortest path (minimum number of friendships) between two given users, `startUser` and `endUser`. If there is no path, return -1.\n\nThe social network can be modeled as an undirected graph where users are nodes and friendships are edges.\n\n### Examples\n\n**Example 1:**\nInput:\n`friendships = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5]]`\n`startUser = 0`\n`endUser = 5`\nOutput: `3`\nExplanation: The shortest path is `0 -> 1 -> 3 -> 5` or `0 -> 2 -> 4 -> 5`.\n\n**Example 2:**\nInput:\n`friendships = [[0, 1], [1, 2], [3, 4]]`\n`startUser = 0`\n`endUser = 3`\nOutput: `-1`\nExplanation: User 0 and User 3 are in different connected components.\n\n**Example 3:**\nInput:\n`friendships = [[0, 1], [1, 2]]`\n`startUser = 0`\n`endUser = 0`\nOutput: `0`\nExplanation: The start and end user are the same.\n\n### Constraints\n\n*   `1 <= friendships.length <= 10^4`\n*   `friendships[i].length == 2`\n*   `0 <= userA, userB <= 10^5`\n*   `userA != userB`\n*   `0 <= startUser, endUser <= 10^5`\n*   The graph can have disconnected components."
     },
     {
-      "title": "Kth Largest Element in a Stream",
-      "difficulty": "Easy",
-      "topics": ["Heap", "Design"],
-      "content": "# Kth Largest Element in a Stream\n\nDesign a class to find the kth largest element in a stream of numbers."
-    }
-  ],
-  "Netflix": [
-    {
-      "title": "Content Delivery Cache",
+      "title": "Alien Dictionary",
       "difficulty": "Hard",
-      "topics": ["Design", "Linked List"],
-      "content": "# Content Delivery Cache\n\nDesign an LRU cache with an expiration time for each key. The cache should automatically evict expired keys when full."
+      "topics": [
+        "Graph",
+        "Topological Sort",
+        "String"
+      ],
+      "content": "# Alien Dictionary\n\nThere is a new alien language that uses the English alphabet. However, the order among the letters is unknown to you.\n\nYou are given a list of words from the alien language's dictionary, where the words are sorted lexicographically by the rules of this new language.\n\nDerive the order of letters in this language. If the order is invalid (e.g., a cycle exists), return an empty string. If there are multiple valid orders, return any one of them.\n\n### Examples\n\n**Example 1:**\nInput: `words = [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]`\nOutput: `\"wertf\"`\nExplanation: From the input, we can deduce the following relations:\n'w' comes before 'e' (from \"wrt\" vs \"er\")\n'r' comes before 't' (from \"wrt\" vs \"wrf\")\n'e' comes before 'r' (from \"er\" vs \"ett\")\n't' comes before 'f' (from \"ett\" vs \"rftt\")\nCombining these, a valid order is \"wertf\".\n\n**Example 2:**\nInput: `words = [\"z\", \"x\"]`\nOutput: `\"zx\"`\n\n**Example 3:**\nInput: `words = [\"z\", \"x\", \"z\"]`\nOutput: `\"\"`\nExplanation: The words are not sorted lexicographically due to \"z\" coming after \"x\" and then \"z\" again. This implies 'z' comes before 'x' and 'x' comes before 'z', which is a cycle.\n\n### Constraints\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 100`\n*   `words[i]` consists of lowercase English letters.\n*   If a solution exists, it is unique (unless there are characters not involved in any comparison, in which case any valid order for them is fine)."
+    },
+    {
+      "title": "Three Sum",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Sorting"
+      ],
+      "content": "# Three Sum\n\nGiven an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [-1, 0, 1, 2, -1, -4]`\nOutput: `[[-1, -1, 2], [-1, 0, 1]]`\nExplanation: The distinct triplets that sum to 0 are `(-1, 0, 1)` and `(-1, -1, 2)`.\n\n**Example 2:**\nInput: `nums = [0, 1, 1]`\nOutput: `[]`\nExplanation: No distinct triplets sum to 0.\n\n**Example 3:**\nInput: `nums = [0, 0, 0]`\nOutput: `[[0, 0, 0]]`\nExplanation: The only distinct triplet is `(0, 0, 0)`.\n\n### Constraints\n\n*   `3 <= nums.length <= 3000`\n*   `-10^5 <= nums[i] <= 10^5`"
+    },
+    {
+      "title": "Product of Array Except Self",
+      "difficulty": "Medium",
+      "topics": [
+        "Array"
+      ],
+      "content": "# Product of Array Except Self\n\nGiven an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer.\n\nYou must write an algorithm that runs in O(n) time and without using the division operation.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [1, 2, 3, 4]`\nOutput: `[24, 12, 8, 6]`\nExplanation: `answer[0] = 2 * 3 * 4 = 24`, `answer[1] = 1 * 3 * 4 = 12`, `answer[2] = 1 * 2 * 4 = 8`, `answer[3] = 1 * 2 * 3 = 6`.\n\n**Example 2:**\nInput: `nums = [-1, 1, 0, -3, 3]`\nOutput: `[0, 0, 9, 0, 0]`\nExplanation: `answer[0] = 1 * 0 * -3 * 3 = 0`, `answer[1] = -1 * 0 * -3 * 3 = 0`, etc.\n\n### Constraints\n\n*   `2 <= nums.length <= 10^5`\n*   `-30 <= nums[i] <= 30`\n*   The product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer."
+    },
+    {
+      "title": "Valid Palindrome II",
+      "difficulty": "Easy",
+      "topics": [
+        "String",
+        "Two Pointers"
+      ],
+      "content": "# Valid Palindrome II\n\nGiven a string `s`, return `true` if the `s` can be a palindrome after deleting at most one character from it.\n\n### Examples\n\n**Example 1:**\nInput: `s = \"aba\"`\nOutput: `true`\n\n**Example 2:**\nInput: `s = \"abca\"`\nOutput: `true`\nExplanation: You could delete the character 'c'.\n\n**Example 3:**\nInput: `s = \"abc\"`\nOutput: `false`\n\n### Constraints\n\n*   `1 <= s.length <= 10^5`\n*   `s` consists of lowercase English letters."
+    },
+    {
+      "title": "Minimum Window Substring",
+      "difficulty": "Hard",
+      "topics": [
+        "String",
+        "Sliding Window",
+        "Hash Map"
+      ],
+      "content": "# Minimum Window Substring\n\nGiven two strings `s` and `t` of lengths `m` and `n` respectively, return the minimum window substring of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nThe test cases will be generated such that the answer is unique.\n\nA substring is a contiguous sequence of characters within the string.\n\n### Examples\n\n**Example 1:**\nInput: `s = \"ADOBECODEBANC\", t = \"ABC\"`\nOutput: `\"BANC\"`\nExplanation: The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n\n**Example 2:**\nInput: `s = \"a\", t = \"a\"`\nOutput: `\"a\"`\nExplanation: The entire string 'a' is the minimum window.\n\n**Example 3:**\nInput: `s = \"a\", t = \"aa\"`\nOutput: `\"\"`\nExplanation: The string 'a' does not contain both 'a's from t.\n\n### Constraints\n\n*   `m == s.length`\n*   `n == t.length`\n*   `1 <= m, n <= 10^5`\n*   `s` and `t` consist of uppercase and lowercase English letters."
+    },
+    {
+      "title": "Binary Tree Vertical Order Traversal",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "BFS",
+        "Hash Map"
+      ],
+      "content": "# Binary Tree Vertical Order Traversal\n\nGiven the `root` of a binary tree, return the vertical order traversal of its nodes' values. (i.e., from top to bottom, column by column).\n\nIf two nodes are in the same row and same column, the order should be from left to right.\n\n### Examples\n\n**Example 1:**\nInput: `root = [3, 9, 20, null, null, 15, 7]`\nOutput: `[[9], [3, 15], [20], [7]]`\nExplanation: The nodes are grouped by their column index. Nodes in the same column and same row are ordered from left to right.\n\n**Example 2:**\nInput: `root = [3, 9, 8, 4, 0, 1, 7]`\nOutput: `[[4], [9], [3, 0, 1], [8], [7]]`\nExplanation: Node 3 and Node 0 are in the same column (column 0) and same row (row 0 vs row 1). Since Node 3 is to the left of Node 0, it appears first. Similarly for Node 0 and Node 1.\n\n**Example 3:**\nInput: `root = [1, 2, 3, 4, 5, 6, 7]`\nOutput: `[[4], [2], [1, 5, 6], [3], [7]]`\n\n### Constraints\n\n*   The number of nodes in the tree is in the range `[0, 100]`. (For a typical interview, this would likely be up to 10^4 or 10^5, but for this problem, the smaller constraint doesn't change the approach.)\n*   `-100 <= Node.val <= 100`"
+    },
+    {
+      "title": "Serialize and Deserialize Binary Tree",
+      "difficulty": "Hard",
+      "topics": [
+        "Tree",
+        "DFS",
+        "Design"
+      ],
+      "content": "# Serialize and Deserialize Binary Tree\n\nSerialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\n### Examples\n\n**Example 1:**\nInput: `root = [1, 2, 3, null, null, 4, 5]`\nOutput: `[1, 2, 3, null, null, 4, 5]`\nExplanation: The serialized string could be something like `\"1,2,null,null,3,4,null,null,5,null,null\"` (pre-order traversal with null markers), and then deserializing this string should reconstruct the original tree.\n\n**Example 2:**\nInput: `root = []`\nOutput: `[]`\n\n**Example 3:**\nInput: `root = [1]`\nOutput: `[1]`\n\n### Constraints\n\n*   The number of nodes in the tree is in the range `[0, 10^4]`.\n*   `-1000 <= Node.val <= 1000`"
+    },
+    {
+      "title": "Number of Islands",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "DFS",
+        "BFS",
+        "Matrix"
+      ],
+      "content": "# Number of Islands\n\nGiven an `m x n` 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.\n\n### Examples\n\n**Example 1:**\nInput: `grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]`\nOutput: `1`\nExplanation: All the '1's are connected and form a single island.\n\n**Example 2:**\nInput: `grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]`\nOutput: `3`\nExplanation: There are three distinct islands.\n\n### Constraints\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 300`\n*   `grid[i][j]` is '0' or '1'."
+    },
+    {
+      "title": "Longest Increasing Subsequence",
+      "difficulty": "Medium",
+      "topics": [
+        "Dynamic Programming",
+        "Array",
+        "Binary Search"
+      ],
+      "content": "# Longest Increasing Subsequence\n\nGiven an integer array `nums`, return the length of the longest strictly increasing subsequence.\n\nA subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, `[3, 6, 2, 7]` is a subsequence of `[0, 3, 1, 6, 2, 2, 7]`.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [10, 9, 2, 5, 3, 7, 101, 18]`\nOutput: `4`\nExplanation: The longest increasing subsequence is `[2, 3, 7, 101]`, therefore the length is 4.\n\n**Example 2:**\nInput: `nums = [0, 1, 0, 3, 2, 3]`\nOutput: `4`\nExplanation: The longest increasing subsequence is `[0, 1, 2, 3]`, therefore the length is 4.\n\n**Example 3:**\nInput: `nums = [7, 7, 7, 7, 7, 7, 7]`\nOutput: `1`\nExplanation: The longest increasing subsequence is `[7]`, therefore the length is 1.\n\n### Constraints\n\n*   `1 <= nums.length <= 2500`\n*   `-10^4 <= nums[i] <= 10^4`"
+    },
+    {
+      "title": "Reorder List",
+      "difficulty": "Medium",
+      "topics": [
+        "Linked List",
+        "Two Pointers"
+      ],
+      "content": "# Reorder List\n\nYou are given the head of a singly linked list.\n\nThe list can be described as: `L0 -> L1 -> ... -> Ln-1 -> Ln`\n\nReorder the list to be: `L0 -> Ln -> L1 -> Ln-1 -> L2 -> Ln-2 -> ...`\n\nYou may not modify the values in the list's nodes. Only nodes themselves may be changed.\n\n### Examples\n\n**Example 1:**\nInput: `head = [1, 2, 3, 4]`\nOutput: `[1, 4, 2, 3]`\nExplanation: The original list is `1 -> 2 -> 3 -> 4`. The reordered list is `1 -> 4 -> 2 -> 3`.\n\n**Example 2:**\nInput: `head = [1, 2, 3, 4, 5]`\nOutput: `[1, 5, 2, 4, 3]`\nExplanation: The original list is `1 -> 2 -> 3 -> 4 -> 5`. The reordered list is `1 -> 5 -> 2 -> 4 -> 3`.\n\n### Constraints\n\n*   The number of nodes in the list is in the range `[1, 5000]`.\n*   `1 <= Node.val <= 1000`"
+    },
+    {
+      "title": "Course Schedule",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "Topological Sort",
+        "BFS",
+        "DFS"
+      ],
+      "content": "# Course Schedule\n\nThere are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that you must take course `bi` first if you want to take course `ai`.\n\nFor example, the pair `[0, 1]` indicates that to take course `0` you have to first take course `1`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\n### Examples\n\n**Example 1:**\nInput: `numCourses = 2, prerequisites = [[1, 0]]`\nOutput: `true`\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n\n**Example 2:**\nInput: `numCourses = 2, prerequisites = [[1, 0], [0, 1]]`\nOutput: `false`\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. This is a cycle, so it is impossible.\n\n### Constraints\n\n*   `1 <= numCourses <= 2000`\n*   `0 <= prerequisites.length <= 5000`\n*   `prerequisites[i].length == 2`\n*   `0 <= ai, bi < numCourses`\n*   `ai != bi`\n*   All the pairs `[ai, bi]` are unique."
+    },
+    {
+      "title": "Kth Largest Element in an Array",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Divide and Conquer",
+        "Heap (Priority Queue)"
+      ],
+      "content": "# Kth Largest Element in an Array\n\nGiven an integer array `nums` and an integer `k`, return the `k`th largest element in the array.\n\nNote that it is the `k`th largest element in the sorted order, not the `k`th distinct element.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [3, 2, 1, 5, 6, 4], k = 2`\nOutput: `5`\nExplanation: If sorted, the array is `[1, 2, 3, 4, 5, 6]`. The 2nd largest element is 5.\n\n**Example 2:**\nInput: `nums = [3, 2, 3, 1, 2, 4, 5, 5, 6], k = 4`\nOutput: `4`\nExplanation: If sorted, the array is `[1, 2, 2, 3, 3, 4, 5, 5, 6]`. The 4th largest element is 4.\n\n### Constraints\n\n*   `1 <= k <= nums.length <= 10^5`\n*   `-10^4 <= nums[i] <= 10^4`"
+    },
+    {
+      "title": "Group Anagrams",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "String",
+        "Hash Map"
+      ],
+      "content": "# Group Anagrams\n\nGiven an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n### Examples\n\n**Example 1:**\nInput: `strs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]`\nOutput: `[[\"bat\"], [\"nat\", \"tan\"], [\"ate\", \"eat\", \"tea\"]]`\nExplanation: The output order of groups and the strings within groups can vary.\n\n**Example 2:**\nInput: `strs = [\" \"]`\nOutput: `[[\" \"]]`\n\n**Example 3:**\nInput: `strs = [\"a\"]`\nOutput: `[[\"a\"]]`\n\n### Constraints\n\n*   `1 <= strs.length <= 10^4`\n*   `0 <= strs[i].length <= 100`\n*   `strs[i]` consists of lowercase English letters."
+    },
+    {
+      "title": "Shortest Bridge",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "BFS",
+        "DFS",
+        "Matrix"
+      ],
+      "content": "# Shortest Bridge\n\nYou are given an `n x n` binary matrix `grid` where `1` represents land and `0` represents water.\n\nAn *island* is a 4-directionally connected group of `1`'s not connected to any other `1`'s.\nThere are exactly two islands in `grid`.\n\nYou may change `0`'s to `1`'s to connect the two islands into one. Return the smallest number of `0`'s you need to flip to connect the two islands.\n\n### Examples\n\n**Example 1:**\nInput: `grid = [[0,1],[1,0]]`\nOutput: `1`\nExplanation: Change `grid[0][0]` from 0 to 1, or `grid[1][1]` from 0 to 1. Both connect the islands with 1 flip.\n\n**Example 2:**\nInput: `grid = [[0,1,0],[0,0,0],[0,0,1]]`\nOutput: `2`\nExplanation: Change `grid[0][2]` to 1, `grid[1][2]` to 1. Or `grid[1][0]` to 1, `grid[1][1]` to 1. Many paths of length 2.\n\n**Example 3:**\nInput: `grid = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]`\nOutput: `1`\nExplanation: Change `grid[2][1]` or `grid[2][3]` to 1.\n\n### Constraints\n\n*   `n == grid.length == grid[i].length`\n*   `2 <= n <= 100`\n*   `grid[i][j]` is either `0` or `1`.\n*   There are exactly two islands in `grid`."
     }
   ],
-  "Amazon": [
-    {
-      "title": "Package Delivery Routing",
-      "difficulty": "Medium",
-      "topics": ["Graph", "BFS"],
-      "content": "# Package Delivery Routing\n\nFind the shortest path to deliver a package in a grid with obstacles and traffic."
-    }
-  ]
+  "Netflix": [],
+  "Amazon": []
 }

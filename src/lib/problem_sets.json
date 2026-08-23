@@ -1,0 +1,46 @@
+{
+  "Google": [
+    {
+      "title": "Directory Sync",
+      "difficulty": "Hard",
+      "topics": ["Tree", "DFS"],
+      "content": "# Directory Sync\n\nGiven two directory structures represented as trees, write a function to synchronize them by outputting the minimal number of create, delete, and move operations required to make the destination tree identical to the source tree."
+    },
+    {
+      "title": "Meeting Rooms III",
+      "difficulty": "Medium",
+      "topics": ["Heap", "Sorting"],
+      "content": "# Meeting Rooms III\n\nYou are given an integer `n` and an array `meetings` where `meetings[i] = [start_i, end_i]`. Allocate meetings to rooms such that the number of rooms used is minimized, and return the room that held the most meetings."
+    }
+  ],
+  "Meta": [
+    {
+      "title": "Sticker Combination",
+      "difficulty": "Medium",
+      "topics": ["DP", "Backtracking"],
+      "content": "# Sticker Combination\n\nYou are given a set of sticker words. Return the minimum number of stickers required to spell out a target word."
+    },
+    {
+      "title": "Kth Largest Element in a Stream",
+      "difficulty": "Easy",
+      "topics": ["Heap", "Design"],
+      "content": "# Kth Largest Element in a Stream\n\nDesign a class to find the kth largest element in a stream of numbers."
+    }
+  ],
+  "Netflix": [
+    {
+      "title": "Content Delivery Cache",
+      "difficulty": "Hard",
+      "topics": ["Design", "Linked List"],
+      "content": "# Content Delivery Cache\n\nDesign an LRU cache with an expiration time for each key. The cache should automatically evict expired keys when full."
+    }
+  ],
+  "Amazon": [
+    {
+      "title": "Package Delivery Routing",
+      "difficulty": "Medium",
+      "topics": ["Graph", "BFS"],
+      "content": "# Package Delivery Routing\n\nFind the shortest path to deliver a package in a grid with obstacles and traffic."
+    }
+  ]
+}

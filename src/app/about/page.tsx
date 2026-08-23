@@ -27,46 +27,46 @@ export default function AboutPage() {
           {/* Section 1 */}
           <div className="bg-card border-4 border-border rounded-xl shadow-[8px_8px_0_0_var(--color-border)] p-8 md:p-10 text-left">
             <h2 className="text-3xl font-black font-heading mb-6 text-foreground">
-              Dynamic Generation, Not Static Banks
+              The Broken Loop
             </h2>
             <p className="text-lg text-foreground/80 font-medium leading-relaxed">
-              Edith generates original interview questions on demand, based on what a specific company is actually asking right now, instead of pulling from a static bank. You tell it the company and role, it pulls recent interview reports from forums where engineers post about their loops, figures out the pattern (say, three of the last five Amazon interviews leaned on graph problems), and writes a new question around that pattern. You get a full IDE next to it to actually solve it and test your real knowledge.
+              Every prep platform out there works off the same model. Someone submits a question, it goes into a bank, thousands of people solve it, and it becomes common knowledge within a couple of weeks. Companies know this. So they change what they ask. Then candidates find out about the new questions, post them on Blind or Reddit, and the whole thing gets folded back into the bank. It's a loop that never actually ends, and it means the questions you're practicing are usually a step behind whatever the company has already moved on to.
+              <br /><br />
+              We got tired of watching people memorize solutions instead of learning how to solve problems, so we built Edith to skip the bank entirely.
             </p>
           </div>
 
           {/* Section 2 */}
           <div className="bg-primary/10 border-4 border-border rounded-xl shadow-[8px_8px_0_0_var(--color-border)] p-8 md:p-10 text-left">
             <h2 className="text-3xl font-black font-heading mb-6 text-foreground">
-              Breaking the Memorization Loop
+              Dynamic Generation
             </h2>
             <p className="text-lg text-foreground/80 font-medium leading-relaxed">
-              Every prep platform right now runs on the same old broken loop: platform adds question, candidates memorize it, company drops it and asks something new, platform scrambles to catch up. Candidates end up pattern-matching instead of actually solving anything, and the questions are always a few months behind what companies have moved on to. 
+              Here's the actual difference. When you tell Edith you've got a Staff interview at Stripe next week, it doesn't pull something from a shelf. It goes out and checks what people have actually been asked at Stripe recently, based on real interview reports posted right after the interview happened. 
               <br /><br />
-              Edith skips the memorization step entirely by not having a fixed bank in the first place, there's nothing to leak because every question is generated at the moment you ask for it. It's built for people prepping for a specific company loop in the next week or two, or someone with a dream company in mind are leveling up with how the trend in questions has changes for that company.
+              If three out of the last five reports mention graph traversal and rate limiting, that tells us something about what's currently being tested. We take that signal and generate a brand new question around it, one that didn't exist an hour ago and isn't sitting in anyone's memorized list.
             </p>
           </div>
 
           {/* Section 3 */}
           <div className="bg-secondary/20 border-4 border-border rounded-xl shadow-[8px_8px_0_0_var(--color-border)] p-8 md:p-10 text-left">
             <h2 className="text-3xl font-black font-heading mb-6 text-foreground">
-              Powered by Scraper Studio
+              Raw Data and Scraper Studio
             </h2>
             <p className="text-lg text-foreground/80 font-medium leading-relaxed">
-              Scraper Studio is what actually gets us the raw material - the interview reports people post on places like Blind, 1point3acres, and Reddit right after their interviews. These sites don't want to be scraped and throw up rate limits, CAPTCHAs, IP bans, all of it. Scraper Studio handles that side so our requests come through real residential IPs instead of getting flagged as a bot. 
-              <br /><br />
-              Once we've got the raw posts, we run them through our own layer to pull out the actual signal (what topics keep coming up, what difficulty, what format) before handing that off to the model that writes the new question.
+              That's also why getting the raw data matters so much. Interview report threads live on sites that actively don't want to be scraped. Rate limits, CAPTCHAs, IP bans, the works. So we're not just writing prompts and hoping an AI knows what's trending. We're pulling from what people are saying right now, this week, about their actual interviews.
             </p>
           </div>
 
           {/* Section 4 */}
           <div className="bg-accent/20 border-4 border-border rounded-xl shadow-[8px_8px_0_0_var(--color-border)] p-8 md:p-10 text-left">
             <h2 className="text-3xl font-black font-heading mb-6 text-foreground">
-              Accessing the Unreachable
+              Who Edith Is For
             </h2>
             <p className="text-lg text-foreground/80 font-medium leading-relaxed">
-              We're scraping recent interview experience posts, the threads where someone writes up exactly what they got asked at a specific company, usually within days of the interview. Without Scraper Studio, that data is out of our reach, these forums actively block automated access, so a normal scraper gets banned within a few requests. 
+              We still keep a set of pre-scraped questions organized by company and role, for people who want to browse instead of generating something live. But the core of Edith isn't the bank. It's the fact that there doesn't have to be one.
               <br /><br />
-              Scraper Studio sits right after our intent layer figures out what to look for (company, role, sometimes round) and does the actual fetching, it's the piece that makes it possible to get fresh data instead of relying on something scraped once and left to go stale, which isnt helpful to our clients as the trends in question levels keep changing.
+              If you're prepping for a specific company and you're tired of solving problems that everyone else has already memorized, this is what Edith is for.
             </p>
           </div>
 

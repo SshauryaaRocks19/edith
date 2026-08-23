@@ -16,6 +16,8 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -54,7 +56,7 @@ export function GlobalNavbar() {
     },
     {
       name: "Problem Sets",
-      link: "#",
+      link: "/problem-sets",
     },
     {
       name: "About",
@@ -72,8 +74,19 @@ export function GlobalNavbar() {
         <NavItems items={navItems} />
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <NavbarButton variant="secondary">Login</NavbarButton>
-          <NavbarButton variant="dark" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">Sign Up</NavbarButton>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <NavbarButton variant="secondary">Login</NavbarButton>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <NavbarButton variant="dark" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">Sign Up</NavbarButton>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <div className="ml-2 mt-1">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </SignedIn>
         </div>
       </NavBody>
 
@@ -106,20 +119,31 @@ export function GlobalNavbar() {
             </Link>
           ))}
           <div className="flex w-full flex-col gap-4 mt-4">
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="secondary"
-              className="w-full text-foreground border border-border"
-            >
-              Login
-            </NavbarButton>
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="dark"
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-none"
-            >
-              Sign Up
-            </NavbarButton>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="secondary"
+                  className="w-full text-foreground border border-border"
+                >
+                  Login
+                </NavbarButton>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="dark"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-none"
+                >
+                  Sign Up
+                </NavbarButton>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <div className="flex justify-center py-2">
+                <UserButton afterSignOutUrl="/" />
+              </div>
+            </SignedIn>
           </div>
         </MobileNavMenu>
       </MobileNav>

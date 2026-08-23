@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { WebhookPayload, ScrapedSignal } from "@/lib/types";
 import { healRecord } from "@/lib/healing";
+import { saveToCache } from "@/lib/cache";
 
 type RawRecord = ScrapedSignal & { _needs_healing?: boolean; _raw_html?: string | null };
 
@@ -95,7 +96,15 @@ export async function POST(request: NextRequest) {
     })
   );
 
-  // TODO: persist valid + healed to database
+  // Persist valid + healed to database (local cache for now)
+  const allRecords = [...valid, ...healed];
+  if (allRecords.length > 0) {
+    try {
+      await saveToCache(allRecords);
+    } catch (error) {
+      console.error("Failed to save to cache:", error);
+    }
+  }
 
   return Response.json({
     received: payload.records.length,

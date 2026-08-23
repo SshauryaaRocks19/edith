@@ -82,10 +82,10 @@ export function GlobalNavbar() {
             </div>
           ) : (
             <>
-              <SignInButton mode="modal">
+              <SignInButton mode="modal" forceRedirectUrl="/find-problems">
                 <NavbarButton variant="secondary">Login</NavbarButton>
               </SignInButton>
-              <SignUpButton mode="modal">
+              <SignUpButton mode="modal" forceRedirectUrl="/find-problems">
                 <NavbarButton variant="dark" className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">Sign Up</NavbarButton>
               </SignUpButton>
             </>
@@ -128,7 +128,7 @@ export function GlobalNavbar() {
               </div>
             ) : (
               <>
-                <SignInButton mode="modal">
+                <SignInButton mode="modal" forceRedirectUrl="/find-problems">
                   <NavbarButton
                     onClick={() => setIsMobileMenuOpen(false)}
                     variant="secondary"
@@ -137,7 +137,7 @@ export function GlobalNavbar() {
                     Login
                   </NavbarButton>
                 </SignInButton>
-                <SignUpButton mode="modal">
+                <SignUpButton mode="modal" forceRedirectUrl="/find-problems">
                   <NavbarButton
                     onClick={() => setIsMobileMenuOpen(false)}
                     variant="dark"

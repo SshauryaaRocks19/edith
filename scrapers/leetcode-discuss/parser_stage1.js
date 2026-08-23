@@ -1,16 +1,24 @@
 /**
  * LeetCode Discuss — Parser Code (Stage 1)
- * Extracts thread links from the search results listing.
+ * Extracts thread links from Google search results.
  */
 
 const threads = [];
+const seenUrls = new Set();
 
-$("[class*='topic-item'] a, [class*='discuss-topic'] a").each((_, el) => {
-  const href = $(el).attr("href");
-  if (href && href.includes("/discuss/")) {
-    const fullUrl = href.startsWith("http") ? href : `https://leetcode.com${href}`;
-    if (!threads.some((t) => t.url === fullUrl)) {
-      threads.push({ url: fullUrl });
+$('a[href*="/discuss/"]').each((_, el) => {
+  let url = $(el).attr("href");
+  if (url && url.length > 20) { // filter out basic UI links
+    if (!url.startsWith("http")) {
+      url = `https://leetcode.com${url}`;
+    }
+    
+    // Clean tracking params
+    url = url.split("?")[0].split("#")[0];
+
+    if (!seenUrls.has(url)) {
+      seenUrls.add(url);
+      threads.push({ url });
     }
   }
 });

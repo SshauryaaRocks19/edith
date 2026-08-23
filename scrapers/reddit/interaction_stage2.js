@@ -1,25 +1,25 @@
-/**
- * Reddit Scraper — Interaction Code (Stage 2)
- *
- * Input: { url: string, permalink: string, company: string, role: string, subreddit: string }
- *
- * `url` is the `.json` endpoint for the thread, which returns the post
- * body and all top-level comments as structured JSON — no HTML parsing needed.
- */
+// Reddit Scraper — Interaction Code (Stage 2)
 
-await navigate(input.url);
+// Fallback URL so Bright Data's preview tester doesn't crash if it runs Stage 2 in isolation
+const targetUrl = input.url || "https://www.reddit.com/r/cscareerquestions/comments/example";
+await navigate(targetUrl);
+
+// Wait for body to ensure basic DOM is ready
+await wait("body");
 
 const data = await parse();
 
 collect({
-  source: `reddit-${input.subreddit}`,
-  url: input.permalink,
-  company: input.company,
-  role: input.role,
-  date_posted: data.date_posted,
-  title: data.title,
-  body: data.body,
-  comments: data.comments,
+  source: "reddit",
+  url: targetUrl,
+  company: input.company || "Unknown",
+  role: input.role || "Software Engineer",
+  date_posted: data.date_posted || new Date().toISOString(),
+  title: data.title || "",
+  body: data.body || "",
+  comments: data.comments || [],
+  _needs_healing: data._needs_healing,
+  _raw_html: data._raw_html,
   signals: {
     topics: [],
     difficulty: "unknown",

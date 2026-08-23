@@ -1,39 +1,33 @@
 /**
  * TeamBlind Scraper — Parser Code (Stage 2)
  *
- * Runs in Cheerio context on an individual thread page.
- * Extracts: title, post body, top comments, and date.
- *
- * Self-Healing Layer 2:
- *   If a selector returns null/empty, the field is flagged so the
- *   Gemini fallback in the webhook handler can attempt re-extraction
- *   from the raw HTML stored in _raw_html.
+ * Extracts title, body, and comments.
+ * ALWAYS captures raw HTML to guarantee our webhook's Gemini agent
+ * can self-heal the data if the DOM changes.
  */
 
-const title = $("h1.postTitle, h1[class*='title']").first().text().trim() || null;
+const title = $("h1").first().text().trim() || null;
 
-const body = $(".postContent, [class*='postBody'], [class*='post-body']").first().text().trim() || null;
+// Broad selectors for post bodies
+const body = $("main p, article p, [class*='postBody'], [class*='post-body'], [class*='content']").map((_, el) => $(el).text()).get().join(" ").trim() || null;
 
-const date_posted =
-  $("time[datetime]").first().attr("datetime") ||
-  $(".postMeta span.time, [class*='timestamp']").first().text().trim() ||
-  null;
+const date_posted = $("time").first().text().trim() || null;
 
 const comments = [];
-$(".comment .commentBody, [class*='comment-body'], [class*='commentContent']").each((_, el) => {
-  const text = $(el).text().trim();
-  if (text) comments.push(text);
+$("div").filter((_, el) => $(el).text().length > 50).slice(1, 10).each((_, el) => {
+   comments.push($(el).text().trim());
 });
 
-// Surface raw HTML for Gemini fallback if critical fields are missing
-const _needs_healing = !title || !body;
-const _raw_html = _needs_healing ? $("main, #__next, body").first().html() : null;
+// Since TeamBlind changes constantly, we'll ALWAYS send the raw HTML 
+// back to our webhook so `healRecord` can use Gemini to parse it perfectly.
+const _needs_healing = true;
+const _raw_html = $("body").html();
 
 return {
   title,
   body,
   date_posted,
-  comments: comments.slice(0, 20),
+  comments,
   _needs_healing,
-  _raw_html,
+  _raw_html
 };

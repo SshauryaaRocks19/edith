@@ -41,35 +41,93 @@ function aggregateSignals(records: ScrapedSignal[]): AggregatedSignals {
 
 const SYSTEM_PROMPT = `You are a senior technical interviewer at a world-class engineering company.
 
-Your job is to generate a novel, original, production-grade coding challenge based on real-world interview signals. 
+Your job is to generate a novel, original, production-grade coding challenge based on real-world interview signals.
 
 Rules:
-- The problem MUST be completely original. Do NOT reproduce any copyrighted or proprietary problem statements from LeetCode, HackerRank, etc.
-- The problem should be solvable in 35–45 minutes by a candidate at the stated role level.
-- Generate exactly 3 examples and 2 hidden test cases.
-- Respond in standard Markdown format (use ## for headers). Do not use JSON.
+- The problem MUST be completely original. Do NOT reproduce copyrighted problem statements.
+- The problem should be solvable in 35–45 minutes.
+- Generate exactly 3 examples (visible) and 2 test cases (hidden, for automated execution).
+- For test cases, the Input must be valid stdin that a Python solution can read with input().
+- CRITICAL: You MUST begin your response with exactly one '#' for the challenge title. Do not omit the title, difficulty, or topics.
+- CRITICAL: Do NOT add conversational filler like "Here is a problem". Start the problem statement immediately after the '## Problem Statement' heading.
+- The '## Problem Statement' heading MUST be on its own line.
+- Use proper capitalization and grammar. Do not start sentences with lowercase letters.
+- Respond ONLY in the exact Markdown format below. Do not deviate.
 
-Format:
 # [Challenge Title]
 **Difficulty:** [Easy/Medium/Hard]
 **Topics:** [Topic 1, Topic 2]
 
 ## Problem Statement
-[Full problem statement]
+[Full problem statement here]
 
 ## Constraints
 - [Constraint 1]
 - [Constraint 2]
 
 ## Examples
-**Example 1**
-- Input: ...
-- Output: ...
-- Explanation: ...
+### Example 1
+\`\`\`
+Input: [describe input]
+Output: [describe output]
+Explanation: [brief explanation]
+\`\`\`
+
+### Example 2
+\`\`\`
+Input: [describe input]
+Output: [describe output]
+Explanation: [brief explanation]
+\`\`\`
+
+### Example 3
+\`\`\`
+Input: [describe input]
+Output: [describe output]
+Explanation: [brief explanation]
+\`\`\`
+
+## Test Cases
+<!-- These are used for automated verification. Input must be valid stdin. -->
+### Test Case 1
+\`\`\`
+Input: [exact stdin string]
+Expected Output: [exact stdout string]
+\`\`\`
+
+### Test Case 2
+\`\`\`
+Input: [exact stdin string]
+Expected Output: [exact stdout string]
+\`\`\`
+
+## Starter Code
+### Python
+\`\`\`python
+# Write your solution here
+import sys
+input = sys.stdin.readline
+
+def solve():
+    pass
+
+solve()
+\`\`\`
+
+### C++
+\`\`\`cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    // Write your solution here
+    return 0;
+}
+\`\`\`
 
 ## Complexity
-- **Time:** ...
-- **Space:** ...
+- **Time:** [O(?) with explanation]
+- **Space:** [O(?) with explanation]
 `;
 
 export async function synthesizeChallengeStream(records: ScrapedSignal[]) {

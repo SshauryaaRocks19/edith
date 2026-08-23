@@ -17,14 +17,45 @@ export default function FindProblemsPage() {
 
   const [initialText, setInitialText] = useState("");
 
-  const handleIntentReceived = (receivedIntent: any, reader: ReadableStreamDefaultReader<Uint8Array>, parsedInitialText: string = "") => {
+  const handleIntentReceived = (receivedIntent: any, reader: ReadableStreamDefaultReader<Uint8Array> | null, parsedInitialText: string = "") => {
     setIntent(receivedIntent);
     setStreamReader(reader);
     setInitialText(parsedInitialText);
     setView("leetcode");
   };
 
+  useEffect(() => {
+    // Check if we arrived here via a static problem set link
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const mode = searchParams.get("mode");
+      const company = searchParams.get("company");
+      
+      if (mode === "static" && company) {
+        import("@/lib/problem_sets.json").then((module) => {
+          const problemSets = module.default as Record<string, any[]>;
+          const problems = problemSets[company];
+          if (problems && problems.length > 0) {
+            // Pick a random problem from the set
+            const randomProblem = problems[Math.floor(Math.random() * problems.length)];
+            
+            const syntheticIntent = {
+              company,
+              role: "Software Engineer",
+              level: "Mid",
+              focus: randomProblem.topics.join(", "),
+              source: `Static Problem Set (${company})`,
+              title: randomProblem.title,
+              difficulty: randomProblem.difficulty,
+            };
 
+            // Instead of streaming, we just pass the full markdown text and a null reader
+            handleIntentReceived(syntheticIntent, null, randomProblem.content);
+          }
+        });
+      }
+    }
+  }, []);
 
   return (
     <main className="min-h-screen bg-transparent relative overflow-hidden flex flex-col z-0">
@@ -52,7 +83,7 @@ export default function FindProblemsPage() {
           />
         )}
 
-        {view === "leetcode" && intent && streamReader && (
+        {view === "leetcode" && intent && (
           <LeetCodeView 
             key="leetcode"
             intent={intent} 

@@ -58,7 +58,7 @@ export function GlobalNavbar() {
     },
     {
       name: "About",
-      link: "#",
+      link: "/about",
     },
   ];
 

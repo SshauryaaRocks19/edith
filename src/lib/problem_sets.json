@@ -5,11 +5,23 @@
       "difficulty": "Hard",
       "topics": [
         "Dynamic Programming",
-        "Depth-First Search",
+        "DFS",
         "Memoization",
         "Matrix"
       ],
-      "content": "# Longest Increasing Path in a Matrix\n\nGiven an `m x n` integers matrix, return the length of the longest increasing path in the matrix.\n\nFrom each cell, you can either move in four directions: left, right, up, or down. You **may not** move diagonally or move outside the boundary (i.e., wrap around the edges).\n\n## Examples\n\n### Example 1:\n\n\nInput: matrix = [[9,9,4],[6,6,8],[2,1,1]]\nOutput: 4\nExplanation: The longest increasing path is [1, 2, 6, 9].\n\n\n### Example 2:\n\n\nInput: matrix = [[3,4,5],[3,2,6],[2,2,1]]\nOutput: 4\nExplanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.\n\n\n### Example 3:\n\n\nInput: matrix = [[1]]\nOutput: 1\n\n\n## Constraints\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 200`\n*   `0 <= matrix[i][j] <= 10^5`"
+      "content": "# Longest Increasing Path in a Matrix\n\nGiven an `m x n` integers `matrix`, return the length of the longest increasing path in `matrix`.\n\nFrom each cell, you can either move in four directions: left, right, up, or down. You **may not** move diagonally or move outside the boundary (i.e., no wrap-around is allowed).\n\n## Examples\n\n**Example 1:**\nInput:\n\nmatrix = [\n  [9,9,4],\n  [6,6,8],\n  [2,1,1]\n]\n\nOutput: 4\nExplanation: The longest increasing path is `[1, 2, 6, 9]`.\n\n**Example 2:**\nInput:\n\nmatrix = [\n  [3,4,5],\n  [3,2,6],\n  [2,2,1]\n]\n\nOutput: 4\nExplanation: The longest increasing path is `[3, 4, 5, 6]`. Moving diagonally is not allowed.\n\n**Example 3:**\nInput:\n\nmatrix = [[1]]\n\nOutput: 1\n\n## Constraints\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 200`\n*   `0 <= matrix[i][j] <= 10^5`\n\n## Test Cases\nInput: matrix = [[9,9,4],[6,6,8],[2,1,1]]\nOutput: 4\n\nInput: matrix = [[3,4,5],[3,2,6],[2,2,1]]\nOutput: 4\n\nInput: matrix = [[1]]\nOutput: 1\n\n## Starter Code\n\npython\nclass Solution:\n    def longestIncreasingPath(self, matrix: list[list[int]]) -> int:\n        rows, cols = len(matrix), len(matrix[0])\n        memo = {} # (r, c) -> length of LIP starting at (r, c)\n\n        def dfs(r, c):\n            # Implement DFS with memoization here\n            pass\n\n        max_len = 0\n        for r in range(rows):\n            for c in range(cols):\n                max_len = max(max_len, dfs(r, c))\n        return max_len\n"
+    },
+    {
+      "title": "Serialize and Deserialize Binary Tree",
+      "difficulty": "Hard",
+      "topics": [
+        "Tree",
+        "Design",
+        "BFS",
+        "DFS",
+        "String Manipulation"
+      ],
+      "content": "# Serialize and Deserialize Binary Tree\n\nSerialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\n## Examples\n\n**Example 1:**\nInput: `root = [1,2,3,null,null,4,5]`\nOutput: `[1,2,3,null,null,4,5]`\n\n**Example 2:**\nInput: `root = []`\nOutput: `[]`\n\n**Example 3:**\nInput: `root = [1]`\nOutput: `[1]`\n\n**Example 4:**\nInput: `root = [1,2]`\nOutput: `[1,2]`\n\n## Constraints\n\n*   The number of nodes in the tree is in the range `[0, 10^4]`.\n*   `-1000 <= Node.val <= 1000`\n\n## Test Cases\nInput: root = [1,2,3,null,null,4,5]\nOutput: [1,2,3,null,null,4,5]\n\nInput: root = []\nOutput: []\n\nInput: root = [1]\nOutput: [1]\n\nInput: root = [5,2,3,null,null,2,4,3,1]\nOutput: [5,2,3,null,null,2,4,3,1]\n\n## Starter Code\n\npython\n# Definition for a binary tree node.\nclass TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\nclass Codec:\n    def serialize(self, root):\n        \"\"\"\n        Encodes a tree to a single string.\n        :type root: TreeNode\n        :rtype: str\n        \"\"\"\n        pass\n\n    def deserialize(self, data):\n        \"\"\"\n        Decodes your encoded data to tree.\n        :type data: str\n        :rtype: TreeNode\n        \"\"\"\n        pass\n\n# Your Codec object will be instantiated and called as such:\n# ser = Codec()\n# deser = Codec()\n# ans = deser.deserialize(ser.serialize(root))\n"
     },
     {
       "title": "Minimum Cost to Cut a Stick",
@@ -17,114 +29,10 @@
       "topics": [
         "Dynamic Programming",
         "Recursion",
-        "Memoization",
+        "Array",
         "Interval DP"
       ],
-      "content": "# Minimum Cost to Cut a Stick\n\nGiven a wooden stick of length `n` units. The stick is numbered from `0` to `n`. You are given an integer array `cuts` where `cuts[i]` is the position where you need to cut the stick. The cuts are un-ordered.\n\nCutting a stick creates two smaller sticks. The cost of cutting a stick is the length of that stick. For example, if you cut a stick of length `10` at position `3`, the cost is `10`. The two new sticks will have lengths `3` and `7`. After that, you can further cut these smaller sticks.\n\nYou must perform all the cuts in `cuts`. The order of cuts can be chosen by you. You want to minimize the total cost of the cuts.\n\nReturn the minimum total cost of the cuts.\n\n## Examples\n\n### Example 1:\n\n\nInput: n = 7, cuts = [1,3,4,5]\nOutput: 16\nExplanation: The cuts can be done in the following order:\n(1) Cut at 3. Cost is 7. Array becomes [1,3,4,5] -> [1,3], [3,4,5,7].\n(2) Cut [1,3] at 1. Cost is 3. Array becomes [1], [1,3], [3,4,5,7].\n(3) Cut [3,4,5,7] at 5. Cost is 4. Array becomes [1], [1,3], [3,4], [5,7].\n(4) Cut [3,4] at 4. Cost is 1. Array becomes [1], [1,3], [3,4], [5], [5,7].\nTotal cost = 7 + 3 + 4 + 1 = 15.\nAnother order: Cut at 4. Cost is 7. [1,3,4,5] -> [1,3,4], [4,5,7].\nThen cut [1,3,4] at 1. Cost is 4. [1], [1,3,4], [4,5,7].\nThen cut [1,3,4] at 3. Cost is 3. [1], [1,3], [3,4], [4,5,7].\nThen cut [4,5,7] at 5. Cost is 3. [1], [1,3], [3,4], [4,5], [5,7].\nTotal cost = 7 + 4 + 3 + 3 = 17.\nMinimum is 16.\n\n\n### Example 2:\n\n\nInput: n = 9, cuts = [5,6,1,4,2]\nOutput: 22\nExplanation: If you try the cuts in order [1,2,4,5,6], the total cost is 6 + 4 + 3 + 2 + 1 = 16. This is incorrect. The cost of cutting is the length of the *current* stick.\nOptimal order can be [4, 6, 5, 2, 1] resulting in 9 + 5 + 4 + 3 + 1 = 22.\n\n\n## Constraints\n\n*   `2 <= n <= 10^6`\n*   `1 <= cuts.length <= min(n - 1, 100)`\n*   `1 <= cuts[i] <= n - 1`\n*   All the integers in `cuts` array are unique."
-    },
-    {
-      "title": "Serialize and Deserialize Binary Tree",
-      "difficulty": "Hard",
-      "topics": [
-        "Tree",
-        "Depth-First Search",
-        "Breadth-First Search",
-        "String"
-      ],
-      "content": "# Serialize and Deserialize Binary Tree\n\nSerialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\nFor example, you may serialize the following tree:\n\n\n    1\n   / \\\n  2   3\n     / \\\n    4   5\n\n\nas `\"1,2,null,null,3,4,null,null,5,null,null\"`.\n\n## Examples\n\n### Example 1:\n\n\nInput: root = [1,2,3,null,null,4,5]\nOutput: [1,2,3,null,null,4,5]\n\n\n### Example 2:\n\n\nInput: root = []\nOutput: []\n\n\n### Example 3:\n\n\nInput: root = [1]\nOutput: [1]\n\n\n### Example 4:\n\n\nInput: root = [1,2]\nOutput: [1,2]\n\n\n## Constraints\n\n*   The number of nodes in the tree is in the range `[0, 10^4]`.\n*   `-1000 <= Node.val <= 1000`"
-    },
-    {
-      "title": "Shortest Path in a Grid with Obstacles Elimination",
-      "difficulty": "Hard",
-      "topics": [
-        "Breadth-First Search",
-        "Graph",
-        "Matrix",
-        "State Space Search"
-      ],
-      "content": "# Shortest Path in a Grid with Obstacles Elimination\n\nYou are given an `m x n` integer matrix `grid` where `grid[i][j]` is either `0` (empty) or `1` (obstacle). You can move up, down, left, or right.\n\nYou are also given an integer `k`, which is the maximum number of obstacles you can eliminate.\n\nReturn the minimum number of steps to walk from `(0, 0)` to `(m - 1, n - 1)`. If it is impossible, return -1.\n\n## Examples\n\n### Example 1:\n\n\nInput: grid = [[0,0,0],[1,1,0],[0,0,0],[0,1,1],[0,0,0]], k = 1\nOutput: 6\nExplanation: \nThe shortest path without eliminating any obstacle is 10. \nThe shortest path with one obstacle elimination at (3,2) is 6. \nThe path is (0,0) -> (0,1) -> (0,2) -> (1,2) -> (2,2) -> (3,2) (we eliminate this obstacle) -> (4,2).\n\n\n### Example 2:\n\n\nInput: grid = [[0,1,1],[1,1,1],[1,1,0]], k = 1\nOutput: -1\nExplanation: We need to eliminate at least two obstacles to reach the target.\n\n\n## Constraints\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 40`\n*   `1 <= k <= m * n`\n*   `grid[i][j]` is either `0` or `1`.\n*   `grid[0][0] == 0`\n*   `grid[m - 1][n - 1] == 0`"
-    },
-    {
-      "title": "Subarrays with K Different Integers",
-      "difficulty": "Hard",
-      "topics": [
-        "Array",
-        "Sliding Window",
-        "Hash Map",
-        "Two Pointers"
-      ],
-      "content": "# Subarrays with K Different Integers\n\nGiven an integer array `nums` and an integer `k`, return the number of good subarrays of `nums`.\n\nA good subarray is a subarray where the number of different integers in that subarray is exactly `k`.\n\nFor example, `[1,2,3,1,2]` has `3` different integers: `1`, `2`, and `3`.\n\nA subarray is a contiguous part of an array.\n\n## Examples\n\n### Example 1:\n\n\nInput: nums = [1,2,1,2,3], k = 2\nOutput: 7\nExplanation: Subarrays that contain exactly 2 different integers: \n[1,2], [2,1], [1,2], [2,3], [1,2,1], [2,1,2], [1,2,1,2]\n\n\n### Example 2:\n\n\nInput: nums = [1,2,1,3,4], k = 3\nOutput: 3\nExplanation: Subarrays that contain exactly 3 different integers: \n[1,2,1,3], [2,1,3], [1,3,4]\n\n\n## Constraints\n\n*   `1 <= nums.length <= 2 * 10^4`\n*   `1 <= nums[i], k <= nums.length`"
-    },
-    {
-      "title": "Trapping Rain Water",
-      "difficulty": "Hard",
-      "topics": [
-        "Array",
-        "Two Pointers",
-        "Stack"
-      ],
-      "content": "# Trapping Rain Water\n\nGiven `n` non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\n## Examples\n\n### Example 1:\n\n\nInput: height = [0,1,0,2,1,0,1,3,2,1,2,1]\nOutput: 6\nExplanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.\n\n\n### Example 2:\n\n\nInput: height = [4,2,0,3,2,5]\nOutput: 9\n\n\n## Constraints\n\n*   `n == height.length`\n*   `1 <= n <= 2 * 10^4`\n*   `0 <= height[i] <= 10^5`"
-    },
-    {
-      "title": "N-Queens II",
-      "difficulty": "Hard",
-      "topics": [
-        "Backtracking",
-        "Recursion"
-      ],
-      "content": "# N-Queens II\n\nThe n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.\n\nGiven an integer `n`, return the number of distinct solutions to the n-queens puzzle.\n\nEach solution contains a distinct board configuration of the n-queens' placement, where `'Q'` and `'.'` both indicate a queen and an empty space, respectively.\n\n## Examples\n\n### Example 1:\n\n\nInput: n = 4\nOutput: 2\nExplanation: There are two distinct solutions to the 4-queens puzzle as shown.\n[\".Q..\",  // Solution 1\n \"...Q\",\n \"Q...\",\n \"..Q.\"]\n\n[\"..Q.\",  // Solution 2\n \"Q...\",\n \"...Q\",\n \".Q..\"]\n\n\n### Example 2:\n\n\nInput: n = 1\nOutput: 1\n\n\n## Constraints\n\n*   `1 <= n <= 9`"
-    },
-    {
-      "title": "Course Schedule III",
-      "difficulty": "Hard",
-      "topics": [
-        "Greedy",
-        "Priority Queue",
-        "Array",
-        "Sorting"
-      ],
-      "content": "# Course Schedule III\n\nThere are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where `courses[i] = [duration_i, lastDay_i]` indicates that the `i`-th course should be taken for `duration_i` days and must be finished before or on `lastDay_i`. You can only take one course at a time.\n\nWe are interested in the maximum number of courses that can be taken.\n\nFor example, if `courses = [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]`:\n*   If you take the first course, it ends at day 100. The remaining time is 199. \n*   If you then take the third course, it needs 1000 days. It ends at day 100 + 1000 = 1100. This is less than 1250. So you can take 2 courses.\n*   If you then take the second course, it needs 200 days. It ends at day 1100 + 200 = 1300. This is equal to 1300. So you can take 3 courses.\n\nReturn the maximum number of courses that can be taken.\n\n## Examples\n\n### Example 1:\n\n\nInput: courses = [[100,200],[200,1300],[1000,1250],[2000,3200]]\nOutput: 3\nExplanation: \nThere are 4 courses in total.\nCourse 1 (duration 100, lastDay 200)\nCourse 2 (duration 200, lastDay 1300)\nCourse 3 (duration 1000, lastDay 1250)\nCourse 4 (duration 2000, lastDay 3200)\n\nOptimal strategy: \n1. Take Course 1 (ends at day 100). current_time = 100\n2. Take Course 3 (ends at day 100 + 1000 = 1100). current_time = 1100\n3. Take Course 2 (ends at day 1100 + 200 = 1300). current_time = 1300\nWe cannot take Course 4, because 1300 + 2000 = 3300 > 3200.\nTotal courses taken: 3.\n\n\n### Example 2:\n\n\nInput: courses = [[1,2]]\nOutput: 1\n\n\n### Example 3:\n\n\nInput: courses = [[3,2],[4,3]]\nOutput: 0\n\n\n## Constraints\n\n*   `1 <= courses.length <= 10^4`\n*   `1 <= duration_i, lastDay_i <= 10^4`"
-    },
-    {
-      "title": "Find K Pairs with Smallest Sums",
-      "difficulty": "Medium",
-      "topics": [
-        "Heap",
-        "Priority Queue",
-        "Array"
-      ],
-      "content": "# Find K Pairs with Smallest Sums\n\nYou are given two integer arrays `nums1` and `nums2` sorted in ascending order and an integer `k`.\n\nDefine a pair `(u, v)` as one element from `nums1` and one element from `nums2`.\n\nFind the `k` pairs `(u1, v1), (u2, v2), ..., (uk, vk)` with the smallest sums.\n\n## Examples\n\n### Example 1:\n\n\nInput: nums1 = [1,7,11], nums2 = [2,4,6], k = 3\nOutput: [[1,2],[1,4],[1,6]]\nExplanation: The pairs are (1,2), (1,4), (1,6), (7,2), (7,4), (11,2), (7,6), (11,4), (11,6).\nWe ask for the first 3 pairs with the smallest sums.\n\n\n### Example 2:\n\n\nInput: nums1 = [1,1,2], nums2 = [1,2,3], k = 2\nOutput: [[1,1],[1,1]]\nExplanation: The pairs are (1,1), (1,1), (1,2), (2,1), (1,2), (2,2), (1,3), (2,3).\nWe ask for the first 2 pairs with the smallest sums.\n\n\n### Example 3:\n\n\nInput: nums1 = [1,2], nums2 = [3], k = 3\nOutput: [[1,3],[2,3]]\nExplanation: All possible pairs are (1,3),(2,3). We ask for the first 3 pairs which is all of them.\n\n\n## Constraints\n\n*   `1 <= nums1.length, nums2.length <= 10^5`\n*   `1 <= k <= 1000`\n*   `0 <= nums1[i], nums2[i] <= 10^9`\n*   `nums1` and `nums2` are both sorted in ascending order."
-    },
-    {
-      "title": "Sum of Subarray Minimums",
-      "difficulty": "Medium",
-      "topics": [
-        "Array",
-        "Stack",
-        "Monotonic Stack"
-      ],
-      "content": "# Sum of Subarray Minimums\n\nGiven an array of integers `arr`, find the sum of `min(b)` for every (contiguous) subarray `b` of `arr`. Since the answer may be large, return the answer modulo `10^9 + 7`.\n\n## Examples\n\n### Example 1:\n\n\nInput: arr = [3,1,2,4]\nOutput: 17\nExplanation: \nSubarrays are [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4]. \nMinimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1. \nSum is 3+1+2+4+1+1+2+1+1+1 = 17.\n\n\n### Example 2:\n\n\nInput: arr = [11,81,94,43,3]\nOutput: 444\n\n\n## Constraints\n\n*   `1 <= arr.length <= 3 * 10^4`\n*   `1 <= arr[i] <= 3 * 10^4`"
-    },
-    {
-      "title": "Count of Smaller Numbers After Self",
-      "difficulty": "Hard",
-      "topics": [
-        "Divide and Conquer",
-        "Merge Sort",
-        "Binary Indexed Tree (Fenwick Tree)",
-        "Segment Tree",
-        "Array"
-      ],
-      "content": "# Count of Smaller Numbers After Self\n\nYou are given an integer array `nums`. You need to create a new `counts` array. The `counts[i]` should be the number of elements to the right of `nums[i]` that are smaller than `nums[i]`.\n\nReturn the `counts` array.\n\n## Examples\n\n### Example 1:\n\n\nInput: nums = [5,2,6,1]\nOutput: [2,1,1,0]\nExplanation:\nTo the right of 5 there are two smaller elements (2 and 1).\nTo the right of 2 there is one smaller element (1).\nTo the right of 6 there is one smaller element (1).\nTo the right of 1 there is zero smaller elements.\n\n\n### Example 2:\n\n\nInput: nums = [-1]\nOutput: [0]\n\n\n### Example 3:\n\n\nInput: nums = [-1,-1]\nOutput: [0,0]\n\n\n## Constraints\n\n*   `1 <= nums.length <= 10^5`\n*   `-10^4 <= nums[i] <= 10^4`"
-    },
-    {
-      "title": "Maximal Square",
-      "difficulty": "Medium",
-      "topics": [
-        "Dynamic Programming",
-        "Matrix"
-      ],
-      "content": "# Maximal Square\n\nGiven an `m x n` binary matrix filled with `0`'s and `1`'s, find the largest square containing only `1`'s and return its area.\n\n## Examples\n\n### Example 1:\n\n\nInput: matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]\nOutput: 4\n\n\n### Example 2:\n\n\nInput: matrix = [[\"0\",\"1\"],[\"1\",\"0\"]]\nOutput: 1\n\n\n### Example 3:\n\n\nInput: matrix = [[\"0\"]]\nOutput: 0\n\n\n## Constraints\n\n*   `m == matrix.length`\n*   `n == matrix[i].length`\n*   `1 <= m, n <= 300`\n*   `matrix[i][j]` is `'0'` or `'1'`."
+      "content": "# Minimum Cost to Cut a Stick\n\nGiven a wooden stick of length `n` units. The stick is labeled from `0` to `n`. You are also given an integer array `cuts` where `cuts[i]` is the position where you need to cut the stick. \n\nYou should perform the cuts in order. The cost of a cut is the length of the stick being cut. For example, if you cut a stick of length `10` between positions `3` and `7`, the cost is `10`. The resulting stick pieces are `[0,3]` and `[7,10]`. \n\nReturn the minimum total cost of the cuts.\n\n## Examples\n\n**Example 1:**\nInput: `n = 7, cuts = [1,3,4,5]`\nOutput: `16`\nExplanation: The cuts can be performed in the following order:\n- `[1,3,4,5]` means cut at 1, then 3, then 4, then 5.\n- `[0,7]` is the initial stick. Length 7. Cost: 7.\n- Cut at 4. Stick `[0,7]` becomes `[0,4]` and `[4,7]`. Cost: 7. Total cost: 7.\n- Cut at 1 in `[0,4]`. Stick `[0,4]` becomes `[0,1]` and `[1,4]`. Cost: 4. Total cost: 7 + 4 = 11.\n- Cut at 3 in `[1,4]`. Stick `[1,4]` becomes `[1,3]` and `[3,4]`. Cost: 3. Total cost: 11 + 3 = 14.\n- Cut at 5 in `[4,7]`. Stick `[4,7]` becomes `[4,5]` and `[5,7]`. Cost: 3. Total cost: 14 + 3 = 17.\n\nIf we cut in a different order, say `[3,1,4,5]`:\n- Cut at 3. Cost: 7. Total cost: 7.\n- Cut at 1 in `[0,3]`. Cost: 3. Total cost: 7 + 3 = 10.\n- Cut at 4 in `[3,7]`. Cost: 4. Total cost: 10 + 4 = 14.\n- Cut at 5 in `[4,7]`. Cost: 3. Total cost: 14 + 3 = 17.\n\nMinimum cost is 16.\n\n**Example 2:**\nInput: `n = 9, cuts = [5,6,1,4,2]`\nOutput: `22`\n\n## Constraints\n\n*   `2 <= n <= 10^6`\n*   `1 <= cuts.length <= min(n - 1, 100)`\n*   `1 <= cuts[i] <= n - 1`\n*   All the integers in `cuts` array are unique.\n\n## Test Cases\nInput: n = 7, cuts = [1,3,4,5]\nOutput: 16\n\nInput: n = 9, cuts = [5,6,1,4,2]\nOutput: 22\n\nInput: n = 10, cuts = [4,7]\nOutput: 17\n\n## Starter Code\n\npython\nclass Solution:\n    def minCost(self, n: int, cuts: list[int]) -> int:\n        # Add 0 and n to cuts, sort them for easier processing\n        cuts.sort()\n        cuts = [0] + cuts + [n]\n        num_cuts = len(cuts)\n\n        # memo[i][j] stores the min cost to cut the stick from cuts[i] to cuts[j]\n        memo = [[-1] * num_cuts for _ in range(num_cuts)]\n\n        def dp(i, j):\n            # Base case: if there are no cuts or only one cut point between i and j\n            # (meaning j-i <= 1), then no cost.\n            if j - i <= 1:\n                return 0\n            if memo[i][j] != -1:\n                return memo[i][j]\n\n            # The current stick length to be cut is cuts[j] - cuts[i]\n            current_cost = cuts[j] - cuts[i]\n            min_total_cost = float('inf')\n\n            # Try all possible intermediate cuts k between i and j\n            for k in range(i + 1, j):\n                cost = current_cost + dp(i, k) + dp(k, j)\n                min_total_cost = min(min_total_cost, cost)\n            \n            memo[i][j] = min_total_cost\n            return min_total_cost\n        \n        return dp(0, num_cuts - 1)\n"
     },
     {
       "title": "Word Break II",
@@ -135,42 +43,198 @@
         "String",
         "Trie"
       ],
-      "content": "# Word Break II\n\nGiven a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to construct a sentence where each word is a valid dictionary word. Return all such possible sentences. You may assume the dictionary does not contain duplicate words.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation.\n\n## Examples\n\n### Example 1:\n\n\nInput: s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]\nOutput: [\"cats and dog\",\"cat sand dog\"]\n\n\n### Example 2:\n\n\nInput: s = \"pineapplepenapple\", wordDict = [\"apple\",\"pen\",\"applepen\",\"pine\",\"pineapple\"]\nOutput: [\"pine apple pen apple\",\"pineapple pen apple\",\"pine applepen apple\"]\nExplanation: Note that you are allowed to reuse a dictionary word.\n\n\n### Example 3:\n\n\nInput: s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]\nOutput: []\n\n\n## Constraints\n\n*   `1 <= s.length <= 20`\n*   `1 <= wordDict.length <= 1000`\n*   `1 <= wordDict[i].length <= 10`\n*   `s` and `wordDict[i]` consist of only lowercase English letters.\n*   All the strings of `wordDict` are unique."
+      "content": "# Word Break II\n\nGiven a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in **any order**.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation. You may assume the dictionary does not contain duplicate words.\n\n## Examples\n\n**Example 1:**\nInput: `s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]`\nOutput: `[\"cats and dog\",\"cat sand dog\"]`\n\n**Example 2:**\nInput: `s = \"pineapplepenapple\", wordDict = [\"apple\",\"pen\",\"applepen\",\"pine\",\"pineapple\"]`\nOutput: `[\"pine apple pen apple\",\"pineapple pen apple\",\"pine applepen apple\"]`\nExplanation: Note that you are allowed to reuse a dictionary word.\n\n**Example 3:**\nInput: `s = \"\", wordDict = [\"a\",\"b\",\"c\"]`\nOutput: `[]`\n\n## Constraints\n\n*   `1 <= s.length <= 20`\n*   `1 <= wordDict.length <= 1000`\n*   `1 <= wordDict[i].length <= 10`\n*   `s` and `wordDict[i]` consist of only lowercase English letters.\n*   All the strings of `wordDict` are unique.\n\n## Test Cases\nInput: s = \"catsanddog\", wordDict = [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]\nOutput: [\"cats and dog\",\"cat sand dog\"]\n\nInput: s = \"pineapplepenapple\", wordDict = [\"apple\",\"pen\",\"applepen\",\"pine\",\"pineapple\"]\nOutput: [\"pine apple pen apple\",\"pineapple pen apple\",\"pine applepen apple\"]\n\nInput: s = \"\", wordDict = [\"a\",\"b\",\"c\"]\nOutput: []\n\nInput: s = \"abcd\", wordDict = [\"a\",\"abc\",\"b\",\"cd\"]\nOutput: [\"a b cd\"]\n\n## Starter Code\n\npython\nclass Solution:\n    def wordBreak(self, s: str, wordDict: list[str]) -> list[str]:\n        word_set = set(wordDict)\n        # memoization table: memo[i] stores all valid sentences for s[i:]\n        memo = {}\n\n        def backtrack(index):\n            if index == len(s):\n                return [\"\"]\n            if index in memo:\n                return memo[index]\n\n            result = []\n            for i in range(index, len(s)):\n                word = s[index : i + 1]\n                if word in word_set:\n                    # Recursively find solutions for the rest of the string\n                    rest_of_sentences = backtrack(i + 1)\n                    for sentence in rest_of_sentences:\n                        if sentence == \"\":\n                            result.append(word)\n                        else:\n                            result.append(word + \" \" + sentence)\n            \n            memo[index] = result\n            return result\n\n        return backtrack(0)\n"
     },
     {
-      "title": "Pacific Atlantic Water Flow",
+      "title": "Cheapest Flights Within K Stops",
       "difficulty": "Medium",
       "topics": [
         "Graph",
-        "Depth-First Search",
-        "Breadth-First Search",
-        "Matrix"
+        "BFS",
+        "Dynamic Programming",
+        "Dijkstra"
       ],
-      "content": "# Pacific Atlantic Water Flow\n\nThere is an `m x n` rectangular island that borders both the Pacific Ocean and Atlantic Ocean. The Pacific Ocean touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges.\n\nThe island is represented by an `m x n` `heights` matrix where `heights[r][c]` denotes the height of the cell `(r, c)`.\n\nWater can flow from any cell to an adjacent cell (up, down, left, or right) if the adjacent cell has a height less than or equal to the current cell's height. Water can flow from any cell adjacent to an ocean into that ocean.\n\nReturn a list of grid coordinates `result` where `result[i] = [ri, ci]` denotes that rain water can flow from cell `(ri, ci)` to both the Pacific and Atlantic oceans.\n\n## Examples\n\n### Example 1:\n\n\nInput: heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]\nOutput: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]\n\n\n### Example 2:\n\n\nInput: heights = [[1]]\nOutput: [[0,0]]\n\n\n## Constraints\n\n*   `m == heights.length`\n*   `n == heights[r].length`\n*   `1 <= m, n <= 200`\n*   `0 <= heights[r][c] <= 10^5`"
+      "content": "# Cheapest Flights Within K Stops\n\nThere are `n` cities connected by `m` flights. Each flight starts from city `u` and arrives at city `v` with a price `w`.\n\nNow given all the cities and flights, together with starting city `src` and the destination `dst`, your task is to find the cheapest price from `src` to `dst` with at most `k` stops. If there is no such route, output `-1`.\n\n## Examples\n\n**Example 1:**\nInput:\n`n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1`\nOutput: `200`\nExplanation: The cheapest price from `0` to `2` with at most `1` stop is `200`.\n- `0 -> 1 (100) -> 2 (100)`\n\n**Example 2:**\nInput:\n`n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 0`\nOutput: `500`\nExplanation: The cheapest price from `0` to `2` with at most `0` stops is `500`.\n- `0 -> 2 (500)`\n\n## Constraints\n\n*   `1 <= n <= 100`\n*   `0 <= flights.length <= (n * (n - 1) / 2)`\n*   `flights[i].length == 3`\n*   `0 <= u, v < n`\n*   `u != v`\n*   `1 <= w <= 10^4`\n*   `0 <= src, dst, k < n`\n*   `src != dst`\n\n## Test Cases\nInput: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1\nOutput: 200\n\nInput: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 0\nOutput: 500\n\nInput: n = 4, flights = [[0,1,1],[0,2,5],[1,2,1],[2,3,1]], src = 0, dst = 3, k = 1\nOutput: 6\n\n## Starter Code\n\npython\nimport collections\nimport heapq\n\nclass Solution:\n    def findCheapestPrice(self, n: int, flights: list[list[int]], src: int, dst: int, k: int) -> int:\n        adj = collections.defaultdict(list)\n        for u, v, w in flights:\n            adj[u].append((v, w))\n\n        # (cost, current_city, stops_made)\n        pq = [(0, src, 0)]\n        # (city, stops) -> min_cost\n        min_costs = {}\n\n        while pq:\n            cost, u, stops = heapq.heappop(pq)\n\n            if u == dst:\n                return cost\n\n            # If we've already found a cheaper path to 'u' with 'stops' stops,\n            # or if we've exceeded k stops, skip.\n            if (u, stops) in min_costs and min_costs[(u, stops)] <= cost:\n                continue\n            min_costs[(u, stops)] = cost\n\n            if stops <= k:\n                for v, weight in adj[u]:\n                    heapq.heappush(pq, (cost + weight, v, stops + 1))\n        \n        return -1\n"
+    },
+    {
+      "title": "Trapping Rain Water",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Stack"
+      ],
+      "content": "# Trapping Rain Water\n\nGiven `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it can trap after raining.\n\n## Examples\n\n**Example 1:**\nInput: `height = [0,1,0,2,1,0,1,3,2,1,2,1]`\nOutput: `6`\nExplanation: The above elevation map (black section) is represented by array `[0,1,0,2,1,0,1,3,2,1,2,1]`. In this case, `6` units of rain water (blue section) are being trapped.\n\n**Example 2:**\nInput: `height = [4,2,0,3,2,5]`\nOutput: `9`\n\n## Constraints\n\n*   `n == height.length`\n*   `1 <= n <= 2 * 10^4`\n*   `0 <= height[i] <= 10^5`\n\n## Test Cases\nInput: height = [0,1,0,2,1,0,1,3,2,1,2,1]\nOutput: 6\n\nInput: height = [4,2,0,3,2,5]\nOutput: 9\n\nInput: height = [4,2,3]\nOutput: 1\n\nInput: height = [2,0,2]\nOutput: 2\n\n## Starter Code\n\npython\nclass Solution:\n    def trap(self, height: list[int]) -> int:\n        if not height:\n            return 0\n\n        left, right = 0, len(height) - 1\n        max_left, max_right = height[left], height[right]\n        trapped_water = 0\n\n        while left < right:\n            if max_left < max_right:\n                left += 1\n                max_left = max(max_left, height[left])\n                trapped_water += max_left - height[left]\n            else:\n                right -= 1\n                max_right = max(max_right, height[right])\n                trapped_water += max_right - height[right]\n        \n        return trapped_water\n"
+    },
+    {
+      "title": "Binary Tree Maximum Path Sum",
+      "difficulty": "Hard",
+      "topics": [
+        "Tree",
+        "DFS",
+        "Recursion"
+      ],
+      "content": "# Binary Tree Maximum Path Sum\n\nA path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence **at most once**. The path does not necessarily need to pass through the root.\n\nThe **path sum** of a path is the sum of the node's values in the path.\n\nGiven the `root` of a binary tree, return *the maximum **path sum** of any non-empty path*.\n\n## Examples\n\n**Example 1:**\nInput: `root = [1,2,3]`\nOutput: `6`\nExplanation: The optimal path is `2 -> 1 -> 3` with a sum of `2 + 1 + 3 = 6`.\n\n**Example 2:**\nInput: `root = [-10,9,20,null,null,15,7]`\nOutput: `42`\nExplanation: The optimal path is `15 -> 20 -> 7` with a sum of `15 + 20 + 7 = 42`.\n\n## Constraints\n\n*   The number of nodes in the tree is in the range `[1, 3 * 10^4]`.\n*   `-1000 <= Node.val <= 1000`\n\n## Test Cases\nInput: root = [1,2,3]\nOutput: 6\n\nInput: root = [-10,9,20,null,null,15,7]\nOutput: 42\n\nInput: root = [-3]\nOutput: -3\n\nInput: root = [1,-2,-3,1,3,-2,null,-1]\nOutput: 3\n\n## Starter Code\n\npython\n# Definition for a binary tree node.\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def maxPathSum(self, root: TreeNode) -> int:\n        self.max_sum = float('-inf')\n\n        def dfs(node):\n            if not node:\n                return 0\n\n            # Recursively get the maximum path sum from left and right children\n            # If a child's path sum is negative, we don't include it (take 0 instead)\n            left_sum = max(0, dfs(node.left))\n            right_sum = max(0, dfs(node.right))\n\n            # Update the global maximum path sum (path can go through current node)\n            # This path could be: left_child -> node -> right_child\n            self.max_sum = max(self.max_sum, node.val + left_sum + right_sum)\n\n            # Return the maximum path sum that *starts* at the current node and goes up\n            # (either through left child or right child, but not both)\n            return node.val + max(left_sum, right_sum)\n\n        dfs(root)\n        return self.max_sum\n"
+    },
+    {
+      "title": "Count Complete Tree Nodes",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "Binary Search",
+        "Divide and Conquer"
+      ],
+      "content": "# Count Complete Tree Nodes\n\nGiven the `root` of a **complete** binary tree, return the number of the nodes in the tree.\n\nIn a **complete** binary tree, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between `1` and `2^h` nodes inclusive at the last level `h`.\n\nDesign an algorithm that runs in less than `O(n)` time complexity.\n\n## Examples\n\n**Example 1:**\nInput: `root = [1,2,3,4,5,6]`\nOutput: `6`\n\n**Example 2:**\nInput: `root = []`\nOutput: `0`\n\n**Example 3:**\nInput: `root = [1]`\nOutput: `1`\n\n## Constraints\n\n*   The number of nodes in the tree is in the range `[0, 5 * 10^4]`.\n*   `0 <= Node.val <= 5 * 10^4`\n*   The tree is guaranteed to be **complete**.\n\n## Test Cases\nInput: root = [1,2,3,4,5,6]\nOutput: 6\n\nInput: root = []\nOutput: 0\n\nInput: root = [1]\nOutput: 1\n\nInput: root = [1,2,3,4,5]\nOutput: 5\n\n## Starter Code\n\npython\n# Definition for a binary tree node.\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def countNodes(self, root: TreeNode) -> int:\n        if not root:\n            return 0\n\n        def get_height(node, is_left):\n            height = 0\n            while node:\n                node = node.left if is_left else node.right\n                height += 1\n            return height - 1 # return actual height (edges)\n\n        # Get height of left-most path and right-most path (for a full tree, they would be equal)\n        left_height = get_height(root, True)\n        right_height = get_height(root, False)\n\n        # If left and right heights are equal, it's a perfect binary tree\n        if left_height == right_height:\n            return (1 << (left_height + 1)) - 1\n        else:\n            # If not perfect, recursively count nodes in left and right subtrees\n            # The crucial part is that one of them must be a perfect tree or a complete tree that's almost perfect\n            return 1 + self.countNodes(root.left) + self.countNodes(root.right)\n"
+    },
+    {
+      "title": "Subarrays with K Different Integers",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Sliding Window",
+        "Two Pointers"
+      ],
+      "content": "# Subarrays with K Different Integers\n\nGiven an array `nums` of positive integers, call a (contiguous) subarray of `nums` **good** if the number of different integers in that subarray is exactly `k`.\n\nReturn the number of good subarrays of `nums`.\n\n## Examples\n\n**Example 1:**\nInput: `nums = [1,2,1,2,3], k = 2`\nOutput: `7`\nExplanation: Subarrays with 2 different integers: `[1,2]`, `[2,1]`, `[1,2]`, `[2,3]`, `[1,2,1]`, `[2,1,2]`, `[1,2,1,2]`.\n\n**Example 2:**\nInput: `nums = [1,2,1,3,4], k = 3`\nOutput: `3`\nExplanation: Subarrays with 3 different integers: `[1,2,1,3]`, `[2,1,3,4]`, `[1,3,4]`.\n\n## Constraints\n\n*   `1 <= nums.length <= 2 * 10^4`\n*   `1 <= nums[i], k <= nums.length`\n\n## Test Cases\nInput: nums = [1,2,1,2,3], k = 2\nOutput: 7\n\nInput: nums = [1,2,1,3,4], k = 3\nOutput: 3\n\nInput: nums = [1,1,1,1], k = 1\nOutput: 10\n\nInput: nums = [1,2,3,4,5], k = 5\nOutput: 1\n\n## Starter Code\n\npython\nimport collections\n\nclass Solution:\n    def subarraysWithKDistinct(self, nums: list[int], k: int) -> int:\n        # Helper function to count subarrays with AT MOST k distinct integers\n        def atMostKDistinct(arr, k):\n            if k < 0:\n                return 0\n            \n            count = collections.defaultdict(int)\n            left = 0\n            result = 0\n            for right in range(len(arr)):\n                count[arr[right]] += 1\n                while len(count) > k:\n                    count[arr[left]] -= 1\n                    if count[arr[left]] == 0:\n                        del count[arr[left]]\n                    left += 1\n                result += (right - left + 1) # All subarrays ending at 'right' starting from 'left'\n            return result\n        \n        # The number of subarrays with EXACTLY k distinct integers is\n        # (subarrays with AT MOST k distinct integers) - (subarrays with AT MOST k-1 distinct integers)\n        return atMostKDistinct(nums, k) - atMostKDistinct(nums, k - 1)\n"
     },
     {
       "title": "Meeting Rooms II",
       "difficulty": "Medium",
       "topics": [
         "Array",
-        "Greedy",
         "Heap",
-        "Priority Queue",
-        "Sorting",
-        "Sweep Line"
+        "Greedy",
+        "Sweep Line",
+        "Intervals"
       ],
-      "content": "# Meeting Rooms II\n\nGiven an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required.\n\n## Examples\n\n### Example 1:\n\n\nInput: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2\nExplanation:\nWe need two rooms:\nRoom 1: (0, 30)\nRoom 2: (5, 10), (15, 20)\n\n\n### Example 2:\n\n\nInput: intervals = [[7,10],[2,4]]\nOutput: 1\n\n\n### Example 3:\n\n\nInput: intervals = [[1,5],[8,12],[8,10],[10,12]]\nOutput: 3\nExplanation:\nRoom 1: (1,5)\nRoom 2: (8,12)\nRoom 3: (8,10), (10,12) (these can be in the same room as they don't overlap, but for the purpose of demonstrating, if we need to schedule them, we need another room).\nCorrect interpretation for Example 3: \n- (1,5) uses a room.\n- (8,12) uses a second room.\n- (8,10) overlaps with (1,5) and (8,12). It needs a third room.\n- (10,12) overlaps with (1,5) and (8,12). It can use the room from (8,10) if (8,10) is finished, but since (8,12) is ongoing, it would still need a separate room if (8,10) is not considered a separate event from (8,12).\nLet's re-evaluate Example 3 with the typical definition of meeting rooms: \n(1,5) -> room 1\n(8,12) -> room 2 (cannot use room 1, as 8 > 5)\n(8,10) -> room 3 (cannot use room 1, as 8 > 5; cannot use room 2, as 8 == 8)\n(10,12) -> can use room 1 (10 > 5), but room 2 is occupied until 12, room 3 is occupied until 10. If we prioritize using an available room, (10,12) can use room 3. So, 3 rooms are sufficient.\n\n\n## Constraints\n\n*   `1 <= intervals.length <= 10^4`\n*   `0 <= start_i < end_i <= 10^6`"
+      "content": "# Meeting Rooms II\n\nGiven an array of meeting time `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required.\n\n## Examples\n\n**Example 1:**\nInput: `intervals = [[0,30],[5,10],[15,20]]`\nOutput: `2`\nExplanation: \n- Meeting `[0,30]` requires a room.\n- Meeting `[5,10]` requires another room as it overlaps with `[0,30]`.\n- Meeting `[15,20]` requires another room as it overlaps with `[0,30]` (but not `[5,10]`).\nTherefore, 2 rooms are needed.\n\n**Example 2:**\nInput: `intervals = [[7,10],[2,4]]`\nOutput: `1`\nExplanation: \n- Meeting `[7,10]` requires a room.\n- Meeting `[2,4]` can use the same room as `[7,10]` ends before `[7,10]` starts.\nTherefore, 1 room is needed.\n\n## Constraints\n\n*   `1 <= intervals.length <= 10^4`\n*   `0 <= start_i < end_i <= 10^6`\n\n## Test Cases\nInput: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2\n\nInput: intervals = [[7,10],[2,4]]\nOutput: 1\n\nInput: intervals = [[1,5],[8,9],[8,9]]\nOutput: 2\n\nInput: intervals = [[1,2],[3,4],[5,6]]\nOutput: 1\n\n## Starter Code\n\npython\nimport heapq\n\nclass Solution:\n    def minMeetingRooms(self, intervals: list[list[int]]) -> int:\n        if not intervals:\n            return 0\n\n        # Sort the intervals by their start times\n        intervals.sort(key=lambda x: x[0])\n\n        # Min-heap to store the end times of meetings currently in rooms\n        # The smallest end time will be at the top\n        meeting_rooms = [] # This will be a min-heap\n\n        # Add the first meeting's end time to the heap\n        heapq.heappush(meeting_rooms, intervals[0][1])\n\n        # Iterate through the rest of the meetings\n        for i in range(1, len(intervals)):\n            current_start = intervals[i][0]\n            current_end = intervals[i][1]\n\n            # If the earliest ending meeting (top of heap) has finished before the current meeting starts,\n            # then we can reuse that room. Pop it and push the current meeting's end time.\n            if meeting_rooms[0] <= current_start:\n                heapq.heappop(meeting_rooms)\n            \n            # In either case (reused a room or needed a new one), add the current meeting's end time\n            heapq.heappush(meeting_rooms, current_end)\n        \n        # The size of the heap is the minimum number of rooms required\n        return len(meeting_rooms)\n"
+    },
+    {
+      "title": "Walls and Gates",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "BFS",
+        "Matrix"
+      ],
+      "content": "# Walls and Gates\n\nYou are given an `m x n` grid `rooms` initialized with these three possible values:\n\n*   `-1` a wall or an obstacle.\n*   `0` a gate.\n*   `INF` infinity means an empty room. We use the value `2^31 - 1 = 2147483647` to represent `INF` as you may assume that the distance to a gate is less than `2^31 - 1`.\n\nFill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should remain `INF`.\n\n## Examples\n\n**Example 1:**\nInput:\n\nrooms = [\n  [2147483647,-1,0,2147483647],\n  [2147483647,2147483647,2147483647,-1],\n  [2147483647,-1,2147483647,-1],\n  [0,-1,2147483647,2147483647]\n]\n\nOutput:\n\n[\n  [3,-1,0,1],\n  [2,2,1,-1],\n  [1,-1,2,-1],\n  [0,-1,3,4]\n]\n\n\n**Example 2:**\nInput: `rooms = [[-1]]`\nOutput: `[[-1]]`\n\n**Example 3:**\nInput: `rooms = [[2147483647]]`\nOutput: `[[2147483647]]`\n\n## Constraints\n\n*   `m == rooms.length`\n*   `n == rooms[i].length`\n*   `1 <= m, n <= 250`\n*   `rooms[i][j]` is `-1`, `0`, or `2147483647`.\n\n## Test Cases\nInput: rooms = [[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]\nOutput: [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]\n\nInput: rooms = [[-1]]\nOutput: [[-1]]\n\nInput: rooms = [[0]]\nOutput: [[0]]\n\n## Starter Code\n\npython\nimport collections\n\nclass Solution:\n    def wallsAndGates(self, rooms: list[list[int]]) -> None:\n        if not rooms or not rooms[0]:\n            return\n\n        rows, cols = len(rooms), len(rooms[0])\n        q = collections.deque()\n\n        # Initialize BFS queue with all gates\n        for r in range(rows):\n            for c in range(cols):\n                if rooms[r][c] == 0:\n                    q.append((r, c))\n        \n        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n        \n        while q:\n            r, c = q.popleft()\n\n            for dr, dc in directions:\n                nr, nc = r + dr, c + dc\n\n                # Check boundaries and if it's an empty room (INF) that hasn't been visited yet\n                if 0 <= nr < rows and 0 <= nc < cols and rooms[nr][nc] == 2147483647:\n                    rooms[nr][nc] = rooms[r][c] + 1\n                    q.append((nr, nc))\n"
+    },
+    {
+      "title": "Course Schedule II",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "Topological Sort",
+        "DFS",
+        "BFS"
+      ],
+      "content": "# Course Schedule II\n\nThere are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that you must take course `bi` first if you want to take course `ai`.\n\nFor example, the pair `[0, 1]` indicates that to take course `0` you have to first take course `1`.\n\nReturn the ordering of courses you should take to finish all courses. If there are many valid answers, return **any** of them. If it is impossible to finish all courses, return an empty array.\n\n## Examples\n\n**Example 1:**\nInput: `numCourses = 2, prerequisites = [[1,0]]`\nOutput: `[0,1]`\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1].\n\n**Example 2:**\nInput: `numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]`\nOutput: `[0,1,2,3]` or `[0,2,1,3]`\nExplanation: There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0.\nSo one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].\n\n**Example 3:**\nInput: `numCourses = 1, prerequisites = []`\nOutput: `[0]`\n\n## Constraints\n\n*   `1 <= numCourses <= 2000`\n*   `0 <= prerequisites.length <= numCourses * (numCourses - 1)`\n*   `prerequisites[i].length == 2`\n*   `0 <= ai, bi < numCourses`\n*   `ai != bi`\n*   All the pairs `[ai, bi]` are **unique**.\n\n## Test Cases\nInput: numCourses = 2, prerequisites = [[1,0]]\nOutput: [0,1]\n\nInput: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]\nOutput: [0,1,2,3]\n\nInput: numCourses = 1, prerequisites = []\nOutput: [0]\n\nInput: numCourses = 3, prerequisites = [[1,0],[0,2],[2,1]]\nOutput: []\n\n## Starter Code\n\npython\nimport collections\n\nclass Solution:\n    def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:\n        # Build adjacency list and in-degree array\n        adj = collections.defaultdict(list)\n        in_degree = [0] * numCourses\n        \n        for course, pre_req in prerequisites:\n            adj[pre_req].append(course)\n            in_degree[course] += 1\n        \n        # Initialize queue with courses that have no prerequisites\n        q = collections.deque()\n        for i in range(numCourses):\n            if in_degree[i] == 0:\n                q.append(i)\n        \n        result = []\n        while q:\n            course = q.popleft()\n            result.append(course)\n            \n            # For all neighbors of the current course\n            for neighbor in adj[course]:\n                in_degree[neighbor] -= 1\n                # If a neighbor's in-degree becomes 0, add it to the queue\n                if in_degree[neighbor] == 0:\n                    q.append(neighbor)\n        \n        # If we couldn't process all courses, there's a cycle\n        if len(result) == numCourses:\n            return result\n        else:\n            return []\n"
+    },
+    {
+      "title": "Find K Closest Elements",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Binary Search",
+        "Heap"
+      ],
+      "content": "# Find K Closest Elements\n\nGiven a sorted integer array `arr`, two integers `k` and `x`, return the `k` closest integers to `x` in the array. The result should also be sorted in ascending order.\n\nAn integer `a` is closer to `x` than an integer `b` if:\n\n*   `|a - x| < |b - x|`, or\n*   `|a - x| == |b - x|` and `a < b`\n\n## Examples\n\n**Example 1:**\nInput: `arr = [1,2,3,4,5], k = 4, x = 3`\nOutput: `[1,2,3,4]`\n\n**Example 2:**\nInput: `arr = [1,2,3,4,5], k = 4, x = -1`\nOutput: `[1,2,3,4]`\n\n## Constraints\n\n*   `1 <= k <= arr.length`\n*   `1 <= arr.length <= 10^4`\n*   `arr` is sorted in ascending order.\n*   `-10^4 <= arr[i], x <= 10^4`\n\n## Test Cases\nInput: arr = [1,2,3,4,5], k = 4, x = 3\nOutput: [1,2,3,4]\n\nInput: arr = [1,2,3,4,5], k = 4, x = -1\nOutput: [1,2,3,4]\n\nInput: arr = [1,1,1,10,10,10], k = 1, x = 9\nOutput: [10]\n\nInput: arr = [0,0,1,2,3,3,4,7,7,8], k = 3, x = 5\nOutput: [3,4,7]\n\n## Starter Code\n\npython\nimport bisect\n\nclass Solution:\n    def findClosestElements(self, arr: list[int], k: int, x: int) -> list[int]:\n        # Find the insertion point for x, which gives us a starting point\n        idx = bisect.bisect_left(arr, x)\n        \n        # Initialize two pointers around the potential position of x\n        left = idx - 1\n        right = idx\n\n        # Expand the window until we have k elements\n        while right - left - 1 < k:\n            # If left pointer goes out of bounds, only move right\n            if left < 0:\n                right += 1\n                continue\n            # If right pointer goes out of bounds, only move left\n            if right >= len(arr):\n                left -= 1\n                continue\n            \n            # Compare distances and move the pointer that points to the closer element\n            if abs(arr[left] - x) <= abs(arr[right] - x):\n                left -= 1\n            else:\n                right += 1\n        \n        # The window is from left+1 to right-1 (inclusive)\n        return arr[left + 1 : right]\n"
+    },
+    {
+      "title": "Regular Expression Matching",
+      "difficulty": "Hard",
+      "topics": [
+        "Dynamic Programming",
+        "String",
+        "Recursion"
+      ],
+      "content": "# Regular Expression Matching\n\nGiven an input string `s` and a pattern `p`, implement regular expression matching with support for `'.'` and `'*'`. \n\n*   `'.'` Matches any single character.\n*   `'*'` Matches zero or more of the preceding element.\n\nThe matching should cover the **entire** input string (not partial).\n\n## Examples\n\n**Example 1:**\nInput: `s = \"aa\", p = \"a\"`\nOutput: `false`\nExplanation: \"a\" does not match the entire string \"aa\".\n\n**Example 2:**\nInput: `s = \"aa\", p = \"a*\"`\nOutput: `true`\nExplanation: `'.'` matches any single character. `'*'` means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes \"aa\".\n\n**Example 3:**\nInput: `s = \"ab\", p = \".*\"`\nOutput: `true`\nExplanation: `\".*\"` means \"zero or more (*) of any character (.)\".\n\n**Example 4:**\nInput: `s = \"aab\", p = \"c*a*b\"`\nOutput: `true`\nExplanation: `c` can be repeated `0` times, `a` can be repeated `1` time. Therefore, it matches \"aab\".\n\n**Example 5:**\nInput: `s = \"mississippi\", p = \"mis*is*p*.\"`\nOutput: `false`\n\n## Constraints\n\n*   `1 <= s.length <= 20`\n*   `1 <= p.length <= 30`\n*   `s` contains only lowercase English letters.\n*   `p` contains only lowercase English letters, `'.'`, and `'*'`. \n*   It is guaranteed that for every `character` in `p`, when `character == '*'`, there will be a previous valid character to match.\n\n## Test Cases\nInput: s = \"aa\", p = \"a\"\nOutput: false\n\nInput: s = \"aa\", p = \"a*\"\nOutput: true\n\nInput: s = \"ab\", p = \".*\"\nOutput: true\n\nInput: s = \"aab\", p = \"c*a*b\"\nOutput: true\n\nInput: s = \"mississippi\", p = \"mis*is*p*.\"\nOutput: false\n\n## Starter Code\n\npython\nclass Solution:\n    def isMatch(self, s: str, p: str) -> bool:\n        # dp[i][j] will be True if s[:i] matches p[:j]\n        memo = {}\n\n        def dp(i, j):\n            if (i, j) in memo:\n                return memo[(i, j)]\n\n            # Base cases\n            if j == len(p):\n                return i == len(s)\n            \n            # Check if the first characters match\n            first_match = (i < len(s) and (p[j] == s[i] or p[j] == '.'))\n\n            # If there's a '*' after the current pattern character\n            if j + 1 < len(p) and p[j+1] == '*':\n                # Option 1: '*' matches zero occurrences of the preceding element\n                # (skip p[j] and p[j+1])\n                # Option 2: '*' matches one or more occurrences of the preceding element\n                # (first_match must be true, then match s[i+1:] with p[j:])\n                result = dp(i, j + 2) or (first_match and dp(i + 1, j))\n            else:\n                # No '*' or '*' is not at j+1\n                # first_match must be true, and the rest of the strings must match\n                result = first_match and dp(i + 1, j + 1)\n            \n            memo[(i, j)] = result\n            return result\n        \n        return dp(0, 0)\n"
+    },
+    {
+      "title": "Word Ladder",
+      "difficulty": "Hard",
+      "topics": [
+        "Graph",
+        "BFS",
+        "String"
+      ],
+      "content": "# Word Ladder\n\nA transformation sequence from `word1` to `word2` using a dictionary `wordList` is a sequence of words `word1 -> s1 -> s2 -> ... -> sk -> word2` such that:\n\n1.  Every adjacent pair of words differs by a single letter.\n2.  Every `si` for `1 <= i <= k` is in `wordList`.\n3.  `word1` is not in `wordList`.\n4.  `word2` is in `wordList`.\n\nGiven two words, `beginWord` and `endWord`, and a dictionary `wordList`, return the number of words in the shortest transformation sequence from `beginWord` to `endWord`, or `0` if no such sequence exists.\n\n## Examples\n\n**Example 1:**\nInput: `beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]`\nOutput: `5`\nExplanation: One shortest transformation sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> \"cog\", which has 5 words.\n\n**Example 2:**\nInput: `beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]`\nOutput: `0`\nExplanation: The endWord \"cog\" is not in wordList, therefore there is no valid transformation sequence.\n\n## Constraints\n\n*   `1 <= beginWord.length <= 10`\n*   `endWord.length == beginWord.length`\n*   `1 <= wordList.length <= 5000`\n*   `wordList[i].length == beginWord.length`\n*   `beginWord`, `endWord`, and `wordList[i]` consist of lowercase English letters.\n*   `beginWord != endWord`\n*   All the words in `wordList` are unique.\n\n## Test Cases\nInput: beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]\nOutput: 5\n\nInput: beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]\nOutput: 0\n\nInput: beginWord = \"a\", endWord = \"c\", wordList = [\"a\",\"b\",\"c\"]\nOutput: 2\n\nInput: beginWord = \"red\", endWord = \"tax\", wordList = [\"ted\",\"tex\",\"red\",\"tax\",\"tad\",\"den\",\"rex\",\"ran\"]\nOutput: 4\n\n## Starter Code\n\npython\nimport collections\n\nclass Solution:\n    def ladderLength(self, beginWord: str, endWord: str, wordList: list[str]) -> int:\n        word_set = set(wordList)\n        if endWord not in word_set:\n            return 0\n\n        queue = collections.deque([(beginWord, 1)]) # (word, level)\n        visited = {beginWord}\n\n        while queue:\n            current_word, level = queue.popleft()\n\n            if current_word == endWord:\n                return level\n\n            # Generate all possible next words\n            for i in range(len(current_word)):\n                for char_code in range(ord('a'), ord('z') + 1):\n                    next_char = chr(char_code)\n                    next_word = current_word[:i] + next_char + current_word[i+1:]\n\n                    if next_word in word_set and next_word not in visited:\n                        visited.add(next_word)\n                        queue.append((next_word, level + 1))\n        \n        return 0\n"
+    },
+    {
+      "title": "Median of Two Sorted Arrays",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Binary Search",
+        "Divide and Conquer"
+      ],
+      "content": "# Median of Two Sorted Arrays\n\nGiven two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return the median of the two sorted arrays.\n\nThe overall run time complexity should be `O(log(m+n))`.\n\n## Examples\n\n**Example 1:**\nInput: `nums1 = [1,3], nums2 = [2]`\nOutput: `2.00000`\nExplanation: merged array = `[1,2,3]` and median is `2`.\n\n**Example 2:**\nInput: `nums1 = [1,2], nums2 = [3,4]`\nOutput: `2.50000`\nExplanation: merged array = `[1,2,3,4]` and median is `(2 + 3) / 2 = 2.5`.\n\n## Constraints\n\n*   `nums1.length == m`\n*   `nums2.length == n`\n*   `0 <= m <= 1000`\n*   `0 <= n <= 1000`\n*   `1 <= m + n <= 2000`\n*   `-10^6 <= nums1[i], nums2[i] <= 10^6`\n\n## Test Cases\nInput: nums1 = [1,3], nums2 = [2]\nOutput: 2.0\n\nInput: nums1 = [1,2], nums2 = [3,4]\nOutput: 2.5\n\nInput: nums1 = [0,0], nums2 = [0,0]\nOutput: 0.0\n\nInput: nums1 = [], nums2 = [1]\nOutput: 1.0\n\n## Starter Code\n\npython\nclass Solution:\n    def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:\n        # Ensure nums1 is the smaller array for binary search optimization\n        if len(nums1) > len(nums2):\n            nums1, nums2 = nums2, nums1\n        \n        m, n = len(nums1), len(nums2)\n        total_length = m + n\n        # The target number of elements on the left side of the partition\n        half_len = (total_length + 1) // 2 \n\n        low, high = 0, m\n\n        while low <= high:\n            partition_x = (low + high) // 2\n            partition_y = half_len - partition_x\n\n            # Get elements around the partition in nums1\n            max_left_x = float('-inf') if partition_x == 0 else nums1[partition_x - 1]\n            min_right_x = float('inf') if partition_x == m else nums1[partition_x]\n\n            # Get elements around the partition in nums2\n            max_left_y = float('-inf') if partition_y == 0 else nums2[partition_y - 1]\n            min_right_y = float('inf') if partition_y == n else nums2[partition_y]\n\n            # Check if partitions are correct\n            if max_left_x <= min_right_y and max_left_y <= min_right_x:\n                # Found the correct partition\n                if total_length % 2 == 1:\n                    return float(max(max_left_x, max_left_y))\n                else:\n                    return (max(max_left_x, max_left_y) + min(min_right_x, min_right_y)) / 2.0\n            elif max_left_x > min_right_y:\n                # We are too far right in nums1, need to move left\n                high = partition_x - 1\n            else:\n                # We are too far left in nums1, need to move right\n                low = partition_x + 1\n"
+    },
+    {
+      "title": "Design Search Autocomplete System",
+      "difficulty": "Hard",
+      "topics": [
+        "Design",
+        "Trie",
+        "Hash Table",
+        "Sorting"
+      ],
+      "content": "# Design Search Autocomplete System\n\nDesign a search autocomplete system for a search engine. Users may input a sentence (at most 160 characters long including spaces, only lowercase English letters and spaces). You are given a list of `sentences` and their corresponding `times` (the number of times a sentence has been typed).\n\nFor each query (a character `c`), return the top 3 historical hot sentences that have `prefix` `c` (the current input sentence). If there are fewer than 3 matches, return all of them. If there is a tie in scores, the sentence with the lexicographically smaller string should come first.\n\nYour system should support two operations:\n1.  `AutocompleteSystem(sentences, times)`: Initializes the system with a list of `sentences` and their `times`.\n2.  `input(c)`: \n    *   If `c` is a letter or a space, append it to the current input sentence. Then, return the top 3 hot sentences that have the current input sentence as a prefix.\n    *   If `c` is `'#'`, it means the current input sentence is finished. Add the current input sentence to the history, increment its count, and then reset the current input sentence to be empty. Return an empty list `[]`.\n\n## Examples\n\n**Example 1:**\n\nAutocompleteSystem(sentences = [\"i love you\", \"island\", \"iroman\", \"i love leetcode\"], times = [5,3,2,2])\ninput(\"i\")  // return [\"i love you\", \"island\", \"i love leetcode\"]\ninput(\" \") // return [\"i love you\", \"i love leetcode\"]\ninput(\"a\")  // return []\ninput(\"#\")  // return []\n\nExplanation:\n1.  `AutocompleteSystem` is initialized.\n2.  `input('i')`: current prefix is \"i\". Sentences starting with \"i\" are \"i love you\" (5), \"island\" (3), \"iroman\" (2), \"i love leetcode\" (2). Sorted by count (desc) then lexicographically (asc): [(\"i love you\", 5), (\"island\", 3), (\"i love leetcode\", 2), (\"iroman\", 2)]. Top 3: [\"i love you\", \"island\", \"i love leetcode\"].\n3.  `input(' ')`: current prefix is \"i \". Sentences starting with \"i \" are \"i love you\" (5), \"i love leetcode\" (2). Sorted: [(\"i love you\", 5), (\"i love leetcode\", 2)]. Top 3: [\"i love you\", \"i love leetcode\"].\n4.  `input('a')`: current prefix is \"i a\". No sentences start with \"i a\". Return `[]`.\n5.  `input('#')`: current input \"i a\" is finished. It's added to history with count 1. Current input resets. Return `[]`.\n\n## Constraints\n\n*   `1 <= sentences.length <= 100`\n*   `1 <= sentences[i].length <= 100`\n*   `1 <= times.length <= 100`\n*   `times.length == sentences.length`\n*   For each `i`, `0 < times[i] <= 1000`. \n*   All `sentences[i]` are unique.\n*   `c` is a lowercase English letter `('a'` to `'z')`, a space `' '`, or the pound character `'#'`.\n*   The number of calls to `input` will be at most `10^4`.\n\n## Test Cases\nInput:\n\nsentences = [\"i love you\",\"island\",\"iroman\",\"i love leetcode\"]\ntimes = [5,3,2,2]\ncalls = [\"i\", \" \", \"a\", \"#\"]\n\nExpected Output for calls: `[[\"i love you\", \"island\", \"i love leetcode\"], [\"i love you\", \"i love leetcode\"], [], []]`\n\nInput:\n\nsentences = [\"a\",\"b\",\"c\"]\ntimes = [1,1,1]\ncalls = [\"a\", \"#\", \"b\", \"#\", \"a\", \"#\"]\n\nExpected Output for calls: `[[\"a\"], [], [\"b\"], [], [\"a\"], []]`\n\n## Starter Code\n\npython\nimport collections\n\nclass TrieNode:\n    def __init__(self):\n        self.children = collections.defaultdict(TrieNode)\n        self.sentences = collections.defaultdict(int) # sentence -> count\n\nclass AutocompleteSystem:\n    def __init__(self, sentences: list[str], times: list[int]):\n        self.root = TrieNode()\n        self.current_sentence = []\n        self.curr_node = self.root\n        self.dead_node = TrieNode() # Sentinel for when prefix is not found\n\n        for i in range(len(sentences)):\n            self._add_sentence(sentences[i], times[i])\n\n    def _add_sentence(self, sentence, count):\n        node = self.root\n        for char in sentence:\n            node = node.children[char]\n            node.sentences[sentence] += count\n    \n    def _get_top_k_suggestions(self, node, k=3):\n        if not node:\n            return []\n        \n        # Sort sentences by count (desc), then lexicographically (asc)\n        sorted_sentences = sorted(node.sentences.items(), key=lambda x: (-x[1], x[0]))\n        return [s for s, _ in sorted_sentences[:k]]\n\n    def input(self, c: str) -> list[str]:\n        if c == '#':\n            finished_sentence = \"\".join(self.current_sentence)\n            # If the sentence was already in the trie, its count needs to be incremented.\n            # If it's new, it needs to be added with count 1.\n            # The _add_sentence method handles this by adding to all relevant TrieNode.sentences maps.\n            self._add_sentence(finished_sentence, 1)\n            \n            self.current_sentence = []\n            self.curr_node = self.root # Reset for next input\n            return []\n        else:\n            self.current_sentence.append(c)\n            \n            # If we've already hit a dead end, all subsequent inputs will also be dead ends\n            if self.curr_node == self.dead_node:\n                return []\n\n            if c in self.curr_node.children:\n                self.curr_node = self.curr_node.children[c]\n            else:\n                self.curr_node = self.dead_node # Mark as dead end\n            \n            return self._get_top_k_suggestions(self.curr_node)\n\n\n# Your AutocompleteSystem object will be instantiated and called as such:\n# obj = AutocompleteSystem(sentences, times)\n# param_1 = obj.input(c)\n"
+    },
+    {
+      "title": "Minimum Window Substring",
+      "difficulty": "Hard",
+      "topics": [
+        "String",
+        "Sliding Window",
+        "Hash Table"
+      ],
+      "content": "# Minimum Window Substring\n\nGiven two strings `s` and `t` of lengths `m` and `n` respectively, return the minimum window substring of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nThe test cases will be generated such that the answer is unique.\n\nA substring is a contiguous sequence of characters within the string.\n\n## Examples\n\n**Example 1:**\nInput: `s = \"ADOBECODEBANC\", t = \"ABC\"`\nOutput: `\"BANC\"`\nExplanation: The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n\n**Example 2:**\nInput: `s = \"a\", t = \"a\"`\nOutput: `\"a\"`\nExplanation: The entire string 'a' is the minimum window.\n\n**Example 3:**\nInput: `s = \"a\", t = \"aa\"`\nOutput: `\"\"`\nExplanation: Both 'a's from 'aa' must be included in the window. Since the largest window of `s` only has one 'a', it is impossible. \n\n## Constraints\n\n*   `m == s.length`\n*   `n == t.length`\n*   `1 <= m, n <= 10^5`\n*   `s` and `t` consist of uppercase and lowercase English letters.\n\n## Test Cases\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\n\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\n\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\n\nInput: s = \"ADOBECODEBAANC\", t = \"AABC\"\nOutput: \"BAANC\"\n\n## Starter Code\n\npython\nimport collections\n\nclass Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        if not t or not s:\n            return \"\"\n\n        # Dictionary to store character counts for t\n        dict_t = collections.Counter(t)\n        \n        # Number of unique characters in t that must be matched\n        required = len(dict_t)\n        \n        # left and right pointers for the sliding window\n        l, r = 0, 0\n        \n        # Dictionary to store character counts for the current window\n        window_counts = collections.defaultdict(int)\n        \n        # Number of unique characters in the current window that match dict_t's requirements\n        formed = 0\n        \n        # tuple (window_length, left_index, right_index) for the best window found so far\n        ans = float('inf'), None, None\n\n        while r < len(s):\n            character = s[r]\n            window_counts[character] += 1\n\n            # If the current character in the window matches a character in t\n            # AND its count in the window has reached the required count in t\n            if character in dict_t and window_counts[character] == dict_t[character]:\n                formed += 1\n            \n            # Try to contract the window from the left if all characters in t are formed\n            while l <= r and formed == required:\n                character = s[l]\n\n                # Update the answer if this window is smaller\n                if r - l + 1 < ans[0]:\n                    ans = (r - l + 1, l, r)\n                \n                # Remove character from the left of the window\n                window_counts[character] -= 1\n                if character in dict_t and window_counts[character] < dict_t[character]:\n                    formed -= 1\n                \n                l += 1\n            \n            r += 1\n        \n        return \"\" if ans[0] == float('inf') else s[ans[1] : ans[2] + 1]\n"
+    },
+    {
+      "title": "Cut Off Trees for Golf Event",
+      "difficulty": "Hard",
+      "topics": [
+        "Graph",
+        "BFS",
+        "Heap",
+        "Sorting",
+        "Matrix"
+      ],
+      "content": "# Cut Off Trees for Golf Event\n\nYou are asked to cut off all the trees in a forest for a golf event. The forest is represented as an `m x n` grid. Each cell contains:\n\n*   `0`: an obstacle that cannot be walked through.\n*   `1`: ground that can be walked through.\n*   `> 1`: a tree that can be walked through, and its value represents the tree's height.\n\nYou are starting from `(0, 0)` and you need to cut off all the trees in the forest in increasing order of their height. After cutting off a tree, the tree becomes ground (`1`).\n\nYou can walk in any of the four directions: up, down, left, or right, only on cells that are not obstacles.\n\nReturn the minimum number of steps you need to walk to cut off all the trees. If you cannot cut off all the trees (i.e., you cannot reach one of them), return `-1`.\n\nNote: The total number of trees could be large, but the grid size `m * n` will be at most `60 * 60`.\n\n## Examples\n\n**Example 1:**\nInput:\n\nforest = [\n  [1,2,3],\n  [0,0,4],\n  [7,6,5]\n]\n\nOutput: `6`\nExplanation:\n1. Start at `(0,0)`. Smallest tree is `2` at `(0,1)`. Path `(0,0)->(0,1)` costs 1 step.\n2. Current position `(0,1)`. Next smallest tree is `3` at `(0,2)`. Path `(0,1)->(0,2)` costs 1 step.\n3. Current position `(0,2)`. Next smallest tree is `4` at `(1,2)`. Path `(0,2)->(1,2)` costs 1 step.\n4. Current position `(1,2)`. Next smallest tree is `5` at `(2,2)`. Path `(1,2)->(2,2)` costs 1 step.\n5. Current position `(2,2)`. Next smallest tree is `6` at `(2,1)`. Path `(2,2)->(2,1)` costs 1 step.\n6. Current position `(2,1)`. Next smallest tree is `7` at `(2,0)`. Path `(2,1)->(2,0)` costs 1 step.\nTotal steps: `1+1+1+1+1+1 = 6`.\n\n**Example 2:**\nInput:\n\nforest = [\n  [1,2,3],\n  [0,0,0],\n  [7,6,5]\n]\n\nOutput: `-1`\nExplanation: Cannot reach tree `4` (if it existed) or any trees after `3` because of obstacles.\n\n**Example 3:**\nInput: `forest = [[2,3,4],[0,0,5],[8,7,6]]`\nOutput: `36`\n\n## Constraints\n\n*   `m == forest.length`\n*   `n == forest[i].length`\n*   `1 <= m, n <= 60`\n*   `0 <= forest[i][j] <= 10^9`\n\n## Test Cases\nInput: forest = [[1,2,3],[0,0,4],[7,6,5]]\nOutput: 6\n\nInput: forest = [[1,2,3],[0,0,0],[7,6,5]]\nOutput: -1\n\nInput: forest = [[2,3,4],[0,0,5],[8,7,6]]\nOutput: 36\n\nInput: forest = [[54581641,64080174,24346381,61639518],[16417639,11043952,67479706,58071920],[43810792,36575883,76156037,48114472],[83275192,13045663,94596501,15559014]]\nOutput: 56\n\n## Starter Code\n\npython\nimport collections\nimport heapq\n\nclass Solution:\n    def cutOffTree(self, forest: list[list[int]]) -> int:\n        R, C = len(forest), len(forest[0])\n\n        # Find all trees and sort them by height\n        trees = []\n        for r in range(R):\n            for c in range(C):\n                if forest[r][c] > 1:\n                    trees.append((forest[r][c], r, c))\n        \n        trees.sort() # Sorts by height by default\n\n        # BFS to find shortest path between two points\n        def bfs(start_r, start_c, end_r, end_c):\n            if start_r == end_r and start_c == end_c:\n                return 0\n            \n            q = collections.deque([(start_r, start_c, 0)]) # (r, c, steps)\n            visited = set([(start_r, start_c)])\n            \n            directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n\n            while q:\n                r, c, steps = q.popleft()\n\n                for dr, dc in directions:\n                    nr, nc = r + dr, c + dc\n\n                    if 0 <= nr < R and 0 <= nc < C and forest[nr][nc] != 0 and (nr, nc) not in visited:\n                        if nr == end_r and nc == end_c:\n                            return steps + 1\n                        visited.add((nr, nc))\n                        q.append((nr, nc, steps + 1))\n            return -1 # Target not reachable\n\n        total_steps = 0\n        current_r, current_c = 0, 0\n\n        for height, next_r, next_c in trees:\n            steps = bfs(current_r, current_c, next_r, next_c)\n            if steps == -1:\n                return -1 # Cannot reach the next tree\n            \n            total_steps += steps\n            current_r, current_c = next_r, next_c # Move to the cut tree's location\n        \n        return total_steps\n"
     }
   ],
   "Meta": [
     {
-      "title": "Shortest Path in a Social Network",
+      "title": "Number of Friend Circles",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "DFS",
+        "BFS",
+        "Union-Find"
+      ],
+      "content": "# Number of Friend Circles\n\nThere are `n` students in a class. Some of them are friends, while others are not. Friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. A friend circle is a group of students who are direct or indirect friends.\n\nYou are given an `n x n` matrix `isConnected` where `isConnected[i][j] = 1` if the `i`-th student and `j`-th student are direct friends, and `isConnected[i][j] = 0` otherwise.\n\nReturn the total number of friend circles among all the students.\n\n**Constraints:**\n* `1 <= n <= 200`\n* `isConnected[i][j]` is `1` or `0`.\n* `isConnected[i][i] == 1`\n* `isConnected[i][j] == isConnected[j][i]`\n\n## Test Cases\nInput: isConnected = [[1,1,0],[1,1,0],[0,0,1]]\nOutput: 2\n\nInput: isConnected = [[1,0,0],[0,1,0],[0,0,1]]\nOutput: 3\n\nInput: isConnected = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1]]\nOutput: 2\n\n## Starter Code\n\npython\ndef findCircleNum(isConnected: list[list[int]]) -> int:\n    pass\n",
+      "test_cases": [
+        "Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]\nOutput: 2",
+        "Input: isConnected = [[1,0,0],[0,1,0],[0,0,1]]\nOutput: 3",
+        "Input: isConnected = [[1,1,0,0],[1,1,1,0],[0,1,1,0],[0,0,0,1]]\nOutput: 2"
+      ]
+    },
+    {
+      "title": "Degrees of Separation",
       "difficulty": "Medium",
       "topics": [
         "Graph",
         "BFS"
       ],
-      "content": "# Shortest Path in a Social Network\n\nYou are given a list of friendships in a social network. Each friendship is represented as a pair of user IDs `(userA, userB)`. You need to find the shortest path (minimum number of friendships) between two given users, `startUser` and `endUser`. If there is no path, return -1.\n\nThe social network can be modeled as an undirected graph where users are nodes and friendships are edges.\n\n### Examples\n\n**Example 1:**\nInput:\n`friendships = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5]]`\n`startUser = 0`\n`endUser = 5`\nOutput: `3`\nExplanation: The shortest path is `0 -> 1 -> 3 -> 5` or `0 -> 2 -> 4 -> 5`.\n\n**Example 2:**\nInput:\n`friendships = [[0, 1], [1, 2], [3, 4]]`\n`startUser = 0`\n`endUser = 3`\nOutput: `-1`\nExplanation: User 0 and User 3 are in different connected components.\n\n**Example 3:**\nInput:\n`friendships = [[0, 1], [1, 2]]`\n`startUser = 0`\n`endUser = 0`\nOutput: `0`\nExplanation: The start and end user are the same.\n\n### Constraints\n\n*   `1 <= friendships.length <= 10^4`\n*   `friendships[i].length == 2`\n*   `0 <= userA, userB <= 10^5`\n*   `userA != userB`\n*   `0 <= startUser, endUser <= 10^5`\n*   The graph can have disconnected components."
+      "content": "# Degrees of Separation\n\nIn a social network, people are connected through friendships. We can represent this network as a graph where each person is a node and a friendship is an edge. The \"degrees of separation\" between two people is the length of the shortest path between them in this graph.\n\nGiven the total number of users `n`, a list of direct `friendships` (where each friendship `[u, v]` indicates `u` and `v` are friends), and two specific users `user1` and `user2`, find the minimum degrees of separation between `user1` and `user2`. If `user1` and `user2` are the same person, the degrees of separation is 0. If there is no path between them, return -1.\n\n**Constraints:**\n* `1 <= n <= 10^4`\n* `0 <= user1, user2 < n`\n* `friendships` contains unique pairs, `u != v`.\n\n## Test Cases\nInput: n = 5, friendships = [[0,1],[1,2],[2,3],[3,4]], user1 = 0, user2 = 4\nOutput: 4\n\nInput: n = 5, friendships = [[0,1],[1,2],[2,3]], user1 = 0, user2 = 4\nOutput: -1\n\nInput: n = 3, friendships = [[0,1],[0,2]], user1 = 0, user2 = 0\nOutput: 0\n\nInput: n = 4, friendships = [[0,1],[2,3]], user1 = 0, user2 = 2\nOutput: -1\n\n## Starter Code\n\npython\ndef shortestPath(n: int, friendships: list[list[int]], user1: int, user2: int) -> int:\n    pass\n",
+      "test_cases": [
+        "Input: n = 5, friendships = [[0,1],[1,2],[2,3],[3,4]], user1 = 0, user2 = 4\nOutput: 4",
+        "Input: n = 5, friendships = [[0,1],[1,2],[2,3]], user1 = 0, user2 = 4\nOutput: -1",
+        "Input: n = 3, friendships = [[0,1],[0,2]], user1 = 0, user2 = 0\nOutput: 0",
+        "Input: n = 4, friendships = [[0,1],[2,3]], user1 = 0, user2 = 2\nOutput: -1"
+      ]
     },
     {
       "title": "Alien Dictionary",
@@ -180,25 +244,123 @@
         "Topological Sort",
         "String"
       ],
-      "content": "# Alien Dictionary\n\nThere is a new alien language that uses the English alphabet. However, the order among the letters is unknown to you.\n\nYou are given a list of words from the alien language's dictionary, where the words are sorted lexicographically by the rules of this new language.\n\nDerive the order of letters in this language. If the order is invalid (e.g., a cycle exists), return an empty string. If there are multiple valid orders, return any one of them.\n\n### Examples\n\n**Example 1:**\nInput: `words = [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]`\nOutput: `\"wertf\"`\nExplanation: From the input, we can deduce the following relations:\n'w' comes before 'e' (from \"wrt\" vs \"er\")\n'r' comes before 't' (from \"wrt\" vs \"wrf\")\n'e' comes before 'r' (from \"er\" vs \"ett\")\n't' comes before 'f' (from \"ett\" vs \"rftt\")\nCombining these, a valid order is \"wertf\".\n\n**Example 2:**\nInput: `words = [\"z\", \"x\"]`\nOutput: `\"zx\"`\n\n**Example 3:**\nInput: `words = [\"z\", \"x\", \"z\"]`\nOutput: `\"\"`\nExplanation: The words are not sorted lexicographically due to \"z\" coming after \"x\" and then \"z\" again. This implies 'z' comes before 'x' and 'x' comes before 'z', which is a cycle.\n\n### Constraints\n\n*   `1 <= words.length <= 100`\n*   `1 <= words[i].length <= 100`\n*   `words[i]` consists of lowercase English letters.\n*   If a solution exists, it is unique (unless there are characters not involved in any comparison, in which case any valid order for them is fine)."
+      "content": "# Alien Dictionary\n\nThere is a new alien language that uses the English alphabet. However, the order among the letters is unknown to you. You are given a list of `words` from the alien language's dictionary, where the words are sorted lexicographically by the rules of this new language.\n\nDerive the order of the letters in this language. If there is no valid ordering, return an empty string. If there are multiple valid orderings, return any of them.\n\nIt is guaranteed that all characters are lowercase English letters. The input words will not contain any cycles that would prevent a valid ordering.\n\n**Example:**\nGiven `words = [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]`\n\n1. From \"wrt\" and \"wrf\", we know 't' comes before 'f'.\n2. From \"wrf\" and \"er\", we know 'w' comes before 'e'.\n3. From \"er\" and \"ett\", we know 'r' comes before 't'.\n4. From \"ett\" and \"rftt\", we know 'e' comes before 'r'. (This contradicts rule 3 if 'e' comes before 'r' and 'r' before 't' and 't' before 'f' and 'w' before 'e', then it forms a cycle or a complicated ordering. We need to be careful with building the graph).\n\nLet's re-evaluate the example: `words = [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]`\n\n1.  `wrt`, `wrf` -> `t` < `f`\n2.  `wrf`, `er` -> `w` < `e`\n3.  `er`, `ett` -> `r` < `t`\n4.  `ett`, `rftt` -> `e` < `r` (This is a contradiction if `r` < `t` and `e` < `r`. Let's assume the problem statement implies a consistent ordering exists unless explicitly stated otherwise.)\n\n**Corrected example analysis (assuming the input is consistent):**\n`words = [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]`\n\nComparisons:\n*   `wrt` vs `wrf` -> `t` must come before `f`\n*   `wrf` vs `er` -> `w` must come before `e`\n*   `er` vs `ett` -> `r` must come before `t`\n*   `ett` vs `rftt` -> `e` must come before `r`\n\nDependencies:\n`t -> f`\n`w -> e`\n`r -> t`\n`e -> r`\n\nCombining these: `w -> e -> r -> t -> f`. All characters present: `w, e, r, t, f`.\nSo, a valid order is \"werft\".\n\n**Constraints:**\n* `1 <= words.length <= 100`\n* `1 <= words[i].length <= 100`\n* `words[i]` consists of lowercase English letters.\n\n## Test Cases\nInput: words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]\nOutput: \"wertf\" or \"werft\" (any valid topological sort)\n\nInput: words = [\"z\",\"x\"]\nOutput: \"zx\"\n\nInput: words = [\"z\",\"x\",\"z\"]\nOutput: \"\" (invalid input, cycle 'z' < 'x' and 'x' < 'z')\n\nInput: words = [\"ab\",\"adc\"]\nOutput: \"abcd\"\n\n## Starter Code\n\npython\ndef alienOrder(words: list[str]) -> str:\n    pass\n",
+      "test_cases": [
+        "Input: words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]\nOutput: \"wertf\"",
+        "Input: words = [\"z\",\"x\"]\nOutput: \"zx\"",
+        "Input: words = [\"z\",\"x\",\"z\"]\nOutput: \"\"",
+        "Input: words = [\"ab\",\"adc\"]\nOutput: \"abcd\""
+      ]
     },
     {
-      "title": "Three Sum",
+      "title": "Course Schedule II",
       "difficulty": "Medium",
       "topics": [
-        "Array",
-        "Two Pointers",
-        "Sorting"
+        "Graph",
+        "Topological Sort"
       ],
-      "content": "# Three Sum\n\nGiven an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [-1, 0, 1, 2, -1, -4]`\nOutput: `[[-1, -1, 2], [-1, 0, 1]]`\nExplanation: The distinct triplets that sum to 0 are `(-1, 0, 1)` and `(-1, -1, 2)`.\n\n**Example 2:**\nInput: `nums = [0, 1, 1]`\nOutput: `[]`\nExplanation: No distinct triplets sum to 0.\n\n**Example 3:**\nInput: `nums = [0, 0, 0]`\nOutput: `[[0, 0, 0]]`\nExplanation: The only distinct triplet is `(0, 0, 0)`.\n\n### Constraints\n\n*   `3 <= nums.length <= 3000`\n*   `-10^5 <= nums[i] <= 10^5`"
+      "content": "# Course Schedule II\n\nThere are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that you must take course `bi` first if you want to take course `ai`.\n\nFor example, the pair `[0, 1]` indicates that to take course `0` you have to first take course `1`.\n\nReturn the ordering of courses you should take to finish all courses. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.\n\n**Constraints:**\n* `1 <= numCourses <= 2000`\n* `0 <= prerequisites.length <= numCourses * (numCourses - 1)`\n* `prerequisites[i].length == 2`\n* `0 <= ai, bi < numCourses`\n* `ai != bi`\n* All the pairs `[ai, bi]` are unique.\n\n## Test Cases\nInput: numCourses = 2, prerequisites = [[1,0]]\nOutput: [0,1]\n\nInput: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]\nOutput: [0,1,2,3] or [0,2,1,3]\n\nInput: numCourses = 1, prerequisites = []\nOutput: [0]\n\nInput: numCourses = 2, prerequisites = [[1,0],[0,1]]\nOutput: []\n\n## Starter Code\n\npython\ndef findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:\n    pass\n",
+      "test_cases": [
+        "Input: numCourses = 2, prerequisites = [[1,0]]\nOutput: [0,1]",
+        "Input: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]\nOutput: [0,1,2,3]",
+        "Input: numCourses = 1, prerequisites = []\nOutput: [0]",
+        "Input: numCourses = 2, prerequisites = [[1,0],[0,1]]\nOutput: []"
+      ]
+    },
+    {
+      "title": "Max Area of Island",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "DFS",
+        "BFS",
+        "Matrix"
+      ],
+      "content": "# Max Area of Island\n\nYou are given an `m x n` binary matrix `grid` where `1` represents land and `0` represents water.\n\nAn island is a group of `1`'s (representing land) connected 4-directionally (horizontal or vertical). You may assume all four edges of the grid are surrounded by water.\n\nThe area of an island is the number of `1`'s in the island.\n\nReturn the maximum area of an island in `grid`. If there is no island, return `0`.\n\n**Constraints:**\n* `m == grid.length`\n* `n == grid[i].length`\n* `1 <= m, n <= 50`\n* `grid[i][j]` is either `0` or `1`.\n\n## Test Cases\nInput: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]\nOutput: 6\n\nInput: grid = [[0,0,0,0,0,0,0,0]]\nOutput: 0\n\nInput: grid = [[1,1],[1,1]]\nOutput: 4\n\n## Starter Code\n\npython\ndef maxAreaOfIsland(grid: list[list[int]]) -> int:\n    pass\n",
+      "test_cases": [
+        "Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]\nOutput: 6",
+        "Input: grid = [[0,0,0,0,0,0,0,0]]\nOutput: 0",
+        "Input: grid = [[1,1],[1,1]]\nOutput: 4"
+      ]
+    },
+    {
+      "title": "Walls and Gates",
+      "difficulty": "Medium",
+      "topics": [
+        "Graph",
+        "BFS",
+        "Matrix"
+      ],
+      "content": "# Walls and Gates\n\nYou are given an `m x n` grid `rooms`. Each cell can have one of three possible values:\n\n*   `-1` which represents a wall or an obstacle.\n*   `0` which represents a gate.\n*   `INF` (infinity) which represents an empty room. We use the value `2^31 - 1 = 2147483647` to represent `INF` as you may assume that the distance to a gate is less than `2147483647`.\n\nFill each empty room with the distance to its nearest gate. If it is impossible to reach a gate from an empty room, leave the room as `INF`.\n\n**Constraints:**\n*   `m == rooms.length`\n*   `n == rooms[i].length`\n*   `1 <= m, n <= 250`\n*   `rooms[i][j]` is `-1`, `0`, or `2147483647`.\n\n## Test Cases\nInput: rooms = [[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]\nOutput: [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]\n\nInput: rooms = [[-1]]\nOutput: [[-1]]\n\nInput: rooms = [[0]]\nOutput: [[0]]\n\n## Starter Code\n\npython\nimport collections\n\ndef wallsAndGates(rooms: list[list[int]]) -> None:\n    \"\"\"\n    Do not return anything, modify rooms in-place instead.\n    \"\"\"\n    pass\n",
+      "test_cases": [
+        "Input: rooms = [[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]\nOutput: [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]",
+        "Input: rooms = [[-1]]\nOutput: [[-1]]",
+        "Input: rooms = [[0]]\nOutput: [[0]]"
+      ]
+    },
+    {
+      "title": "Serialize and Deserialize Binary Tree",
+      "difficulty": "Hard",
+      "topics": [
+        "Tree",
+        "DFS",
+        "BFS",
+        "Design"
+      ],
+      "content": "# Serialize and Deserialize Binary Tree\n\nSerialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\n**Constraints:**\n* The number of nodes in the tree is in the range `[0, 10^4]`.\n* `-1000 <= Node.val <= 1000`\n\n## Test Cases\nInput: root = [1,2,3,null,null,4,5]\nOutput: [1,2,3,null,null,4,5]\n\nInput: root = []\nOutput: []\n\nInput: root = [1]\nOutput: [1]\n\nInput: root = [1,2]\nOutput: [1,2]\n\n## Starter Code\n\npython\n# Definition for a binary tree node.\nclass TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\nclass Codec:\n\n    def serialize(self, root):\n        \"\"\"\n        Encodes a tree to a single string.\n        :type root: TreeNode\n        :rtype: str\n        \"\"\"\n        pass\n\n    def deserialize(self, data):\n        \"\"\"\n        Decodes your encoded data to tree.\n        :type data: str\n        :rtype: TreeNode\n        \"\"\"\n        pass\n\n# Your Codec object will be instantiated and called as such:\n# ser = Codec()\n# deser = Codec()\n# ans = deser.deserialize(ser.serialize(root))\n",
+      "test_cases": [
+        "Input: root = [1,2,3,null,null,4,5]\nOutput: [1,2,3,null,null,4,5]",
+        "Input: root = []\nOutput: []",
+        "Input: root = [1]\nOutput: [1]",
+        "Input: root = [1,2]\nOutput: [1,2]"
+      ]
+    },
+    {
+      "title": "Longest Substring Without Repeating Characters",
+      "difficulty": "Medium",
+      "topics": [
+        "String",
+        "Sliding Window",
+        "Hash Table"
+      ],
+      "content": "# Longest Substring Without Repeating Characters\n\nGiven a string `s`, find the length of the longest substring without repeating characters.\n\n**Constraints:**\n* `0 <= s.length <= 5 * 10^4`\n* `s` consists of English letters, digits, symbols and spaces.\n\n## Test Cases\nInput: s = \"abcabcbb\"\nOutput: 3\n\nInput: s = \"bbbbb\"\nOutput: 1\n\nInput: s = \"pwwkew\"\nOutput: 3\n\nInput: s = \"\"\nOutput: 0\n\n## Starter Code\n\npython\ndef lengthOfLongestSubstring(s: str) -> int:\n    pass\n",
+      "test_cases": [
+        "Input: s = \"abcabcbb\"\nOutput: 3",
+        "Input: s = \"bbbbb\"\nOutput: 1",
+        "Input: s = \"pwwkew\"\nOutput: 3",
+        "Input: s = \"\"\nOutput: 0"
+      ]
     },
     {
       "title": "Product of Array Except Self",
       "difficulty": "Medium",
       "topics": [
-        "Array"
+        "Array",
+        "Prefix Sum",
+        "Suffix Sum"
       ],
-      "content": "# Product of Array Except Self\n\nGiven an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer.\n\nYou must write an algorithm that runs in O(n) time and without using the division operation.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [1, 2, 3, 4]`\nOutput: `[24, 12, 8, 6]`\nExplanation: `answer[0] = 2 * 3 * 4 = 24`, `answer[1] = 1 * 3 * 4 = 12`, `answer[2] = 1 * 2 * 4 = 8`, `answer[3] = 1 * 2 * 3 = 6`.\n\n**Example 2:**\nInput: `nums = [-1, 1, 0, -3, 3]`\nOutput: `[0, 0, 9, 0, 0]`\nExplanation: `answer[0] = 1 * 0 * -3 * 3 = 0`, `answer[1] = -1 * 0 * -3 * 3 = 0`, etc.\n\n### Constraints\n\n*   `2 <= nums.length <= 10^5`\n*   `-30 <= nums[i] <= 30`\n*   The product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer."
+      "content": "# Product of Array Except Self\n\nGiven an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer.\n\nYou must write an algorithm that runs in `O(n)` time and without using the division operation.\n\n**Constraints:**\n* `2 <= nums.length <= 10^5`\n* `-30 <= nums[i] <= 30`\n* The product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer.\n\n## Test Cases\nInput: nums = [1,2,3,4]\nOutput: [24,12,8,6]\n\nInput: nums = [-1,1,0,-3,3]\nOutput: [0,0,9,0,0]\n\nInput: nums = [0,0]\nOutput: [0,0]\n\n## Starter Code\n\npython\ndef productExceptSelf(nums: list[int]) -> list[int]:\n    pass\n",
+      "test_cases": [
+        "Input: nums = [1,2,3,4]\nOutput: [24,12,8,6]",
+        "Input: nums = [-1,1,0,-3,3]\nOutput: [0,0,9,0,0]",
+        "Input: nums = [0,0]\nOutput: [0,0]"
+      ]
+    },
+    {
+      "title": "Meeting Rooms II",
+      "difficulty": "Medium",
+      "topics": [
+        "Interval",
+        "Sorting",
+        "Heap"
+      ],
+      "content": "# Meeting Rooms II\n\nGiven an array of meeting time `intervals` where `intervals[i] = [starti, endi]`, return the minimum number of conference rooms required.\n\n**Constraints:**\n* `1 <= intervals.length <= 10^4`\n* `0 <= starti < endi <= 10^6`\n\n## Test Cases\nInput: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2\n\nInput: intervals = [[7,10],[2,4]]\nOutput: 1\n\nInput: intervals = [[1,5],[8,9],[8,10]]\nOutput: 2\n\nInput: intervals = [[4,9],[4,17],[9,10]]\nOutput: 3\n\n## Starter Code\n\npython\nimport heapq\n\ndef minMeetingRooms(intervals: list[list[int]]) -> int:\n    pass\n",
+      "test_cases": [
+        "Input: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2",
+        "Input: intervals = [[7,10],[2,4]]\nOutput: 1",
+        "Input: intervals = [[1,5],[8,9],[8,10]]\nOutput: 2",
+        "Input: intervals = [[4,9],[4,17],[9,10]]\nOutput: 3"
+      ]
     },
     {
       "title": "Valid Palindrome II",
@@ -207,7 +369,29 @@
         "String",
         "Two Pointers"
       ],
-      "content": "# Valid Palindrome II\n\nGiven a string `s`, return `true` if the `s` can be a palindrome after deleting at most one character from it.\n\n### Examples\n\n**Example 1:**\nInput: `s = \"aba\"`\nOutput: `true`\n\n**Example 2:**\nInput: `s = \"abca\"`\nOutput: `true`\nExplanation: You could delete the character 'c'.\n\n**Example 3:**\nInput: `s = \"abc\"`\nOutput: `false`\n\n### Constraints\n\n*   `1 <= s.length <= 10^5`\n*   `s` consists of lowercase English letters."
+      "content": "# Valid Palindrome II\n\nGiven a string `s`, return `true` if the `s` can be a palindrome after deleting at most one character from it.\n\n**Constraints:**\n* `1 <= s.length <= 10^5`\n* `s` consists of lowercase English letters.\n\n## Test Cases\nInput: s = \"aba\"\nOutput: true\n\nInput: s = \"abca\"\nOutput: true\n\nInput: s = \"abc\"\nOutput: false\n\nInput: s = \"eedceea\"\nOutput: true\n\n## Starter Code\n\npython\ndef validPalindrome(s: str) -> bool:\n    pass\n",
+      "test_cases": [
+        "Input: s = \"aba\"\nOutput: true",
+        "Input: s = \"abca\"\nOutput: true",
+        "Input: s = \"abc\"\nOutput: false",
+        "Input: s = \"eedceea\"\nOutput: true"
+      ]
+    },
+    {
+      "title": "Binary Tree Right Side View",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "BFS",
+        "DFS"
+      ],
+      "content": "# Binary Tree Right Side View\n\nGiven the `root` of a binary tree, imagine yourself standing on the **right side** of it, return the values of the nodes you can see ordered from top to bottom.\n\n**Constraints:**\n* The number of nodes in the tree is in the range `[0, 100]`.\n* `-100 <= Node.val <= 100`\n\n## Test Cases\nInput: root = [1,2,3,null,5,null,4]\nOutput: [1,3,4]\n\nInput: root = [1,null,3]\nOutput: [1,3]\n\nInput: root = []\nOutput: []\n\nInput: root = [1,2,3,4]\nOutput: [1,3,4]\n\n## Starter Code\n\npython\n# Definition for a binary tree node.\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef rightSideView(root: TreeNode) -> list[int]:\n    pass\n",
+      "test_cases": [
+        "Input: root = [1,2,3,null,5,null,4]\nOutput: [1,3,4]",
+        "Input: root = [1,null,3]\nOutput: [1,3]",
+        "Input: root = []\nOutput: []",
+        "Input: root = [1,2,3,4]\nOutput: [1,3,4]"
+      ]
     },
     {
       "title": "Minimum Window Substring",
@@ -215,29 +399,97 @@
       "topics": [
         "String",
         "Sliding Window",
-        "Hash Map"
+        "Hash Table"
       ],
-      "content": "# Minimum Window Substring\n\nGiven two strings `s` and `t` of lengths `m` and `n` respectively, return the minimum window substring of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nThe test cases will be generated such that the answer is unique.\n\nA substring is a contiguous sequence of characters within the string.\n\n### Examples\n\n**Example 1:**\nInput: `s = \"ADOBECODEBANC\", t = \"ABC\"`\nOutput: `\"BANC\"`\nExplanation: The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n\n**Example 2:**\nInput: `s = \"a\", t = \"a\"`\nOutput: `\"a\"`\nExplanation: The entire string 'a' is the minimum window.\n\n**Example 3:**\nInput: `s = \"a\", t = \"aa\"`\nOutput: `\"\"`\nExplanation: The string 'a' does not contain both 'a's from t.\n\n### Constraints\n\n*   `m == s.length`\n*   `n == t.length`\n*   `1 <= m, n <= 10^5`\n*   `s` and `t` consist of uppercase and lowercase English letters."
+      "content": "# Minimum Window Substring\n\nGiven two strings `s` and `t` of lengths `m` and `n` respectively, return the minimum window substring of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nThe test cases will be generated such that the answer is unique.\n\nA substring is a contiguous sequence of characters within the string.\n\n**Constraints:**\n* `m == s.length`\n* `n == t.length`\n* `1 <= m, n <= 10^5`\n* `s` and `t` consist of uppercase and lowercase English letters.\n\n## Test Cases\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\n\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\n\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\n\nInput: s = \"ab\", t = \"a\"\nOutput: \"a\"\n\n## Starter Code\n\npython\ndef minWindow(s: str, t: str) -> str:\n    pass\n",
+      "test_cases": [
+        "Input: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"",
+        "Input: s = \"a\", t = \"a\"\nOutput: \"a\"",
+        "Input: s = \"a\", t = \"aa\"\nOutput: \"\"",
+        "Input: s = \"ab\", t = \"a\"\nOutput: \"a\""
+      ]
     },
     {
-      "title": "Binary Tree Vertical Order Traversal",
+      "title": "Graph Valid Tree",
       "difficulty": "Medium",
       "topics": [
-        "Tree",
+        "Graph",
+        "DFS",
         "BFS",
-        "Hash Map"
+        "Union-Find"
       ],
-      "content": "# Binary Tree Vertical Order Traversal\n\nGiven the `root` of a binary tree, return the vertical order traversal of its nodes' values. (i.e., from top to bottom, column by column).\n\nIf two nodes are in the same row and same column, the order should be from left to right.\n\n### Examples\n\n**Example 1:**\nInput: `root = [3, 9, 20, null, null, 15, 7]`\nOutput: `[[9], [3, 15], [20], [7]]`\nExplanation: The nodes are grouped by their column index. Nodes in the same column and same row are ordered from left to right.\n\n**Example 2:**\nInput: `root = [3, 9, 8, 4, 0, 1, 7]`\nOutput: `[[4], [9], [3, 0, 1], [8], [7]]`\nExplanation: Node 3 and Node 0 are in the same column (column 0) and same row (row 0 vs row 1). Since Node 3 is to the left of Node 0, it appears first. Similarly for Node 0 and Node 1.\n\n**Example 3:**\nInput: `root = [1, 2, 3, 4, 5, 6, 7]`\nOutput: `[[4], [2], [1, 5, 6], [3], [7]]`\n\n### Constraints\n\n*   The number of nodes in the tree is in the range `[0, 100]`. (For a typical interview, this would likely be up to 10^4 or 10^5, but for this problem, the smaller constraint doesn't change the approach.)\n*   `-100 <= Node.val <= 100`"
+      "content": "# Graph Valid Tree\n\nGiven `n` nodes labeled from `0` to `n - 1` and a list of `edges` (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.\n\nA valid tree must satisfy two conditions:\n1.  It must be fully connected (all nodes reachable from each other).\n2.  It must not contain any cycles.\n\n**Constraints:**\n* `1 <= n <= 2000`\n* `0 <= edges.length <= 5000`\n* `edges[i].length == 2`\n* `0 <= ai, bi < n`\n* `ai != bi`\n* There are no self-loops or repeated edges.\n\n## Test Cases\nInput: n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]\nOutput: true\n\nInput: n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]\nOutput: false\n\nInput: n = 4, edges = [[0,1],[2,3]]\nOutput: false\n\nInput: n = 1, edges = []\nOutput: true\n\n## Starter Code\n\npython\ndef validTree(n: int, edges: list[list[int]]) -> bool:\n    pass\n",
+      "test_cases": [
+        "Input: n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]\nOutput: true",
+        "Input: n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]\nOutput: false",
+        "Input: n = 4, edges = [[0,1],[2,3]]\nOutput: false",
+        "Input: n = 1, edges = []\nOutput: true"
+      ]
     },
     {
-      "title": "Serialize and Deserialize Binary Tree",
+      "title": "Find All Anagrams in a String",
+      "difficulty": "Medium",
+      "topics": [
+        "String",
+        "Sliding Window",
+        "Hash Table"
+      ],
+      "content": "# Find All Anagrams in a String\n\nGiven two strings `s` and `p`, return an array of all the start indices of `p`'s anagrams in `s`. You may return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n**Constraints:**\n* `1 <= s.length, p.length <= 3 * 10^4`\n* `s` and `p` consist of lowercase English letters.\n\n## Test Cases\nInput: s = \"cbaebabacd\", p = \"abc\"\nOutput: [0,6]\n\nInput: s = \"abab\", p = \"ab\"\nOutput: [0,1,2]\n\nInput: s = \"baa\", p = \"aa\"\nOutput: [1]\n\nInput: s = \"aaaaaaaaaa\", p = \"aaaaaaaaaaaaa\"\nOutput: []\n\n## Starter Code\n\npython\ndef findAnagrams(s: str, p: str) -> list[int]:\n    pass\n",
+      "test_cases": [
+        "Input: s = \"cbaebabacd\", p = \"abc\"\nOutput: [0,6]",
+        "Input: s = \"abab\", p = \"ab\"\nOutput: [0,1,2]",
+        "Input: s = \"baa\", p = \"aa\"\nOutput: [1]",
+        "Input: s = \"aaaaaaaaaa\", p = \"aaaaaaaaaaaaa\"\nOutput: []"
+      ]
+    },
+    {
+      "title": "Longest Palindromic Substring",
+      "difficulty": "Medium",
+      "topics": [
+        "String",
+        "Dynamic Programming",
+        "Two Pointers"
+      ],
+      "content": "# Longest Palindromic Substring\n\nGiven a string `s`, return the longest palindromic substring in `s`.\n\n**Constraints:**\n* `1 <= s.length <= 1000`\n* `s` consist of only digits and English letters.\n\n## Test Cases\nInput: s = \"babad\"\nOutput: \"bab\" (or \"aba\")\n\nInput: s = \"cbbd\"\nOutput: \"bb\"\n\nInput: s = \"a\"\nOutput: \"a\"\n\nInput: s = \"ac\"\nOutput: \"a\"\n\n## Starter Code\n\npython\ndef longestPalindrome(s: str) -> str:\n    pass\n",
+      "test_cases": [
+        "Input: s = \"babad\"\nOutput: \"bab\"",
+        "Input: s = \"cbbd\"\nOutput: \"bb\"",
+        "Input: s = \"a\"\nOutput: \"a\"",
+        "Input: s = \"ac\"\nOutput: \"a\""
+      ]
+    }
+  ],
+  "Netflix": [],
+  "Amazon": [
+    {
+      "title": "LRU Cache",
+      "difficulty": "Medium",
+      "topics": [
+        "Design",
+        "Hash Map",
+        "Doubly Linked List"
+      ],
+      "content": "# LRU Cache\n\nDesign a data structure that follows the constraints of a Least Recently Used (LRU) cache.\n\nImplement the `LRUCache` class:\n\n*   `LRUCache(int capacity)` initializes the LRU cache with the given positive `capacity`.\n*   `int get(int key)` returns the value of the `key` if the `key` exists, otherwise returns -1.\n*   `void put(int key, int value)` updates the value of the `key` if the `key` exists. Otherwise, add the `key-value` pair to the cache. If the number of keys exceeds the `capacity` from this operation, evict the least recently used key.\n\nThe functions `get` and `put` must each run in `O(1)` average time complexity.\n\n## Test Cases\nInput:\n[\"LRUCache\", \"put\", \"put\", \"get\", \"put\", \"get\", \"put\", \"get\", \"get\", \"get\"]\n[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]\nOutput:\n[null, null, null, 1, null, -1, null, -1, 3, 4]\n\nExplanation:\nLRUCache lRUCache = new LRUCache(2);\nlRUCache.put(1, 1); // cache is {1=1}\nlRUCache.put(2, 2); // cache is {1=1, 2=2}\nlRUCache.get(1);    // return 1\nlRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}\nlRUCache.get(2);    // returns -1 (not found)\nlRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}\nlRUCache.get(1);    // return -1 (not found)\nlRUCache.get(3);    // return 3\nlRUCache.get(4);    // return 4\n\n## Starter Code\n\npython\nclass LRUCache:\n\n    def __init__(self, capacity: int):\n        pass\n\n    def get(self, key: int) -> int:\n        pass\n\n    def put(self, key: int, value: int) -> None:\n        pass\n\n"
+    },
+    {
+      "title": "K Closest Points to Origin",
+      "difficulty": "Medium",
+      "topics": [
+        "Heap",
+        "Sorting",
+        "Geometry"
+      ],
+      "content": "# K Closest Points to Origin\n\nGiven an array of `points`, where `points[i] = [xi, yi]` represents a point on the X-Y plane, and an integer `k`, return the `k` closest points to the origin `(0, 0)`.\n\nThe distance between two points `(x1, y1)` and `(x2, y2)` is the Euclidean distance, `sqrt((x2 - x1)^2 + (y2 - y1)^2)`. You may return the answer in any order. The answer is guaranteed to be unique (except for the order that it is in).\n\n## Test Cases\nInput: points = [[1,3],[-2,2]], k = 1\nOutput: [[-2,2]]\nExplanation: The distance between (1, 3) and the origin is sqrt(1^2 + 3^2) = sqrt(10).\nThe distance between (-2, 2) and the origin is sqrt((-2)^2 + 2^2) = sqrt(8).\nSince sqrt(8) < sqrt(10), (-2, 2) is closer to the origin.\nWe only want the k = 1 closest point, so it is [[-2,2]].\n\nInput: points = [[3,3],[5,-1],[-2,4]], k = 2\nOutput: [[3,3],[-2,4]]\n\n## Starter Code\n\npython\nimport heapq\n\ndef kClosest(points: list[list[int]], k: int) -> list[list[int]]:\n    pass\n"
+    },
+    {
+      "title": "Merge K Sorted Lists",
       "difficulty": "Hard",
       "topics": [
-        "Tree",
-        "DFS",
-        "Design"
+        "Linked List",
+        "Heap",
+        "Divide and Conquer"
       ],
-      "content": "# Serialize and Deserialize Binary Tree\n\nSerialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\n### Examples\n\n**Example 1:**\nInput: `root = [1, 2, 3, null, null, 4, 5]`\nOutput: `[1, 2, 3, null, null, 4, 5]`\nExplanation: The serialized string could be something like `\"1,2,null,null,3,4,null,null,5,null,null\"` (pre-order traversal with null markers), and then deserializing this string should reconstruct the original tree.\n\n**Example 2:**\nInput: `root = []`\nOutput: `[]`\n\n**Example 3:**\nInput: `root = [1]`\nOutput: `[1]`\n\n### Constraints\n\n*   The number of nodes in the tree is in the range `[0, 10^4]`.\n*   `-1000 <= Node.val <= 1000`"
+      "content": "# Merge K Sorted Lists\n\nYou are given an array of `k` linked-lists `lists`, each sorted in ascending order.\n\nMerge all the linked-lists into one sorted linked-list and return it.\n\n## Test Cases\nInput: lists = [[1,4,5],[1,3,4],[2,6]]\nOutput: [1,1,2,3,4,4,5,6]\nExplanation: The linked-lists are:\n[1->4->5],\n[1->3->4],\n[2->6]\nmerging them into one sorted list:\n1->1->2->3->4->4->5->6\n\nInput: lists = []\nOutput: []\n\nInput: lists = [[]]\nOutput: []\n\n## Starter Code\n\npython\n# Definition for singly-linked list.\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nimport heapq\n\ndef mergeKLists(lists: list[ListNode]) -> ListNode:\n    pass\n"
     },
     {
       "title": "Number of Islands",
@@ -248,70 +500,115 @@
         "BFS",
         "Matrix"
       ],
-      "content": "# Number of Islands\n\nGiven an `m x n` 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.\n\n### Examples\n\n**Example 1:**\nInput: `grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]`\nOutput: `1`\nExplanation: All the '1's are connected and form a single island.\n\n**Example 2:**\nInput: `grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]`\nOutput: `3`\nExplanation: There are three distinct islands.\n\n### Constraints\n\n*   `m == grid.length`\n*   `n == grid[i].length`\n*   `1 <= m, n <= 300`\n*   `grid[i][j]` is '0' or '1'."
+      "content": "# Number of Islands\n\nGiven an `m x n` 2D binary grid `grid` which represents a map of `'1'`s (land) and `'0'`s (water), return the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.\n\n## Test Cases\nInput: grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]\nOutput: 1\n\nInput: grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]\nOutput: 3\n\n## Starter Code\n\npython\ndef numIslands(grid: list[list[str]]) -> int:\n    pass\n"
     },
     {
-      "title": "Longest Increasing Subsequence",
+      "title": "Word Break",
       "difficulty": "Medium",
       "topics": [
         "Dynamic Programming",
-        "Array",
-        "Binary Search"
+        "DFS",
+        "Memoization",
+        "Trie"
       ],
-      "content": "# Longest Increasing Subsequence\n\nGiven an integer array `nums`, return the length of the longest strictly increasing subsequence.\n\nA subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, `[3, 6, 2, 7]` is a subsequence of `[0, 3, 1, 6, 2, 2, 7]`.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [10, 9, 2, 5, 3, 7, 101, 18]`\nOutput: `4`\nExplanation: The longest increasing subsequence is `[2, 3, 7, 101]`, therefore the length is 4.\n\n**Example 2:**\nInput: `nums = [0, 1, 0, 3, 2, 3]`\nOutput: `4`\nExplanation: The longest increasing subsequence is `[0, 1, 2, 3]`, therefore the length is 4.\n\n**Example 3:**\nInput: `nums = [7, 7, 7, 7, 7, 7, 7]`\nOutput: `1`\nExplanation: The longest increasing subsequence is `[7]`, therefore the length is 1.\n\n### Constraints\n\n*   `1 <= nums.length <= 2500`\n*   `-10^4 <= nums[i] <= 10^4`"
+      "content": "# Word Break\n\nGiven a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of one or more dictionary words.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation. You may assume the dictionary does not contain duplicate words.\n\n## Test Cases\nInput: s = \"leetcode\", wordDict = [\"leet\",\"code\"]\nOutput: true\nExplanation: Return true because \"leetcode\" can be segmented as \"leet code\".\n\nInput: s = \"applepenapple\", wordDict = [\"apple\",\"pen\"]\nOutput: true\nExplanation: Return true because \"applepenapple\" can be segmented as \"apple pen apple\".\nNote that you are allowed to reuse a dictionary word.\n\nInput: s = \"catsandog\", wordDict = [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]\nOutput: false\n\n## Starter Code\n\npython\ndef wordBreak(s: str, wordDict: list[str]) -> bool:\n    pass\n"
     },
     {
-      "title": "Reorder List",
+      "title": "Binary Tree Right Side View",
       "difficulty": "Medium",
       "topics": [
-        "Linked List",
-        "Two Pointers"
+        "Tree",
+        "BFS",
+        "DFS"
       ],
-      "content": "# Reorder List\n\nYou are given the head of a singly linked list.\n\nThe list can be described as: `L0 -> L1 -> ... -> Ln-1 -> Ln`\n\nReorder the list to be: `L0 -> Ln -> L1 -> Ln-1 -> L2 -> Ln-2 -> ...`\n\nYou may not modify the values in the list's nodes. Only nodes themselves may be changed.\n\n### Examples\n\n**Example 1:**\nInput: `head = [1, 2, 3, 4]`\nOutput: `[1, 4, 2, 3]`\nExplanation: The original list is `1 -> 2 -> 3 -> 4`. The reordered list is `1 -> 4 -> 2 -> 3`.\n\n**Example 2:**\nInput: `head = [1, 2, 3, 4, 5]`\nOutput: `[1, 5, 2, 4, 3]`\nExplanation: The original list is `1 -> 2 -> 3 -> 4 -> 5`. The reordered list is `1 -> 5 -> 2 -> 4 -> 3`.\n\n### Constraints\n\n*   The number of nodes in the list is in the range `[1, 5000]`.\n*   `1 <= Node.val <= 1000`"
+      "content": "# Binary Tree Right Side View\n\nGiven the `root` of a binary tree, imagine yourself standing on the **right side** of it, return the values of the nodes you can see ordered from top to bottom.\n\n## Test Cases\nInput: root = [1,2,3,null,5,null,4]\nOutput: [1,3,4]\n\nInput: root = [1,null,3]\nOutput: [1,3]\n\nInput: root = []\nOutput: []\n\n## Starter Code\n\npython\n# Definition for a binary tree node.\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nfrom collections import deque\n\ndef rightSideView(root: TreeNode) -> list[int]:\n    pass\n"
+    },
+    {
+      "title": "Group Anagrams",
+      "difficulty": "Medium",
+      "topics": [
+        "Hash Map",
+        "String",
+        "Array"
+      ],
+      "content": "# Group Anagrams\n\nGiven an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n## Test Cases\nInput: strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\nOutput: [[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]\n\nInput: strs = [\"\"]\nOutput: [[\"\"]]\n\nInput: strs = [\"a\"]\nOutput: [[\"a\"]]\n\n## Starter Code\n\npython\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: list[str]) -> list[list[str]]:\n    pass\n"
+    },
+    {
+      "title": "Rotting Oranges",
+      "difficulty": "Medium",
+      "topics": [
+        "BFS",
+        "Graph",
+        "Matrix"
+      ],
+      "content": "# Rotting Oranges\n\nYou are given an `m x n` grid where each cell can have one of three values:\n\n*   `0` representing an empty cell,\n*   `1` representing a fresh orange, or\n*   `2` representing a rotten orange.\n\nEvery minute, any fresh orange that is **4-directionally adjacent** to a rotten orange becomes rotten.\n\nReturn the minimum number of minutes that must elapse until no fresh oranges remain. If this is impossible, return -1.\n\n## Test Cases\nInput: grid = [[2,1,1],[1,1,0],[0,1,1]]\nOutput: 4\n\nInput: grid = [[2,1,1],[0,1,1],[1,0,1]]\nOutput: -1\nExplanation: The orange in the bottom left corner (row 2, column 0) is never rotten, because it is separated from any rotten oranges by an empty cell.\n\nInput: grid = [[0,2]]\nOutput: 0\n\n## Starter Code\n\npython\nfrom collections import deque\n\ndef orangesRotting(grid: list[list[int]]) -> int:\n    pass\n"
+    },
+    {
+      "title": "Longest Substring Without Repeating Characters",
+      "difficulty": "Medium",
+      "topics": [
+        "Sliding Window",
+        "Hash Map",
+        "String"
+      ],
+      "content": "# Longest Substring Without Repeating Characters\n\nGiven a string `s`, find the length of the longest substring without repeating characters.\n\n## Test Cases\nInput: s = \"abcabcbb\"\nOutput: 3\nExplanation: The answer is \"abc\", with the length of 3.\n\nInput: s = \"bbbbb\"\nOutput: 1\nExplanation: The answer is \"b\", with the length of 1.\n\nInput: s = \"pwwkew\"\nOutput: 3\nExplanation: The answer is \"wke\", with the length of 3.\nNotice that the answer must be a substring, \"pwke\" is a subsequence and not a substring.\n\n## Starter Code\n\npython\ndef lengthOfLongestSubstring(s: str) -> int:\n    pass\n"
+    },
+    {
+      "title": "3Sum",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Sorting"
+      ],
+      "content": "# 3Sum\n\nGiven an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n## Test Cases\nInput: nums = [-1,0,1,2,-1,-4]\nOutput: [[-1,-1,2],[-1,0,1]]\nExplanation: \nnums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.\nnums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.\nnums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.\nThe distinct triplets are [-1,0,1] and [-1,-1,2].\nNotice that the order of the output and the order of the triplets does not matter.\n\nInput: nums = [0,1,1]\nOutput: []\nExplanation: The only possible triplet does not sum to 0.\n\nInput: nums = [0,0,0]\nOutput: [[0,0,0]]\nExplanation: The only possible triplet sums to 0.\n\n## Starter Code\n\npython\ndef threeSum(nums: list[int]) -> list[list[int]]:\n    pass\n"
+    },
+    {
+      "title": "Reverse Linked List II",
+      "difficulty": "Medium",
+      "topics": [
+        "Linked List"
+      ],
+      "content": "# Reverse Linked List II\n\nGiven the `head` of a singly linked list and two integers `left` and `right` where `left <= right`, reverse the nodes of the list from position `left` to position `right`, and return the reversed list.\n\n## Test Cases\nInput: head = [1,2,3,4,5], left = 2, right = 4\nOutput: [1,4,3,2,5]\n\nInput: head = [5], left = 1, right = 1\nOutput: [5]\n\n## Starter Code\n\npython\n# Definition for singly-linked list.\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverseBetween(head: ListNode, left: int, right: int) -> ListNode:\n    pass\n"
+    },
+    {
+      "title": "Min Stack",
+      "difficulty": "Medium",
+      "topics": [
+        "Stack",
+        "Design"
+      ],
+      "content": "# Min Stack\n\nDesign a stack that supports `push`, `pop`, `top`, and retrieving the minimum element in constant time.\n\nImplement the `MinStack` class:\n\n*   `MinStack()` initializes the stack object.\n*   `void push(int val)` pushes the element `val` onto the stack.\n*   `void pop()` removes the element on the top of the stack.\n*   `int top()` gets the top element of the stack.\n*   `int getMin()` retrieves the minimum element in the stack.\n\nYou must implement a solution with `O(1)` time complexity for each function.\n\n## Test Cases\nInput:\n[\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"]\n[[],[-2],[0],[-3],[],[],[],[]]\nOutput:\n[null,null,null,null,-3,null,0,-2]\n\nExplanation:\nMinStack minStack = new MinStack();\nminStack.push(-2);\nminStack.push(0);\nminStack.push(-3);\nminStack.getMin(); // return -3\nminStack.pop();\nminStack.top();    // return 0\nminStack.getMin(); // return -2\n\n## Starter Code\n\npython\nclass MinStack:\n\n    def __init__(self):\n        pass\n\n    def push(self, val: int) -> None:\n        pass\n\n    def pop(self) -> None:\n        pass\n\n    def top(self) -> int:\n        pass\n\n    def getMin(self) -> int:\n        pass\n\n"
+    },
+    {
+      "title": "Product of Array Except Self",
+      "difficulty": "Medium",
+      "topics": [
+        "Array"
+      ],
+      "content": "# Product of Array Except Self\n\nGiven an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is guaranteed to fit in a 32-bit integer.\n\nYou must write an algorithm that runs in `O(n)` time complexity and without using the division operation.\n\n## Test Cases\nInput: nums = [1,2,3,4]\nOutput: [24,12,8,6]\n\nInput: nums = [-1,1,0,-3,3]\nOutput: [0,0,9,0,0]\n\n## Starter Code\n\npython\ndef productExceptSelf(nums: list[int]) -> list[int]:\n    pass\n"
+    },
+    {
+      "title": "Meeting Rooms II",
+      "difficulty": "Medium",
+      "topics": [
+        "Heap",
+        "Greedy",
+        "Sorting",
+        "Intervals"
+      ],
+      "content": "# Meeting Rooms II\n\nGiven an array of meeting time `intervals` where `intervals[i] = [starti, endi]`, return the minimum number of conference rooms required.\n\n## Test Cases\nInput: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2\nExplanation: \nAt time 0, meeting [0,30] starts.\nAt time 5, meeting [5,10] starts, requiring a second room.\nAt time 15, meeting [15,20] starts, requiring a third room.\nAt time 20, meeting [15,20] ends.\nAt time 30, meeting [0,30] ends.\nIn total, 2 rooms are needed at peak (e.g., from time 15 to 20, we have meetings [0,30], [5,10], [15,20] which implies three concurrent meetings, but actually only two rooms are needed since [5,10] would have ended by 15. The problem statement implies we need 2 rooms at peak [0,30] and [5,10] or [0,30] and [15,20]).\nLet's re-evaluate: [0,30] takes one room. [5,10] needs another. [15,20] can use the room [5,10] just vacated. So 2 rooms.\n\nInput: intervals = [[7,10],[2,4]]\nOutput: 1\n\n## Starter Code\n\npython\nimport heapq\n\ndef minMeetingRooms(intervals: list[list[int]]) -> int:\n    pass\n"
     },
     {
       "title": "Course Schedule",
       "difficulty": "Medium",
       "topics": [
         "Graph",
-        "Topological Sort",
-        "BFS",
-        "DFS"
-      ],
-      "content": "# Course Schedule\n\nThere are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that you must take course `bi` first if you want to take course `ai`.\n\nFor example, the pair `[0, 1]` indicates that to take course `0` you have to first take course `1`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\n### Examples\n\n**Example 1:**\nInput: `numCourses = 2, prerequisites = [[1, 0]]`\nOutput: `true`\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n\n**Example 2:**\nInput: `numCourses = 2, prerequisites = [[1, 0], [0, 1]]`\nOutput: `false`\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. This is a cycle, so it is impossible.\n\n### Constraints\n\n*   `1 <= numCourses <= 2000`\n*   `0 <= prerequisites.length <= 5000`\n*   `prerequisites[i].length == 2`\n*   `0 <= ai, bi < numCourses`\n*   `ai != bi`\n*   All the pairs `[ai, bi]` are unique."
-    },
-    {
-      "title": "Kth Largest Element in an Array",
-      "difficulty": "Medium",
-      "topics": [
-        "Array",
-        "Divide and Conquer",
-        "Heap (Priority Queue)"
-      ],
-      "content": "# Kth Largest Element in an Array\n\nGiven an integer array `nums` and an integer `k`, return the `k`th largest element in the array.\n\nNote that it is the `k`th largest element in the sorted order, not the `k`th distinct element.\n\n### Examples\n\n**Example 1:**\nInput: `nums = [3, 2, 1, 5, 6, 4], k = 2`\nOutput: `5`\nExplanation: If sorted, the array is `[1, 2, 3, 4, 5, 6]`. The 2nd largest element is 5.\n\n**Example 2:**\nInput: `nums = [3, 2, 3, 1, 2, 4, 5, 5, 6], k = 4`\nOutput: `4`\nExplanation: If sorted, the array is `[1, 2, 2, 3, 3, 4, 5, 5, 6]`. The 4th largest element is 4.\n\n### Constraints\n\n*   `1 <= k <= nums.length <= 10^5`\n*   `-10^4 <= nums[i] <= 10^4`"
-    },
-    {
-      "title": "Group Anagrams",
-      "difficulty": "Medium",
-      "topics": [
-        "Array",
-        "String",
-        "Hash Map"
-      ],
-      "content": "# Group Anagrams\n\nGiven an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n### Examples\n\n**Example 1:**\nInput: `strs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]`\nOutput: `[[\"bat\"], [\"nat\", \"tan\"], [\"ate\", \"eat\", \"tea\"]]`\nExplanation: The output order of groups and the strings within groups can vary.\n\n**Example 2:**\nInput: `strs = [\" \"]`\nOutput: `[[\" \"]]`\n\n**Example 3:**\nInput: `strs = [\"a\"]`\nOutput: `[[\"a\"]]`\n\n### Constraints\n\n*   `1 <= strs.length <= 10^4`\n*   `0 <= strs[i].length <= 100`\n*   `strs[i]` consists of lowercase English letters."
-    },
-    {
-      "title": "Shortest Bridge",
-      "difficulty": "Medium",
-      "topics": [
-        "Graph",
-        "BFS",
         "DFS",
-        "Matrix"
+        "BFS",
+        "Topological Sort"
       ],
-      "content": "# Shortest Bridge\n\nYou are given an `n x n` binary matrix `grid` where `1` represents land and `0` represents water.\n\nAn *island* is a 4-directionally connected group of `1`'s not connected to any other `1`'s.\nThere are exactly two islands in `grid`.\n\nYou may change `0`'s to `1`'s to connect the two islands into one. Return the smallest number of `0`'s you need to flip to connect the two islands.\n\n### Examples\n\n**Example 1:**\nInput: `grid = [[0,1],[1,0]]`\nOutput: `1`\nExplanation: Change `grid[0][0]` from 0 to 1, or `grid[1][1]` from 0 to 1. Both connect the islands with 1 flip.\n\n**Example 2:**\nInput: `grid = [[0,1,0],[0,0,0],[0,0,1]]`\nOutput: `2`\nExplanation: Change `grid[0][2]` to 1, `grid[1][2]` to 1. Or `grid[1][0]` to 1, `grid[1][1]` to 1. Many paths of length 2.\n\n**Example 3:**\nInput: `grid = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]`\nOutput: `1`\nExplanation: Change `grid[2][1]` or `grid[2][3]` to 1.\n\n### Constraints\n\n*   `n == grid.length == grid[i].length`\n*   `2 <= n <= 100`\n*   `grid[i][j]` is either `0` or `1`.\n*   There are exactly two islands in `grid`."
+      "content": "# Course Schedule\n\nThere are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that you must take course `bi` first if you want to take course `ai`.\n\n*   For example, the pair `[0, 1]` indicates that to take course `0` you have to first take course `1`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\n## Test Cases\nInput: numCourses = 2, prerequisites = [[1,0]]\nOutput: true\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n\nInput: numCourses = 2, prerequisites = [[1,0],[0,1]]\nOutput: false\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\n\n## Starter Code\n\npython\nfrom collections import defaultdict, deque\n\ndef canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:\n    pass\n"
     }
-  ],
-  "Netflix": [],
-  "Amazon": []
+  ]
 }

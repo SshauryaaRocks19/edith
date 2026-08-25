@@ -2,7 +2,7 @@
 
 import ShapeGrid from "@/components/ShapeGrid";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { ChatView } from "@/components/find-problems/ChatView";
 import { ManualView } from "@/components/find-problems/ManualView";

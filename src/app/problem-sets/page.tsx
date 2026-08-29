@@ -50,7 +50,7 @@ export default function ProblemSetsPage() {
                 </p>
 
                 <div className="mt-auto">
-                  <Link href={`/find-problems?company=${company}&mode=static`}>
+                  <Link href={`/problem-sets/${company}`}>
                     <Button size="lg" className="w-full h-14 text-lg border-2 border-border shadow-[4px_4px_0_0_var(--color-border)] font-bold hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0_0_var(--color-border)] transition-all">
                       Start Practicing <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>

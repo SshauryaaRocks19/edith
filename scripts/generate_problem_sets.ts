@@ -23,7 +23,7 @@ Each object in the array MUST have the following structure exactly:
   "title": "Problem Title",
   "difficulty": "Medium",
   "topics": ["Graph", "BFS"],
-  "content": "# Problem Title\\n\\nFull markdown formatted problem description... (include Examples and Constraints, but DO NOT include Test Cases or Starter Code sections)"
+  "content": "# Problem Title\\n\\nFull markdown formatted problem description...\\n\\n## Test Cases\\n[Define test cases strictly in this format, e.g., Input: x = 1\\nOutput: 1]\\n\\n## Starter Code\\n\\n\`\`\`python\\ndef solve(x):\\n    pass\\n\`\`\`"
 }
 
 Do NOT wrap the output in markdown code blocks like \`\`\`json. Return raw valid JSON.`;

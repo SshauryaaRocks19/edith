@@ -24,9 +24,11 @@ interface LeetCodeViewProps {
   intent: any;
   streamReader: ReadableStreamDefaultReader<Uint8Array> | null;
   initialMarkdown?: string;
+  problemIndex?: number;
+  isStaticMode?: boolean;
 }
 
-export function LeetCodeView({ intent, streamReader, initialMarkdown = "" }: LeetCodeViewProps) {
+export function LeetCodeView({ intent, streamReader, initialMarkdown = "", problemIndex = -1, isStaticMode = false }: LeetCodeViewProps) {
   const [markdown, setMarkdown] = useState(initialMarkdown);
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("python");
@@ -162,7 +164,24 @@ export function LeetCodeView({ intent, streamReader, initialMarkdown = "" }: Lee
         body: JSON.stringify({ language, code, test_cases: testCases }), // Fixed payload key
       });
       const results = await response.json();
-      setExecutionResults(results.results || results);
+      const runResults = results.results || results;
+      setExecutionResults(runResults);
+
+      if (isStaticMode && problemIndex >= 0 && intent?.company) {
+        // Check if all tests passed
+        const allPassed = Array.isArray(runResults) && runResults.length > 0 && runResults.every((r: any) => r.passed);
+        if (allPassed) {
+          try {
+            await fetch("/api/progress", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ company: intent.company, problemIndex, status: "solved" })
+            });
+          } catch (e) {
+            console.error("Failed to save progress", e);
+          }
+        }
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -295,6 +314,33 @@ export function LeetCodeView({ intent, streamReader, initialMarkdown = "" }: Lee
                   {displayMarkdown}
                 </ReactMarkdown>
               </div>
+
+              {isStaticMode && problemIndex >= 0 && (
+                <div className="mt-12 flex items-center justify-between pt-6 border-t border-border">
+                  <Button 
+                    variant="outline" 
+                    className="border-2 border-border shadow-[2px_2px_0_0_var(--color-border)]"
+                    disabled={problemIndex <= 0}
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && intent?.company) {
+                        window.location.href = `/find-problems?company=${intent.company}&mode=static&problemIndex=${problemIndex - 1}`;
+                      }
+                    }}
+                  >
+                    Previous Problem
+                  </Button>
+                  <Button
+                    className="border-2 border-border shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] font-bold"
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && intent?.company) {
+                        window.location.href = `/find-problems?company=${intent.company}&mode=static&problemIndex=${problemIndex + 1}`;
+                      }
+                    }}
+                  >
+                    Next Problem
+                  </Button>
+                </div>
+              )}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-muted-foreground gap-4">

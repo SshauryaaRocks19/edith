@@ -30,27 +30,30 @@ export default function FindProblemsPage() {
       const searchParams = new URLSearchParams(window.location.search);
       const mode = searchParams.get("mode");
       const company = searchParams.get("company");
+      const problemIndex = searchParams.get("problemIndex");
       
       if (mode === "static" && company) {
         import("@/lib/problem_sets.json").then((module) => {
           const problemSets = module.default as Record<string, any[]>;
           const problems = problemSets[company];
           if (problems && problems.length > 0) {
-            // Pick a random problem from the set
-            const randomProblem = problems[Math.floor(Math.random() * problems.length)];
+            // Pick the requested problem or default to a random one
+            const parsedIndex = problemIndex ? parseInt(problemIndex) : -1;
+            const isValidIndex = !isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < problems.length;
+            const targetProblem = isValidIndex ? problems[parsedIndex] : problems[Math.floor(Math.random() * problems.length)];
             
             const syntheticIntent = {
               company,
               role: "Software Engineer",
               level: "Mid",
-              focus: randomProblem.topics.join(", "),
+              focus: targetProblem.topics.join(", "),
               source: `Static Problem Set (${company})`,
-              title: randomProblem.title,
-              difficulty: randomProblem.difficulty,
+              title: targetProblem.title,
+              difficulty: targetProblem.difficulty,
             };
 
             // Instead of streaming, we just pass the full markdown text and a null reader
-            handleIntentReceived(syntheticIntent, null, randomProblem.content);
+            handleIntentReceived(syntheticIntent, null, targetProblem.content);
           }
         });
       }
@@ -89,6 +92,8 @@ export default function FindProblemsPage() {
             intent={intent} 
             streamReader={streamReader} 
             initialMarkdown={initialText}
+            problemIndex={typeof window !== "undefined" ? parseInt(new URLSearchParams(window.location.search).get("problemIndex") || "-1") : -1}
+            isStaticMode={typeof window !== "undefined" && new URLSearchParams(window.location.search).get("mode") === "static"}
           />
         )}
       </AnimatePresence>

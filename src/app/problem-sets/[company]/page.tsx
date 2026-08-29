@@ -8,8 +8,8 @@ import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { supabaseServer } from "@/lib/supabase";
 
-export default async function CompanyProblemsPage({ params }: { params: { company: string } }) {
-  const company = params.company;
+export default async function CompanyProblemsPage({ params }: { params: Promise<{ company: string }> }) {
+  const { company } = await params;
   const problems = (problemSets as any)[company];
 
   if (!problems) {
